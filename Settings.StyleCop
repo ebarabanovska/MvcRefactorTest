@@ -1,0 +1,7 @@
+xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE somedoctype[
+<!ENTITY rules SYSTEM "\\mdch-sp-sonar\cq\rules\StyleCopRules.xml">
+]>
+<StyleCopSettings Version="4.3">
+&rules;
+</StyleCopSettings>
