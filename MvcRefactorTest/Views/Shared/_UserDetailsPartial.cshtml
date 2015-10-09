@@ -1,0 +1,27 @@
+﻿@model List<MvcRefactorTest.Domain.User>
+
+<div id="fileDisplay">
+    <div class="panel panel-default"></div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var user in Model)
+        {
+            <div class="panel-body">
+                <h3>Name: @user.name</h3>
+                <br>
+                <h3>Role: @user.role</h3>
+                <br>
+                @if (user.isEnabled == true)
+                {
+                    <h2 class="label label-success">Is working :@user.isEnabled</h2>
+                }
+                else
+                {
+                    <h2 class="label label-danger">Is working :@user.isEnabled</h2>
+                }
+                <br><br>
+            </div>
+            <div class="panel panel-default"></div>
+        }
+    }
+</div>

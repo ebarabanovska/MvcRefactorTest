@@ -1,0 +1,66 @@
+﻿@model MvcRefactorTest.Models.LoginViewModel
+
+
+@{
+    ViewBag.Title = "Log In";
+    Layout = null;
+}
+
+<head>
+    <title>@ViewBag.Title</title>
+    <script type="text/javascript" src="~/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="~/scripts/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+
+            </div>
+            <div class="float-right">
+                <nav>
+                    @*<ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>*@
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body" style="align-content:center">
+        <div style="   margin-left: auto;width: 70%;">
+            <h1>Log In</h1>
+            <p>Please log in to access the administrative area:</p>
+
+            @using (Html.BeginForm("Validate", "Account", FormMethod.Post))
+            {
+                @*@Html.ValidationSummary(true)
+                    @Html.EditorForModel()*@
+                <div>
+                    @Html.LabelFor(x => x.UserName)
+                    @Html.TextBoxFor(x => x.UserName)
+                    @Html.ValidationMessageFor(x => x.UserName)
+                </div>
+                <div>
+                    @Html.LabelFor(x => x.Password)
+                    @Html.PasswordFor(x => x.Password)
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <p><input type="submit" id="btnLogin" value="Log in" /></p>
+            }
+        </div>
+    </div>
+</body>
+
+
+
+
+
+

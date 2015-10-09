@@ -1,0 +1,2 @@
+ERROR 2015-05-08 21:46:54,072   778ms HomeController         Index              - Test Error
+ERROR 2015-05-08 21:47:17,075 23780ms HomeController         Index              - Test Error
