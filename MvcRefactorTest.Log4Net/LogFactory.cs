@@ -1,12 +1,8 @@
-﻿using log4net;
-using log4net.Config;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using log4net;
+using log4net.Config;
 
 namespace MvcRefactorTest.Log4Net
 {
@@ -16,10 +12,11 @@ namespace MvcRefactorTest.Log4Net
 
         public static ILog GetLogger()
         {
-            var uri = new Uri(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase), Log4NetConfig));
+            var uri =
+                new Uri(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase), Log4NetConfig));
             var configFile = new FileInfo(Path.GetFullPath(uri.LocalPath));
             XmlConfigurator.ConfigureAndWatch(configFile);
-            ILog log = LogManager.GetLogger(typeof(LogFactory));
+            var log = LogManager.GetLogger(typeof (LogFactory));
             return log;
         }
     }

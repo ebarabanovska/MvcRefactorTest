@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactRepository.cs" />
-    <Compile Include="dbContext.cs" />
     <Compile Include="Interface\IContactRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="UserRepository.cs" />

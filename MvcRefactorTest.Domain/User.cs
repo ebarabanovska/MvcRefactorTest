@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using MvcRefactorTest.Domain.@base;
 
 namespace MvcRefactorTest.Domain
 {
@@ -11,19 +7,18 @@ namespace MvcRefactorTest.Domain
     {
         [Required]
         [Display(Name = "Full Name")]
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Display(Name = "Password")]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         [Required]
         [Display(Name = "Role")]
-        public string role { get; set; }
+        public string Role { get; set; }
 
         [Required]
         [Display(Name = "is Enabled")]
-        public bool isEnabled { get; set; }
-
+        public bool IsEnabled { get; set; }
     }
 }

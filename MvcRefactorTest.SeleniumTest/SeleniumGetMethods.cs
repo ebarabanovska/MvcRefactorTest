@@ -1,31 +1,25 @@
-﻿using OpenQA.Selenium;
+﻿using System.Linq;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SeleniumTest
+namespace MvcRefactorTest.SeleniumTest
 {
-    class SeleniumGetMethods
+    internal class SeleniumGetMethods
     {
         /// <summary>
-        /// Get Text
+        ///     Get Text.
         /// </summary>
-        /// <param name="PropertiesCollection.driver"></param>
-        /// <param name="element"></param>
-        /// <param name="value"></param>
-        /// <param name="elementType"></param>
-        /// <returns></returns>
+        /// <param name="element">By element.</param>
+        /// <param name="elementType">By element type.</param>
+        /// <returns>Returns the text of the element.</returns>
         public static string GetText(string element, PropertyType elementType)
         {
             switch (elementType)
             {
                 case PropertyType.Id:
-                    return PropertiesCollection.driver.FindElement(By.Id(element)).GetAttribute("value");
+                    return PropertiesCollection.Driver.FindElement(By.Id(element)).GetAttribute("value");
                 case PropertyType.Name:
-                    return PropertiesCollection.driver.FindElement(By.Name(element)).GetAttribute("value");
+                    return PropertiesCollection.Driver.FindElement(By.Name(element)).GetAttribute("value");
                 default:
                     return string.Empty;
             }
@@ -36,12 +30,25 @@ namespace SeleniumTest
             switch (elementType)
             {
                 case PropertyType.Id:
-                    return new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
+                    var singleOrDefault =
+                        new SelectElement(PropertiesCollection.Driver.FindElement(By.Id(element))).AllSelectedOptions
+                            .SingleOrDefault();
+                    if (singleOrDefault != null)
+                        return
+                            singleOrDefault.Text;
+                    break;
                 case PropertyType.Name:
-                    return new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
+                    var webElement =
+                        new SelectElement(PropertiesCollection.Driver.FindElement(By.Name(element))).AllSelectedOptions
+                            .SingleOrDefault();
+                    if (webElement != null)
+                        return
+                            webElement.Text;
+                    break;
                 default:
                     return string.Empty;
             }
+            return string.Empty;
         }
     }
 }

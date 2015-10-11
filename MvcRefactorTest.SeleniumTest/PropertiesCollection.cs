@@ -1,13 +1,8 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SeleniumTest
+namespace MvcRefactorTest.SeleniumTest
 {
-    enum PropertyType
+    internal enum PropertyType
     {
         Id,
         Name,
@@ -15,13 +10,13 @@ namespace SeleniumTest
         CssName,
         ClassName
     }
-    
-    class PropertiesCollection
-    { 
+
+    internal class PropertiesCollection
+    {
         /// <summary>
-        /// Gets or sets the driver.
+        ///     Gets or sets the driver.
         /// </summary>
         /// <value>The driver.</value>
-        public static IWebDriver driver { get ; set ; }
+        public static IWebDriver Driver { get; set; }
     }
 }

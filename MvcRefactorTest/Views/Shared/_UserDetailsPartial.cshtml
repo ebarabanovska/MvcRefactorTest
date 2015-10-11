@@ -7,17 +7,17 @@
         foreach (var user in Model)
         {
             <div class="panel-body">
-                <h3>Name: @user.name</h3>
+                <h3>Name: @user.Name</h3>
                 <br>
-                <h3>Role: @user.role</h3>
+                <h3>Role: @user.Role</h3>
                 <br>
-                @if (user.isEnabled == true)
+                @if (user.IsEnabled == true)
                 {
-                    <h2 class="label label-success">Is working :@user.isEnabled</h2>
+                    <h2 class="label label-success">Is working :@user.IsEnabled</h2>
                 }
                 else
                 {
-                    <h2 class="label label-danger">Is working :@user.isEnabled</h2>
+                    <h2 class="label label-danger">Is working :@user.IsEnabled</h2>
                 }
                 <br><br>
             </div>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MvcRefactorTest.DAL.Interface;
 
 namespace MvcRefactorTest.Tests.DAL
 {
@@ -19,8 +20,8 @@ namespace MvcRefactorTest.Tests.DAL
         protected Mock<IUserRepository> UserRepositoryMock;
 
         private IList<User> userTestList = new List<User>{
-        new User() { name = "Awin George", password = "pass", role = "Developer", isEnabled = false },
-        new User() { name = "Richard Child", password = "pass", role = "Developer", isEnabled = true }
+        new User() { Name = "Awin George", Password = "pass", Role = "Developer", IsEnabled = false },
+        new User() { Name = "Richard Child", Password = "pass", Role = "Developer", IsEnabled = true }
         };
 
         private IUserRepository CreateUserRepoInstance()
@@ -48,7 +49,7 @@ namespace MvcRefactorTest.Tests.DAL
             // verify
             Assert.AreEqual(true, result);
             Assert.AreEqual(3, userList.Count);
-            Assert.AreEqual("Awin George", userList.Where(p => p.id == 2).Select(p => p.name).SingleOrDefault());
+            Assert.AreEqual("Awin George", userList.Where(p => p.id == 2).Select(p => p.Name).SingleOrDefault());
         }
 
         [TestMethod]
@@ -81,8 +82,8 @@ namespace MvcRefactorTest.Tests.DAL
             // verify
             Assert.AreEqual(true, result);
             Assert.AreEqual(1, user.id);
-            Assert.AreEqual(true, user.isEnabled);
-            Assert.AreNotEqual(true, user.isDeleted);
+            Assert.AreEqual(true, user.IsEnabled);
+            Assert.AreNotEqual(true, user.IsDeleted);
         }
 
         [TestMethod]
@@ -104,7 +105,7 @@ namespace MvcRefactorTest.Tests.DAL
 
             // verify
             Assert.AreEqual(true, result);
-            Assert.AreEqual(newPassword, user.password);
+            Assert.AreEqual(newPassword, user.Password);
         }
 
         [TestMethod]

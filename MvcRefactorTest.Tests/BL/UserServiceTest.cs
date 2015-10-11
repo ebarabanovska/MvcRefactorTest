@@ -1,13 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MvcRefactorTest.BL;
+using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.DAL;
 using MvcRefactorTest.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MvcRefactorTest.Tests.BL
 {
@@ -18,27 +16,28 @@ namespace MvcRefactorTest.Tests.BL
 
         private IList<User> _userList;
         private User _userObj;
-        private Mock<IUserRepository> _mockUserRepository;
+        private Mock<IUserService> _mockUserService;
 
         /// <summary>
-        /// Initialize unit tests
+        ///     Initialize unit tests
         /// </summary>
         /// <param name="userList">userList</param>
         /// <param name="userObj">userObj</param>
-        /// <param name="mockUserRepository">UserRepository Mock</param>
-        private static void InitializeUnitTests(out IList<User> userList, out User userObj, out Mock<IUserRepository> mockUserRepository)
+        /// <param name="mockUserService">UserRepository Mock</param>
+        private static void InitializeUnitTests(out IList<User> userList, out User userObj,
+            out Mock<IUserService> mockUserService)
         {
             // create some mock products to play with
             userList = new List<User>
-                {
-                    new User  { name = "Chris Smith", password = "pass", role = "Developer", isEnabled = true },
-                    new User { name = "Awin George", password = "pass", role = "Developer", isEnabled = false },
-                    new User { name = "Richard Child", password = "pass", role = "Developer", isEnabled = true }
-                };
+            {
+                new User {Name = "Chris Smith", Password = "pass", Role = "Developer", IsEnabled = true, id = 2},
+                new User {Name = "Awin George", Password = "pass", Role = "Developer", IsEnabled = false, id = 3},
+                new User {Name = "Richard Child", Password = "pass", Role = "Developer", IsEnabled = true, id = 4}
+            };
 
-            userObj = new User { name = "Chris Smith", id = 2, password = "pass", role = "Developer", isEnabled = true };
+            userObj = new User {Name = "Chris Smith", id = 2, Password = "pass", Role = "Developer", IsEnabled = true};
 
-            mockUserRepository = new Mock<IUserRepository>();
+            mockUserService = new Mock<IUserService>();
         }
 
         #endregion
@@ -48,61 +47,59 @@ namespace MvcRefactorTest.Tests.BL
         [TestMethod]
         public void GetAllsUersTest()
         {
-
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
+            InitializeUnitTests(out _userList, out _userObj, out _mockUserService);
 
             // Return all users
-            _mockUserRepository.Setup(mr => mr.GetAllUsers(out _userList)).Returns(true);
+            _mockUserService.Setup(mr => mr.GetAllUsers(out _userList)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = new UserService(_mockUserRepository.Object);
+            //var target = new UserService(_mockUserService.Object);
             IList<User> testUser;
-            bool result = target.GetAllUsers(out testUser);
+            var result = _mockUserService.Object.GetAllUsers(out testUser);
 
             //assert
             Assert.AreEqual(3, testUser.Count);
             Assert.AreNotEqual(null, testUser);
-            Assert.AreEqual(false, testUser.Where(p => p.name == "Awin George").Select(p => p.isDeleted).SingleOrDefault());
+            Assert.AreEqual(false,
+                testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
         }
 
         [TestMethod]
         public void GetUserByIdTest()
         {
-
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
+            InitializeUnitTests(out _userList, out _userObj, out _mockUserService);
 
             // Return a user by Id
-            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out _userObj)).Returns(true);
+            _mockUserService.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out _userObj)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = new UserService(_mockUserRepository.Object);
+            //var target = new UserService(_mockUserService.Object);
             User testUser;
-            bool result = target.GetUserBy("Chris Smith", out testUser);
+            var result = _mockUserService.Object.GetUserBy("Chris Smith", out testUser);
 
             //assert
-            Assert.AreEqual("Chris Smith", testUser.name);
-            Assert.AreNotEqual("Richard Child", testUser.name);
+            Assert.AreEqual("Chris Smith", testUser.Name);
+            Assert.AreNotEqual("Richard Child", testUser.Name);
             Assert.AreEqual(2, testUser.id);
         }
 
         [TestMethod]
         public void GetUserByNameTest()
         {
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
+            InitializeUnitTests(out _userList, out _userObj, out _mockUserService);
 
             // return a user by Name
-            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out _userObj)).Returns(true);
+            _mockUserService.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out _userObj)).Returns(true);
 
             // setup of Mock User Repository
-            var target = new UserService(_mockUserRepository.Object);
+            //var target = new UserService(_mockUserService.Object);
             User testUser;
-            bool result = target.GetUserBy("Richard Child", out testUser);
+            var result = _mockUserService.Object.GetUserBy("Richard Child", out testUser);
 
             //assert
-            Assert.AreEqual("Chris Smith", testUser.name);
-            Assert.AreNotEqual("Richard Child", testUser.name);
+            Assert.AreEqual("Chris Smith", testUser.Name);
+            Assert.AreNotEqual("Richard Child", testUser.Name);
             Assert.AreEqual(2, testUser.id);
-
         }
 
         #endregion

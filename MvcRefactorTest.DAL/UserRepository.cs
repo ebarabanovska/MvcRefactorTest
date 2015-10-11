@@ -1,151 +1,154 @@
-﻿using log4net;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using log4net;
+using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
 using MvcRefactorTest.Log4Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MvcRefactorTest.DAL
 {
-    public class UserRepository : MvcRefactorTest.DAL.IUserRepository
+    public class UserRepository : IUserRepository
     {
+        private readonly ILog _logger = LogFactory.GetLogger();
         private dbContext _context;
-        private readonly ILog logger = LogFactory.GetLogger();
 
         #region Get methods
 
         /// <summary>
-        /// Get user By Id
+        ///     Get user By Id.
         /// </summary>
-        /// <param name="id">user Id</param>
-        /// <param name="userObj">Object to be retrieved</param>
-        /// <returns>Returns true if success, else false</returns>
+        /// <param name="id">user Id.</param>
+        /// <param name="userObj">Object to be retrieved.</param>
+        /// <returns>Returns true if success, else false.</returns>
         public bool GetUserBy(int id, out User userObj)
         {
-            bool succeed = false;
+            var succeed = false;
             userObj = null;
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    userObj = _context.User.Where(p => p.id == id).SingleOrDefault();
+                    userObj = _context.User.SingleOrDefault(p => p.id == id);
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        /// Validate user by username and password
+        ///     Validate User.
         /// </summary>
-        /// <param name="userName">Username</param>
-        /// <param name="password">Password</param>
-        /// <returns>Return true if success, else false</returns>
+        /// <param name="userName">User name.</param>
+        /// <param name="password">User password.</param>
+        /// <param name="isValid">Is user valid.</param>
+        /// <returns>Returns true if success, else false.</returns>
         public bool ValidateUser(string userName, string password, out bool isValid)
         {
-            bool succeed = false;
+            var succeed = false;
             isValid = false;
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    isValid = _context.User.Where(p => p.name == userName && p.password == password).SingleOrDefault() != null ? true : false;
+                    isValid =
+                        _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
+                            ? true
+                            : false;
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        /// Get user By Name
+        ///     Get user By Name
         /// </summary>
         /// <param name="name">user Name</param>
         /// <param name="userObj">Object to be retrieved</param>
         /// <returns>Returns true if success, else false</returns>
         public bool GetUserBy(string name, out User userObj)
         {
-            bool succeed = false;
+            var succeed = false;
             userObj = null;
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    userObj = _context.User.Where(p => p.name == name).SingleOrDefault();
+                    userObj = _context.User.SingleOrDefault(p => p.Name == name);
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        /// Get All users
+        ///     Get All users
         /// </summary>
         /// <param name="userList">user List</param>
         /// <returns>Returns true if success, else false</returns>
         public bool GetAllUsers(out IList<User> userList)
         {
-            bool succeed = false;
+            var succeed = false;
             userList = null;
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    userList = _context.User.ToList<User>();
+                    userList = _context.User.ToList();
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        /// Get All users by active flag
+        ///     Get All users by active flag
         /// </summary>
         /// <param name="active">is Enabled</param>
         /// <param name="userList">user List</param>
         /// <returns>Returns true if success, else false</returns>
         public bool GetAllUsersBy(bool active, out IList<User> userList)
         {
-            bool succeed = false;
+            var succeed = false;
             userList = null;
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    userList = _context.User.Where(p => p.isEnabled == active).ToList();
+                    userList = _context.User.Where(p => p.IsEnabled == active).ToList();
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -156,16 +159,16 @@ namespace MvcRefactorTest.DAL
         #region Create/Update/Delete
 
         /// <summary>
-        /// Create new User
+        ///     Create new User.
         /// </summary>
-        /// <param name="fullName">User full name</param>
-        /// <param name="password">Password</param>
-        /// <param name="role">Role</param>
-        /// <param name="userObj">User object to be retrieved</param>
-        /// <returns>Return true if success, else false</returns>
+        /// <param name="fullName">User full name.</param>
+        /// <param name="password">User Password.</param>
+        /// <param name="role">User Role.</param>
+        /// <param name="userObj">User object to be retrieved.</param>
+        /// <returns>Return true if success, else false.</returns>
         public bool CreateUser(string fullName, string password, string role, out User userObj)
         {
-            bool succeed = false;
+            var succeed = false;
             userObj = null;
 
             try
@@ -174,10 +177,10 @@ namespace MvcRefactorTest.DAL
                 {
                     userObj = new User
                     {
-                        name = fullName,
-                        password = password,
-                        role = role,
-                        isEnabled = true
+                        Name = fullName,
+                        Password = password,
+                        Role = role,
+                        IsEnabled = true
                     };
                     _context.User.Add(userObj);
                     _context.SaveChanges();
@@ -187,30 +190,28 @@ namespace MvcRefactorTest.DAL
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        /// Change Users Password
+        ///     Change Password.
         /// </summary>
-        /// <param name="fullName">fullName</param>
-        /// <param name="password">Password</param>
-        /// <param name="userObj">User Ooject to be retrieved</param>
-        /// <returns>Return true if success, else false</returns>
+        /// <param name="fullName">User full name.</param>
+        /// <param name="password">User password.</param>
+        /// <returns>Return true if success, else false.</returns>
         public bool ChangePassword(string fullName, string password)
         {
-            bool succeed = false;
-            User userObj = null;
+            var succeed = false;
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    userObj = _context.User.Where(p => p.name == fullName).SingleOrDefault();
-                    userObj.password = password;
+                    var userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
+                    if (userObj != null) userObj.Password = password;
 
                     _context.SaveChanges();
 
@@ -219,29 +220,30 @@ namespace MvcRefactorTest.DAL
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        /// Remove user from Role
+        ///     Remove user from Role.
         /// </summary>
-        /// <param name="fullName">fullName</param>
-        /// <param name="password">Password</param>
-        /// <returns>Return true if success, else false</returns>
+        /// <param name="fullName">User full name.</param>
+        /// <param name="role">User Role.</param>
+        /// <param name="userObj">User object to be retrieved.</param>
+        /// <returns>Return true if success, else false.</returns>
         public bool RemoveUserFromRole(string fullName, string role, out User userObj)
         {
-            bool succeed = false;
+            var succeed = false;
             userObj = new User();
 
             try
             {
                 using (_context = new dbContext())
                 {
-                    userObj = _context.User.Where(p => p.name == fullName).SingleOrDefault();
-                    userObj.role = string.Empty;
+                    userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
+                    if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
 
                     _context.SaveChanges();
 
@@ -250,13 +252,11 @@ namespace MvcRefactorTest.DAL
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
-
-
 
         #endregion
     }

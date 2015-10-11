@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using MvcRefactorTest.Domain.@base;
 
 namespace MvcRefactorTest.Domain
 {
@@ -11,29 +7,29 @@ namespace MvcRefactorTest.Domain
     {
         [Required]
         [Display(Name = "Main Phone")]
-        public string mainPhone { get; set; }
+        public string MainPhone { get; set; }
 
         [Required]
         [Display(Name = "After Hours Phone")]
-        public string afterHours { get; set; }
+        public string AfterHours { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Support")]
-        public string supportEmail { get; set; }
+        public string SupportEmail { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "Marketing")]
-        public string marketingEmail { get; set; }
+        public string MarketingEmail { get; set; }
 
         [Required]
         [EmailAddress]
         [Display(Name = "General")]
-        public string generalEmail { get; set; }
+        public string GeneralEmail { get; set; }
 
         [Required]
         [Display(Name = "Address")]
-        public string address { get; set; }
+        public string Address { get; set; }
     }
 }
