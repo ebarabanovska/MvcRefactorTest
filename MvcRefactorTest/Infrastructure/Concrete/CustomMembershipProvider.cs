@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Security;
-using MvcRefactorTest.DAL;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Infrastructure.Abstract;
 using MvcRefactorTest.Log4Net;

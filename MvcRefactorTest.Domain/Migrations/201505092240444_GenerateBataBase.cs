@@ -1,8 +1,7 @@
+using System.Data.Entity.Migrations;
+
 namespace MvcRefactorTest.Domain.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class GenerateBataBase : DbMigration
     {
         public override void Up()
@@ -10,51 +9,50 @@ namespace MvcRefactorTest.Domain.Migrations
             CreateTable(
                 "dbo.Contacts",
                 c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        mainPhone = c.String(nullable: false),
-                        afterHours = c.String(nullable: false),
-                        supportEmail = c.String(nullable: false),
-                        marketingEmail = c.String(nullable: false),
-                        generalEmail = c.String(nullable: false),
-                        address = c.String(nullable: false),
-                        date_created = c.DateTime(nullable: false),
-                        date_updated = c.DateTime(nullable: false),
-                        isDeleted = c.Boolean(nullable: false),
-                    })
+                {
+                    id = c.Int(false, true),
+                    mainPhone = c.String(false),
+                    afterHours = c.String(false),
+                    supportEmail = c.String(false),
+                    marketingEmail = c.String(false),
+                    generalEmail = c.String(false),
+                    address = c.String(false),
+                    date_created = c.DateTime(false),
+                    date_updated = c.DateTime(false),
+                    isDeleted = c.Boolean(false)
+                })
                 .PrimaryKey(t => t.id);
-            
+
             CreateTable(
                 "dbo.Logs",
                 c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Date = c.DateTime(nullable: false),
-                        Thread = c.String(nullable: false, maxLength: 255),
-                        Level = c.String(nullable: false, maxLength: 50),
-                        Logger = c.String(nullable: false, maxLength: 255),
-                        Message = c.String(nullable: false, maxLength: 4000),
-                        Exception = c.String(maxLength: 2000),
-                    })
+                {
+                    Id = c.Int(false, true),
+                    Date = c.DateTime(false),
+                    Thread = c.String(false, 255),
+                    Level = c.String(false, 50),
+                    Logger = c.String(false, 255),
+                    Message = c.String(false, 4000),
+                    Exception = c.String(maxLength: 2000)
+                })
                 .PrimaryKey(t => t.Id);
-            
+
             CreateTable(
                 "dbo.Users",
                 c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        name = c.String(nullable: false),
-                        password = c.String(nullable: false),
-                        role = c.String(nullable: false),
-                        isEnabled = c.Boolean(nullable: false),
-                        date_created = c.DateTime(nullable: false),
-                        date_updated = c.DateTime(nullable: false),
-                        isDeleted = c.Boolean(nullable: false),
-                    })
+                {
+                    id = c.Int(false, true),
+                    name = c.String(false),
+                    password = c.String(false),
+                    role = c.String(false),
+                    isEnabled = c.Boolean(false),
+                    date_created = c.DateTime(false),
+                    date_updated = c.DateTime(false),
+                    isDeleted = c.Boolean(false)
+                })
                 .PrimaryKey(t => t.id);
-            
         }
-        
+
         public override void Down()
         {
             DropTable("dbo.Users");

@@ -36,10 +36,10 @@ namespace MvcRefactorTest.Controllers
         public ActionResult LoadUsers()
         {
             IList<User> userObj;
-            
+
             return _userService.GetAllUsers(out userObj)
-                   ? PartialView("_UserDetailsPartial", (List<User>) userObj)
-                   : PartialView(null);
+                ? PartialView("_UserDetailsPartial", (List<User>) userObj)
+                : PartialView(null);
         }
 
         public ActionResult About()

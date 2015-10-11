@@ -26,7 +26,7 @@ namespace MvcRefactorTest.Domain
         [Required]
         [StringLength(4000)]
         public string Message { get; set; }
-        
+
         [StringLength(2000)]
         public string Exception { get; set; }
     }

@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using log4net.Config;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.Config", Watch = true)]
+[assembly: XmlConfigurator(ConfigFile = "Web.Config", Watch = true)]
+
 namespace AspnetIdentitySample
 {
-    public partial class Startup
+    public class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)

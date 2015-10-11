@@ -39,7 +39,7 @@ namespace MvcRefactorTest.DAL
 
             return succeed;
         }
-        
+
         #endregion
     }
 }

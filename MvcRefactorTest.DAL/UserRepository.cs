@@ -60,9 +60,9 @@ namespace MvcRefactorTest.DAL
                 using (_context = new dbContext())
                 {
                     isValid =
-                             _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
-                             ? true
-                             : false;
+                        _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
+                            ? true
+                            : false;
                     succeed = true;
                 }
             }
@@ -259,7 +259,7 @@ namespace MvcRefactorTest.DAL
 
             return succeed;
         }
-        
+
         #endregion
     }
 }

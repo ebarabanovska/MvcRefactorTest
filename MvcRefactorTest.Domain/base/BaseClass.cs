@@ -5,7 +5,6 @@ namespace MvcRefactorTest.Domain.@base
 {
     public static class Extensions
     {
-        
     }
 
     public class BaseClass

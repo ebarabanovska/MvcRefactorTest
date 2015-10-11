@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using SeleniumTest;
 
 namespace MvcRefactorTest.SeleniumTest
 {

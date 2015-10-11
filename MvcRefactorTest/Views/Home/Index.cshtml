@@ -4,38 +4,45 @@
 }
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>File Viewer</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
     <script>
         function OpenUserDetails() {
-            $(function () {
-                $.ajax({
-                    url: '@Url.Action("LoadUsers","Home")',
-                    type: 'GET',
-                    cache: false,
-                    //data: { meter_id: meterId }
-                }).done(function (result) {
-                    $('#contUserDetails').html(result);
-                });
-            });
+            $(function() {
+                    $.ajax({
+                        url: "@Url.Action(\
+                                  "LoadUsers\",\"Home\")",
+                                  "GET",
+                                  false,
+                                  //data: { meter_id: meterId }
+}
+
+    ).
+
+                    done(function (result);
+                {
+                    $
+                    ("#contUserDetails").html(result);
+                }
+            );
+        });
         }
     </script>
 </head>
 
 <hgroup class="title">
-    <h1>@ViewBag.Title</h1>
-    <h2>@ViewBag.Message</h2>
+    <h1>@ViewBag.Title </h1>
+    <h2>@ViewBag.Message </h2>
 </hgroup>
 
 @*<h1>All Developers</h1>
 <div id="fileDisplay"></div>*@
 <form>
-    <input type="Button" name="Submit" value="Load Users" onclick="OpenUserDetails();" style="color: #000;background: #ffa20f;border: 2px outset #d7b9c9" />
+    <input type="Button" name="Submit" value="Load Users" onclick=" OpenUserDetails(); " style="background: #ffa20f; border: 2px outset #d7b9c9; color: #000;"/>
 
     <div id="contUserDetails">
-        @Html.Partial("_UserDetailsPartial", Model)
+        @Html.Partial ( "_UserDetailsPartial", Model )
+    
     </div>
 </form>
-
-
