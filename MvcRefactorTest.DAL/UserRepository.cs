@@ -60,9 +60,9 @@ namespace MvcRefactorTest.DAL
                 using (_context = new dbContext())
                 {
                     isValid =
-                        _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
-                            ? true
-                            : false;
+                             _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
+                             ? true
+                             : false;
                     succeed = true;
                 }
             }
@@ -211,7 +211,8 @@ namespace MvcRefactorTest.DAL
                 using (_context = new dbContext())
                 {
                     var userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null) userObj.Password = password;
+                    if (userObj != null)
+                        userObj.Password = password;
 
                     _context.SaveChanges();
 
@@ -243,7 +244,8 @@ namespace MvcRefactorTest.DAL
                 using (_context = new dbContext())
                 {
                     userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
+                    if (userObj != null && userObj.Role == role)
+                        userObj.Role = string.Empty;
 
                     _context.SaveChanges();
 
@@ -257,7 +259,7 @@ namespace MvcRefactorTest.DAL
 
             return succeed;
         }
-
+        
         #endregion
     }
 }

@@ -14,22 +14,22 @@ namespace MvcRefactorTest.Controllers
     public class AccountController : Controller
     {
         #region Constructors
-
+        
         public AccountController(IUserService userService, ICustomMembershipProvider authProvider)
         {
             _authProvider = authProvider;
             _userService = userService;
         }
-
+        
         #endregion
-
+        
         [HttpGet]
         public ActionResult Login()
         {
             FormsAuthentication.SignOut();
             return View();
         }
-
+        
         [HttpPost]
         public ActionResult Validate(string username, string password)
         {
@@ -48,12 +48,12 @@ namespace MvcRefactorTest.Controllers
             }
             return View("Login");
         }
-
+        
         #region Private Properties
-
+        
         private readonly ICustomMembershipProvider _authProvider;
         private readonly IUserService _userService;
-
+        
         /// <summary>
         /// </summary>
         /// <param name="username"></param>
@@ -64,11 +64,11 @@ namespace MvcRefactorTest.Controllers
         {
             var success = false;
             var userObj = new User();
-
+            
             try
             {
                 _userService.GetUserBy(username, out userObj);
-
+                
                 var userId = userObj.id;
                 var userData = userId.ToString(CultureInfo.InvariantCulture);
                 var authTicket = new FormsAuthenticationTicket(1, //version
@@ -78,20 +78,20 @@ namespace MvcRefactorTest.Controllers
                     //Expiration
                     persistanceFlag, //Persistent
                     userData);
-
+                
                 var encTicket = FormsAuthentication.Encrypt(authTicket);
                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-
+                
                 success = true;
             }
             catch (Exception ex)
             {
                 LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
             }
-
+            
             return success;
         }
-
+    
         #endregion Private Properties
     }
 }

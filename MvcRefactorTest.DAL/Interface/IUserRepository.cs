@@ -19,7 +19,7 @@ namespace MvcRefactorTest.DAL.Interface
         /// <param name="userList">User List.</param>
         /// <returns>Returns true if success, else false.</returns>
         bool GetAllUsersBy(bool active, out IList<User> userList);
-
+        
         /// <summary>
         ///     Get user By Name
         /// </summary>
