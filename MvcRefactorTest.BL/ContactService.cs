@@ -1,13 +1,9 @@
-﻿using log4net;
+﻿using System;
+using log4net;
 using MvcRefactorTest.BL.Interface;
-using MvcRefactorTest.DAL;
+using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Log4Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MvcRefactorTest.BL
 {
@@ -15,28 +11,33 @@ namespace MvcRefactorTest.BL
     {
         #region Private Members
 
-        private IContactRepository _contactRepository;
-        private readonly ILog logger = LogFactory.GetLogger();
+        private readonly IContactRepository _contactRepository;
+        private readonly ILog _logger = LogFactory.GetLogger();
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        ///     Contact Servce default constructor.
+        /// </summary>
+        /// <param name="contactRepository">Injected contact Repository.</param>
         public ContactService(IContactRepository contactRepository)
         {
             _contactRepository = contactRepository;
         }
+
         #endregion
 
         #region Get methods
 
         /// <summary>
-        /// Get Contact Details
+        ///     Get Contact Details.
         /// </summary>
-        /// <returns>Returns true if success, else false</returns>
+        /// <returns>Returns true if success, else false.</returns>
         public bool GetContactDetails(out Contact contactObj)
         {
-            bool succeed = false;
+            var succeed = false;
             contactObj = null;
 
             try
@@ -46,7 +47,7 @@ namespace MvcRefactorTest.BL
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;

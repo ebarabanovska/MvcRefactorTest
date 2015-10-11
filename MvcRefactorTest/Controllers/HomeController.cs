@@ -1,27 +1,18 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using MvcRefactorTest.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.UI;
-using MvcRefactorTest.Domain;
-using System.Web.Security;
-using MvcRefactorTest.Log4Net;
 using log4net;
 using MvcRefactorTest.BL.Interface;
-
+using MvcRefactorTest.Domain;
+using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.Controllers
 {
-
     [Authorize(Roles = "Developer")]
     public class HomeController : Controller
     {
-        private readonly IUserService _userService;
+        private static readonly ILog Logger = LogFactory.GetLogger();
         private readonly IContactService _contactService;
-        private static readonly ILog logger = LogFactory.GetLogger();
+        private readonly IUserService _userService;
 
         #region Controller Constructors
 
@@ -46,10 +37,9 @@ namespace MvcRefactorTest.Controllers
         {
             IList<User> userObj;
 
-            if (_userService.GetAllUsers(out userObj))
-                return PartialView("_UserDetailsPartial", userObj);
-            else
-                return PartialView(null);
+            return _userService.GetAllUsers(out userObj)
+                ? PartialView("_UserDetailsPartial", userObj)
+                : PartialView(null);
         }
 
         public ActionResult About()
@@ -64,9 +54,7 @@ namespace MvcRefactorTest.Controllers
             ViewBag.Message = "Your contact page.";
 
             Contact contactObj;
-            if (_contactService.GetContactDetails(out contactObj))
-                return View(contactObj);
-            else return View();
+            return _contactService.GetContactDetails(out contactObj) ? View(contactObj) : View();
         }
     }
 }

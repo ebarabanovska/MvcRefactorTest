@@ -1,44 +1,43 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using MvcRefactorTest.SeleniumTest;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumTest
 {
-    
-    class LoginPageObject
+    internal class LoginPageObject
     {
         public LoginPageObject()
         {
-            PageFactory.InitElements(PropertiesCollection.driver, this);
+            PageFactory.InitElements(PropertiesCollection.Driver, this);
         }
 
         [FindsBy(How = How.Id, Using = "UserName")]
-        public IWebElement txtUserName { get; set; }
+        public IWebElement TxtUserName { get; set; }
 
         [FindsBy(How = How.Name, Using = "Password")]
-        public IWebElement txtPassword { get; set; }
+        public IWebElement TxtPassword { get; set; }
 
         [FindsBy(How = How.Name, Using = "btnLogin")]
-        public IWebElement btnLogin { get; set; }
+        public IWebElement BtnLogin { get; set; }
 
         public HomePageObject Login(string initial, string firstName)
         {
             try
             {
-                //populate username
-                txtUserName.SendKeys(initial);
+                // populate username
+                TxtUserName.SendKeys(initial);
 
-                //populate password
-                txtPassword.SendKeys(firstName);
+                // populate password
+                TxtPassword.SendKeys(firstName);
 
-                //initiate click
-                btnLogin.Click();
+                // initiate click
+                BtnLogin.Click();
             }
-            catch { }
+            catch (Exception)
+            {
+                // ignored
+            }
             return new HomePageObject();
         }
     }

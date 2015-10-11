@@ -1,76 +1,62 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumTest
+namespace MvcRefactorTest.SeleniumTest
 {
-    class SeleniumSetMethods
+    internal class SeleniumSetMethods
     {
         /// <summary>
-        /// Entered Text
+        ///     Enter Text.
         /// </summary>
-        /// <param name="PropertiesCollection.driver"></param>
-        /// <param name="element"></param>
-        /// <param name="value"></param>
-        /// <param name="elementType"></param>
+        /// <param name="element">Element.</param>
+        /// <param name="value">Value to be set.</param>
+        /// <param name="elementType">Element Type.</param>
         public static void EnterText(string element, string value, PropertyType elementType)
         {
             switch (elementType)
             {
                 case PropertyType.Id:
-                    PropertiesCollection.driver.FindElement(By.Id(element)).SendKeys(value);
+                    PropertiesCollection.Driver.FindElement(By.Id(element)).SendKeys(value);
                     break;
                 case PropertyType.Name:
-                    PropertiesCollection.driver.FindElement(By.Name(element)).SendKeys(value);                    
-                    break;
-                default:
+                    PropertiesCollection.Driver.FindElement(By.Name(element)).SendKeys(value);
                     break;
             }
         }
 
         /// <summary>
-        /// Click 
+        ///     Click.
         /// </summary>
-        /// <param name="PropertiesCollection.driver"></param>
-        /// <param name="element"></param>
-        /// <param name="elementType"></param>
+        /// <param name="element">Element.</param>
+        /// <param name="elementType">Element Type.</param>
         public static void Click(string element, PropertyType elementType)
         {
             switch (elementType)
             {
                 case PropertyType.Id:
-                    PropertiesCollection.driver.FindElement(By.Id(element)).Click();
+                    PropertiesCollection.Driver.FindElement(By.Id(element)).Click();
                     break;
                 case PropertyType.Name:
-                    PropertiesCollection.driver.FindElement(By.Name(element)).Click();
-                    break;
-                default:
+                    PropertiesCollection.Driver.FindElement(By.Name(element)).Click();
                     break;
             }
         }
 
         /// <summary>
-        /// Select DropDown value
+        ///     Select DropDown.
         /// </summary>
-        /// <param name="PropertiesCollection.driver"></param>
-        /// <param name="element"></param>
-        /// <param name="value"></param>
-        /// <param name="elementType"></param>
+        /// <param name="element">Element to be selected.</param>
+        /// <param name="value">Value to be set.</param>
+        /// <param name="elementType">Element Type.</param>
         public static void SelectDropDown(string element, string value, PropertyType elementType)
-        { 
+        {
             switch (elementType)
             {
                 case PropertyType.Id:
-                    new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).SelectByText(value);
+                    new SelectElement(PropertiesCollection.Driver.FindElement(By.Id(element))).SelectByText(value);
                     break;
                 case PropertyType.Name:
-                    new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).SelectByText(value);
-                    break;
-                default:
+                    new SelectElement(PropertiesCollection.Driver.FindElement(By.Name(element))).SelectByText(value);
                     break;
             }
         }

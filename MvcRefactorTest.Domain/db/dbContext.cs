@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace MvcRefactorTest.Domain.db
 {
@@ -12,13 +7,11 @@ namespace MvcRefactorTest.Domain.db
         public dbContext()
             : base("MvcRefactorTest")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<User> User { get; set; }
-
         public DbSet<Contact> Contact { get; set; }
-
         public DbSet<Log> Log { get; set; }
     }
 }

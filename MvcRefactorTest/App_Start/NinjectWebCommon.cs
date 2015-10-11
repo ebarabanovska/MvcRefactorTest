@@ -1,3 +1,5 @@
+using MvcRefactorTest.DAL.Interface;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(MvcRefactorTest.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(MvcRefactorTest.App_Start.NinjectWebCommon), "Stop")]
 

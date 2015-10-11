@@ -1,11 +1,9 @@
-﻿using MvcRefactorTest.DAL;
+﻿using System;
+using System.Web.Security;
+using MvcRefactorTest.DAL;
+using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Infrastructure.Abstract;
 using MvcRefactorTest.Log4Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 
 namespace MvcRefactorTest.Infrastructure.Concrete
 {
@@ -20,24 +18,24 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
         public bool Authenticate(string username, string password)
         {
-            bool result = ValidateUser(username, password);
+            var result = ValidateUser(username, password);
             if (result)
             {
                 FormsAuthentication.SetAuthCookie(username, false);
-            } return result;
+            }
+            return result;
         }
 
         public override string ApplicationName { get; set; }
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            bool success = false;
+            var success = false;
 
             try
             {
                 if (_userRepository.ChangePassword(username, newPassword))
                     success = true;
-
             }
             catch (Exception ex)
             {
@@ -47,12 +45,15 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             return success;
         }
 
-        public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
+        public override bool ChangePasswordQuestionAndAnswer(string username, string password,
+            string newPasswordQuestion, string newPasswordAnswer)
         {
             throw new NotImplementedException();
         }
 
-        public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
+        public override MembershipUser CreateUser(string username, string password, string email,
+            string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey,
+            out MembershipCreateStatus status)
         {
             throw new NotImplementedException();
         }
@@ -72,12 +73,14 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             get { throw new NotImplementedException(); }
         }
 
-        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
+        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize,
+            out int totalRecords)
         {
             throw new NotImplementedException();
         }
 
-        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
+        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize,
+            out int totalRecords)
         {
             throw new NotImplementedException();
         }
@@ -169,12 +172,11 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
         public override bool ValidateUser(string username, string password)
         {
-            bool isValid = false;
+            var isValid = false;
 
             try
             {
                 _userRepository.ValidateUser(username, password, out isValid);
-
             }
             catch (Exception ex)
             {
@@ -184,5 +186,4 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             return isValid;
         }
     }
-
 }

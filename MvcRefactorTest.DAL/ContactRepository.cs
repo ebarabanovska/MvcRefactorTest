@@ -1,29 +1,27 @@
-﻿using log4net;
+﻿using System;
+using System.Linq;
+using log4net;
+using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
 using MvcRefactorTest.Log4Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MvcRefactorTest.DAL
 {
-    public class ContactRepository : MvcRefactorTest.DAL.IContactRepository
+    public class ContactRepository : IContactRepository
     {
+        private readonly ILog _logger = LogFactory.GetLogger();
         private dbContext _context;
-        private readonly ILog logger = LogFactory.GetLogger();
 
         #region Get methods
 
         /// <summary>
-        /// Get Contact Details
+        ///     Get Contact Details
         /// </summary>
         /// <returns>Returns true if success, else false</returns>
         public bool GetContactDetails(out Contact contactObj)
         {
-            bool succeed = false;
+            var succeed = false;
             contactObj = null;
 
             try
@@ -36,7 +34,7 @@ namespace MvcRefactorTest.DAL
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, ex);
+                _logger.Error(ex.Message, ex);
             }
 
             return succeed;
