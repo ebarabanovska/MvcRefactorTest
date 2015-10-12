@@ -188,12 +188,11 @@ namespace MvcRefactorTest.BL
         }
 
         /// <summary>
-        ///     Change Users Password
+        ///     Change Users Password.
         /// </summary>
-        /// <param name="fullName">fullName</param>
-        /// <param name="password">Password</param>
-        /// <param name="userObj">User Ooject to be retrieved</param>
-        /// <returns>Return true if success, else false</returns>
+        /// <param name="fullName">Full Name.</param>
+        /// <param name="password">Password.</param>
+        /// <returns>Return true if success, else false.</returns>
         public bool ChangePassword(string fullName, string password)
         {
             var succeed = false;
@@ -213,6 +212,13 @@ namespace MvcRefactorTest.BL
             return succeed;
         }
 
+        /// <summary>
+        /// Remove User From Role.
+        /// </summary>
+        /// <param name="fullName">Full Name.</param>
+        /// <param name="role">Role.</param>
+        /// <param name="userObj">User Object.</param>
+        /// <returns>Return true if success, else false.</returns>
         public bool RemoveUserFromRole(string fullName, string role, out User userObj)
         {
             var succeed = false;
