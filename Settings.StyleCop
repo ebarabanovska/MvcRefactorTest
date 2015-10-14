@@ -1,6 +1,6 @@
 xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE somedoctype[
-<!ENTITY rules SYSTEM "E:\Sonar Qube\rulesStyleCopRules.xml">
+<!ENTITY rules SYSTEM "E:\Install\Sonar Qube\rules\StyleCopRules.xml">
 ]>
 <StyleCopSettings Version="4.3">
 &rules;
