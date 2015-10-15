@@ -1,5 +1,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="StyleCopLaunch">
+<<<<<<< HEAD
   <UsingTask AssemblyFile="E:\Install\Sonar Qube\StyleCop\StyleCop.dll" TaskName="StyleCopTask"/>
+=======
+  <UsingTask AssemblyFile="E:\Sonar Qube\StyleCop\StyleCop.dll" TaskName="StyleCopTask"/>
+>>>>>>> origin/master
 
   <PropertyGroup>
     <FolderToAnalyse>E:\GitHub</FolderToAnalyse>

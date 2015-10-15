@@ -3,23 +3,35 @@
  <Namespaces>
   <Namespace Name="AspnetIdentitySample">
    <Messages>
+<<<<<<< HEAD
     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'AspnetIdentitySample' with another namespace.</Issue>
     </Message>
     <Message Id="Aspnet" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'AspnetIdentitySample' with another namespace.</Issue>
+    </Message>
+    <Message Id="Aspnet" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Aspnet' in namespace name 'AspnetIdentitySample'.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="MvcRefactorTest">
    <Messages>
+<<<<<<< HEAD
     <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest'.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="MvcRefactorTest.App_Start">
    <Messages>
+<<<<<<< HEAD
     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.App_Start' with another namespace.</Issue>
     </Message>
@@ -27,46 +39,83 @@
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest.App_Start'.</Issue>
     </Message>
     <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.App_Start' with another namespace.</Issue>
+    </Message>
+    <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest.App_Start'.</Issue>
+    </Message>
+    <Message TypeName="IdentifiersShouldNotContainUnderscores" Category="Microsoft.Naming" CheckId="CA1707" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="95" Level="Error">Remove the underscores from namespace name 'MvcRefactorTest.App_Start'.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="MvcRefactorTest.Controllers">
    <Messages>
+<<<<<<< HEAD
     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Controllers' with another namespace.</Issue>
     </Message>
     <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Controllers' with another namespace.</Issue>
+    </Message>
+    <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest.Controllers'.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="MvcRefactorTest.Infrastructure.Abstract">
    <Messages>
+<<<<<<< HEAD
     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Infrastructure.Abstract' with another namespace.</Issue>
     </Message>
     <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Infrastructure.Abstract' with another namespace.</Issue>
+    </Message>
+    <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest.Infrastructure.Abstract'.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="MvcRefactorTest.Infrastructure.Concrete">
    <Messages>
+<<<<<<< HEAD
     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Infrastructure.Concrete' with another namespace.</Issue>
     </Message>
     <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Infrastructure.Concrete' with another namespace.</Issue>
+    </Message>
+    <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest.Infrastructure.Concrete'.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="MvcRefactorTest.Models">
    <Messages>
+<<<<<<< HEAD
     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Models' with another namespace.</Issue>
     </Message>
     <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'MvcRefactorTest.Models' with another namespace.</Issue>
+    </Message>
+    <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
      <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in namespace name 'MvcRefactorTest.Models'.</Issue>
     </Message>
    </Messages>
@@ -77,6 +126,7 @@
    <Modules>
     <Module Name="mvcrefactortest.dll">
      <Messages>
+<<<<<<< HEAD
       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
        <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Sign 'MvcRefactorTest.dll' with a strong name key.</Issue>
       </Message>
@@ -84,6 +134,15 @@
        <Issue Name="Assembly" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in assembly name 'MvcRefactorTest.dll'.</Issue>
       </Message>
       <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Sign 'MvcRefactorTest.dll' with a strong name key.</Issue>
+      </Message>
+      <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+       <Issue Name="Assembly" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in assembly name 'MvcRefactorTest.dll'.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
        <Issue Certainty="95" Level="Error">Mark 'MvcRefactorTest.dll' with CLSCompliant(true) because it exposes externally visible types.</Issue>
       </Message>
      </Messages>
@@ -94,10 +153,17 @@
          <Members>
           <Member Name="#ConfigureAuth(Owin.IAppBuilder)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="Auth" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
              <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\App_Start" File="Startup.Auth.cs" Line="15">Correct the spelling of 'Auth' in member name 'Startup.ConfigureAuth(IAppBuilder)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
             </Message>
             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="DependsOnFix" BreaksBuild="True">
+=======
+            <Message Id="Auth" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\App_Start" File="Startup.Auth.cs" Line="15">Correct the spelling of 'Auth' in member name 'Startup.ConfigureAuth(IAppBuilder)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="DependsOnFix" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\App_Start" File="Startup.Auth.cs" Line="15">The 'this' parameter (or 'Me' in Visual Basic) of 'Startup.ConfigureAuth(IAppBuilder)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
             </Message>
            </Messages>
@@ -110,14 +176,22 @@
        <Types>
         <Type Name="BundleConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'BundleConfig' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#RegisterBundles(System.Web.Optimization.BundleCollection)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="DependsOnFix" BreaksBuild="True">
+=======
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="DependsOnFix" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="75" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\App_Start" File="BundleConfig.cs" Line="10">In externally visible method 'BundleConfig.RegisterBundles(BundleCollection)', validate parameter 'bundles' before using it.</Issue>
             </Message>
            </Messages>
@@ -126,14 +200,22 @@
         </Type>
         <Type Name="FilterConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'FilterConfig' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="DependsOnFix" BreaksBuild="True">
+=======
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="DependsOnFix" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="75" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\App_Start" File="FilterConfig.cs" Line="9">In externally visible method 'FilterConfig.RegisterGlobalFilters(GlobalFilterCollection)', validate parameter 'filters' before using it.</Issue>
             </Message>
            </Messages>
@@ -142,28 +224,44 @@
         </Type>
         <Type Name="MvcApplication" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message Id="Mvc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Mvc' in type name 'MvcApplication'.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="RouteConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'RouteConfig' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
           </Message>
          </Messages>
         </Type>
         <Type Name="WebApiConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message Id="Api" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message Id="Api" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Api' in type name 'WebApiConfig'.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#Register(System.Web.Http.HttpConfiguration)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="DependsOnFix" BreaksBuild="True">
+=======
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="DependsOnFix" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="75" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\App_Start" File="WebApiConfig.cs" Line="9">In externally visible method 'WebApiConfig.Register(HttpConfiguration)', validate parameter 'config' before using it.</Issue>
             </Message>
            </Messages>
@@ -176,7 +274,11 @@
        <Types>
         <Type Name="NinjectWebCommon" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message Id="Ninject" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message Id="Ninject" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Ninject' in type name 'NinjectWebCommon'.</Issue>
           </Message>
          </Messages>
@@ -189,20 +291,29 @@
          <Members>
           <Member Name="#.ctor(MvcRefactorTest.BL.Interface.IUserService,MvcRefactorTest.Infrastructure.Abstract.ICustomMembershipProvider)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="auth" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="auth" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="18">In method 'AccountController.AccountController(IUserService, ICustomMembershipProvider)', correct the spelling of 'auth' in parameter name 'authProvider' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Login()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="Member" Certainty="95" Level="Error" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="28">Replace the term 'Login' in member name 'AccountController.Login()' with the preferred alternate 'LogOn'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#SetupFormsAuthTicket(System.String,System.String,System.Boolean)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="87">Modify 'AccountController.SetupFormsAuthTicket(string, string, bool)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
@@ -210,16 +321,32 @@
              <Issue Certainty="95" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="64">Parameter 'password' of 'AccountController.SetupFormsAuthTicket(string, string, bool)' is never used. Remove the parameter or use it in the method body.</Issue>
             </Message>
             <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="87">Modify 'AccountController.SetupFormsAuthTicket(string, string, bool)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="password" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+             <Issue Certainty="95" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="64">Parameter 'password' of 'AccountController.SetupFormsAuthTicket(string, string, bool)' is never used. Remove the parameter or use it in the method body.</Issue>
+            </Message>
+            <Message Id="System.Convert.ToInt32(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="74">Because the behavior of 'Convert.ToInt32(string)' could vary based on the current user's locale settings, replace this call in 'AccountController.SetupFormsAuthTicket(string, string, bool)' with a call to 'Convert.ToInt32(string, IFormatProvider)'. If the result of 'Convert.ToInt32(string, IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Validate(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="35">In member 'AccountController.Validate(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+             <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="35">In member 'AccountController.Validate(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Controllers" File="AccountController.cs" Line="44">Modify 'AccountController.Validate(string, string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
            </Messages>
@@ -230,7 +357,11 @@
          <Members>
           <Member Name="#Logger" Kind="Field" Static="True" Accessibility="Private" ExternallyVisible="False">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="75" Level="Warning">It appears that field 'HomeController.Logger' is never used or is only ever assigned to. Use this field or remove it.</Issue>
             </Message>
            </Messages>
@@ -245,97 +376,155 @@
          <Members>
           <Member Name="#Authenticate(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.Authenticate(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ChangePassword(System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.ChangePassword(string, string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ChangePasswordQuestionAndAnswer(System.String,System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.ChangePasswordQuestionAndAnswer(string, string, string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#CreateUser(System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Object,System.Web.Security.MembershipCreateStatus&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="7#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
              <Issue Certainty="50" Level="Warning">Consider a design that does not require that 'status' be an out parameter.</Issue>
             </Message>
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="7#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+             <Issue Certainty="50" Level="Warning">Consider a design that does not require that 'status' be an out parameter.</Issue>
+            </Message>
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.CreateUser(string, string, string, string, string, bool, object, out MembershipCreateStatus)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#DeleteUser(System.String,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.DeleteUser(string, bool)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#FindUsersByEmail(System.String,System.Int32,System.Int32,System.Int32&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="50" Level="Warning">Consider a design that does not require that 'totalRecords' be an out parameter.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#FindUsersByName(System.String,System.Int32,System.Int32,System.Int32&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
              <Issue Certainty="50" Level="Warning">Consider a design that does not require that 'totalRecords' be an out parameter.</Issue>
             </Message>
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="3#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+             <Issue Certainty="50" Level="Warning">Consider a design that does not require that 'totalRecords' be an out parameter.</Issue>
+            </Message>
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.FindUsersByName(string, int, int, out int)', the discrete term 'username' in parameter name 'usernameToMatch' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetAllUsers(System.Int32,System.Int32,System.Int32&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="50" Level="Warning">Consider a design that does not require that 'totalRecords' be an out parameter.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetNumberOfUsersOnline()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="50" Level="Warning">Change 'ICustomMembershipProvider.GetNumberOfUsersOnline()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetPassword(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.GetPassword(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetUser(System.String,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.GetUser(string, bool)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ResetPassword(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.ResetPassword(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ValidateUser(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+            <Message Id="username" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Name="MemberParameterShouldBeCompoundWord" Certainty="80" Level="Error">In member 'ICustomMembershipProvider.ValidateUser(string, string)', the discrete term 'username' in parameter name 'username' should be expressed as a compound word, 'userName'.</Issue>
             </Message>
            </Messages>
@@ -350,7 +539,11 @@
          <Members>
           <Member Name="#ChangePassword(System.String,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="39">Modify 'CustomMembershipProvider.ChangePassword(string, string, string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
            </Messages>
@@ -359,7 +552,11 @@
            <Accessors>
             <Accessor Name="#get_EnablePasswordReset()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="67">'CustomMembershipProvider.EnablePasswordReset.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -370,7 +567,11 @@
            <Accessors>
             <Accessor Name="#get_EnablePasswordRetrieval()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="72">'CustomMembershipProvider.EnablePasswordRetrieval.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -381,7 +582,11 @@
            <Accessors>
             <Accessor Name="#get_MaxInvalidPasswordAttempts()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="119">'CustomMembershipProvider.MaxInvalidPasswordAttempts.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -392,7 +597,11 @@
            <Accessors>
             <Accessor Name="#get_MinRequiredNonAlphanumericCharacters()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="124">'CustomMembershipProvider.MinRequiredNonAlphanumericCharacters.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -403,7 +612,11 @@
            <Accessors>
             <Accessor Name="#get_MinRequiredPasswordLength()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="129">'CustomMembershipProvider.MinRequiredPasswordLength.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -414,7 +627,11 @@
            <Accessors>
             <Accessor Name="#get_PasswordAttemptWindow()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="134">'CustomMembershipProvider.PasswordAttemptWindow.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -425,7 +642,11 @@
            <Accessors>
             <Accessor Name="#get_PasswordFormat()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="139">'CustomMembershipProvider.PasswordFormat.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -436,7 +657,11 @@
            <Accessors>
             <Accessor Name="#get_PasswordStrengthRegularExpression()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="144">'CustomMembershipProvider.PasswordStrengthRegularExpression.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -447,7 +672,11 @@
            <Accessors>
             <Accessor Name="#get_RequiresQuestionAndAnswer()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="149">'CustomMembershipProvider.RequiresQuestionAndAnswer.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -458,7 +687,11 @@
            <Accessors>
             <Accessor Name="#get_RequiresUniqueEmail()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
              <Messages>
+<<<<<<< HEAD
               <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
                <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="154">'CustomMembershipProvider.RequiresUniqueEmail.get()' creates an exception of type 'NotImplementedException', an exception type that should not be raised in a property. If this exception instance might be raised, use a different exception type, convert this property into a method, or change this property's logic so that it no longer raises an exception.</Issue>
               </Message>
              </Messages>
@@ -467,7 +700,11 @@
           </Member>
           <Member Name="#ValidateUser(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomMembershipProvider.cs" Line="180">Modify 'CustomMembershipProvider.ValidateUser(string, string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
            </Messages>
@@ -478,27 +715,40 @@
          <Members>
           <Member Name="#FindUsersInRole(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="46">Modify 'CustomRoleProvider.FindUsersInRole(string, string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#GetRolesForUser(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="72">Modify 'CustomRoleProvider.GetRolesForUser(string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#IsUserInRole(System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="99">Modify 'CustomRoleProvider.IsUserInRole(string, string)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#RemoveUsersFromRoles(System.String[],System.String[])" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
+<<<<<<< HEAD
             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="NonBreaking" BreaksBuild="True">
              <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="127">Modify 'CustomRoleProvider.RemoveUsersFromRoles(string[], string[])' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
             </Message>
@@ -506,6 +756,15 @@
              <Issue Certainty="75" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="115">In externally visible method 'CustomRoleProvider.RemoveUsersFromRoles(string[], string[])', validate parameter 'usernames' before using it.</Issue>
             </Message>
             <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="DependsOnFix" BreaksBuild="True">
+=======
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="NonBreaking" BreaksBuild="True">
+             <Issue Certainty="95" Level="CriticalError" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="127">Modify 'CustomRoleProvider.RemoveUsersFromRoles(string[], string[])' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="DependsOnFix" BreaksBuild="True">
+             <Issue Certainty="75" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="115">In externally visible method 'CustomRoleProvider.RemoveUsersFromRoles(string[], string[])', validate parameter 'usernames' before using it.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="DependsOnFix" BreaksBuild="True">
+>>>>>>> origin/master
              <Issue Certainty="75" Level="Warning" Path="e:\GitHub\MvcRefactorTest\MvcRefactorTest\Infrastructure\Concrete" File="CustomRoleProvider.cs" Line="119">In externally visible method 'CustomRoleProvider.RemoveUsersFromRoles(string[], string[])', validate parameter 'roleNames' before using it.</Issue>
             </Message>
            </Messages>
@@ -518,7 +777,11 @@
        <Types>
         <Type Name="LoginViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
+<<<<<<< HEAD
           <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2015-10-12 19:27:00Z" FixCategory="Breaking" BreaksBuild="True">
+=======
+          <Message Id="Login" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2015-10-12 19:06:16Z" FixCategory="Breaking" BreaksBuild="True">
+>>>>>>> origin/master
            <Issue Name="Type" Certainty="95" Level="Error">Replace the term 'Login' in type name 'LoginViewModel' with the preferred alternate 'LogOn'.</Issue>
           </Message>
          </Messages>

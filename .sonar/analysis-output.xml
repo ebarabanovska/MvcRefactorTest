@@ -1962,16 +1962,27 @@
           <Message>Remove this commented out code.</Message>
         </Issue>
         <Issue>
+<<<<<<< HEAD
           <Id>S1118</Id>
           <Line>9</Line>
           <Message>Add a "protected" constructor or the "static" keyword to the class declaration.</Message>
         </Issue>
         <Issue>
+=======
+>>>>>>> origin/master
           <Id>S1186</Id>
           <Line>12</Line>
           <Message>Add a nested comment explaining why this method is empty, throw a NotSupportedException or complete the implementation.</Message>
         </Issue>
         <Issue>
+<<<<<<< HEAD
+=======
+          <Id>S1118</Id>
+          <Line>9</Line>
+          <Message>Add a "protected" constructor or the "static" keyword to the class declaration.</Message>
+        </Issue>
+        <Issue>
+>>>>>>> origin/master
           <Id>S1172</Id>
           <Line>12</Line>
           <Message>Remove this unused method parameter "args".</Message>
@@ -1982,16 +1993,20 @@
           <Message>Remove this logging statement.</Message>
         </Issue>
         <Issue>
+<<<<<<< HEAD
           <Id>S2228</Id>
           <Line>87</Line>
           <Message>Remove this logging statement.</Message>
         </Issue>
         <Issue>
+=======
+>>>>>>> origin/master
           <Id>S1854</Id>
           <Line>66</Line>
           <Message>Remove this useless assignment to local variable "homePage".</Message>
         </Issue>
         <Issue>
+<<<<<<< HEAD
           <Id>S2228</Id>
           <Line>80</Line>
           <Message>Remove this logging statement.</Message>
@@ -2000,6 +2015,21 @@
           <Id>S1481</Id>
           <Line>66</Line>
           <Message>Remove this unused "homePage" local variable.</Message>
+=======
+          <Id>S1481</Id>
+          <Line>66</Line>
+          <Message>Remove this unused "homePage" local variable.</Message>
+        </Issue>
+        <Issue>
+          <Id>S2228</Id>
+          <Line>87</Line>
+          <Message>Remove this logging statement.</Message>
+        </Issue>
+        <Issue>
+          <Id>S2228</Id>
+          <Line>80</Line>
+          <Message>Remove this logging statement.</Message>
+>>>>>>> origin/master
         </Issue>
       </Issues>
     </File>
@@ -3156,6 +3186,7 @@
       </Metrics>
       <Issues>
         <Issue>
+<<<<<<< HEAD
           <Id>S125</Id>
           <Line>29</Line>
           <Message>Remove this commented out code.</Message>
@@ -3166,6 +3197,8 @@
           <Message>Remove this commented out code.</Message>
         </Issue>
         <Issue>
+=======
+>>>>>>> origin/master
           <Id>S103</Id>
           <Line>13</Line>
           <Message>Split this 121 characters long line (which is greater than 120 authorized).</Message>
@@ -3177,6 +3210,19 @@
         </Issue>
         <Issue>
           <Id>S125</Id>
+<<<<<<< HEAD
+=======
+          <Line>29</Line>
+          <Message>Remove this commented out code.</Message>
+        </Issue>
+        <Issue>
+          <Id>S125</Id>
+          <Line>33</Line>
+          <Message>Remove this commented out code.</Message>
+        </Issue>
+        <Issue>
+          <Id>S125</Id>
+>>>>>>> origin/master
           <Line>37</Line>
           <Message>Remove this commented out code.</Message>
         </Issue>
@@ -3226,11 +3272,14 @@
       </Metrics>
       <Issues>
         <Issue>
+<<<<<<< HEAD
           <Id>S125</Id>
           <Line>15</Line>
           <Message>Remove this commented out code.</Message>
         </Issue>
         <Issue>
+=======
+>>>>>>> origin/master
           <Id>S103</Id>
           <Line>12</Line>
           <Message>Split this 136 characters long line (which is greater than 120 authorized).</Message>
@@ -3240,6 +3289,14 @@
           <Line>13</Line>
           <Message>Split this 147 characters long line (which is greater than 120 authorized).</Message>
         </Issue>
+<<<<<<< HEAD
+=======
+        <Issue>
+          <Id>S125</Id>
+          <Line>15</Line>
+          <Message>Remove this commented out code.</Message>
+        </Issue>
+>>>>>>> origin/master
       </Issues>
     </File>
     <File>

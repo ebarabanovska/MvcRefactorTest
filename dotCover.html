@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="main">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>dotCover</title>
+
+    <script type="text/javascript" src="dotCover/js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="dotCover/js/jquery.ui.custom-1.8.7.min.js"></script>
+    <script type="text/javascript" src="dotCover/js/jquery.dynatree-1.2.4.min.js"></script>
+    <script type="text/javascript" src="dotCover/js/jquery.cookie-1.3.1.min.js"></script>
+    <script type="text/javascript" src="dotCover/js/jquery.splitter-1.5.1.min.js"></script>
+    <script type="text/javascript" src="dotCover/js/dotcover.report.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="dotCover/css/dotcover.report.css">
+    <link rel="stylesheet" type="text/css" href="dotCover/css/dotcover.report.gen.css">
+    <link rel="stylesheet" type="text/css" href="dotCover/css/jquery.dynatree.css">
+  </head>
+
+  <body>
+    <div class="header"><span class="title">dotCover Coverage Report</span><span class="info">Generated: Monday, October 12, 2015 20:50:55</span></div>
+    <div class="content" id="content"><div id="coverageTree"></div><iframe id="sourceCode"></iframe></div>
+    <div class="footer">Jetbrains dotCover 3.0 Update 1 Copyright &copy; 2010-2015 <a href="http://www.jetbrains.com/dotcover/" target="_blank">Product Homepage</a> | <a href="http://www.jetbrains.com/feedback/feedback.jsp?product=dotCover&build=1&timezone=Central European Standard Time" target="_blank">Feedback</a> | <a href="http://www.jetbrains.com/" target="_blank">Company</a></div>
+
+    <script type="text/javascript">
+      var resourceFolder = "dotCover";
+      var blockSize = 50000;
+      block0 = [["Root",32,,,,,1,5],["MvcRefactorTest.DAL",0,0,,,,6],["MvcRefactorTest.Domain",14,0,,,,7,3],["MvcRefactorTest.BL",26,0,,,,10],["MvcRefactorTest.Log4Net",100,0,,,,11],["MvcRefactorTest.Tests",100,0,,,,12,2],["MvcRefactorTest.DAL",0,1,,,,14,2],["MvcRefactorTest.Domain.db",0,1,,,,16],["MvcRefactorTest.Domain.Migrations",0,1,,,,17,2],["MvcRefactorTest.Domain.base",100,1,,,,19],["MvcRefactorTest.BL",26,1,,,,20,2],["MvcRefactorTest.Log4Net",100,1,,,,22],["MvcRefactorTest.Tests.BL",100,1,,,,23],["MvcRefactorTest.Tests.DAL",100,1,,,,24],["ContactRepository",0,2,,,,25,2],["UserRepository",0,2,,,,27,9],["dbContext",0,2,,,,36,4],["Configuration",0,3,,,,40,2],["GenerateBataBase",0,2,,,,42,6],["BaseClass",100,2,,,,48,5],["ContactService",0,2,,,,53,2],["UserService",30,2,,,,55,9],["LogFactory",100,2,,,,64],["UserRepositoryTest",100,2,,,,65,4],["DALTestcs",100,2,,,,69,6],["ContactRepository()",0,4,8,13,9],["GetContactDetails(out Contact):bool",0,5,8,23,9],["UserRepository()",0,4,9,14,9],["GetUserBy(int,out User):bool",0,5,9,26,9],["ValidateUser(string,string,out bool):bool",0,5,9,54,9],["GetUserBy(string,out User):bool",0,5,9,84,9],["GetAllUsers(out IList&lt;User&gt;):bool",0,5,9,110,9],["GetAllUsersBy(bool,out IList&lt;User&gt;):bool",0,5,9,137,9],["CreateUser(string,string,string,out User):bool",0,5,9,170,9],["ChangePassword(string,string):bool",0,5,9,206,9],["RemoveUserFromRole(string,string,out User):bool",0,5,9,238,9],["dbContext()",0,4,7,7,9],["User:DbSet&lt;User&gt;",,6,,,,75,2],["Contact:DbSet&lt;Contact&gt;",,6,,,,77,2],["Log:DbSet&lt;Log&gt;",,6,,,,79,2],["Configuration()",0,4,6,8,9],["Seed(dbContext):void",0,7,6,14,9],["GenerateBataBase()",0,4,5,12,9],["System.Data.Entity.Migrations.Infrastructure.IMigrationMetadata.Id:string",0,8,,,,81],["System.Data.Entity.Migrations.Infrastructure.IMigrationMetadata.Source:string",0,8,,,,82],["System.Data.Entity.Migrations.Infrastructure.IMigrationMetadata.Target:string",0,8,,,,83],["Down():void",0,5,4,57,9],["Up():void",0,5,4,8,9,84,4],["BaseClass()",100,4,3,12,9],["id:int",,6,,,,88,2],["DateCreated:DateTime",,6,,,,90,2],["DateUpdated:DateTime",,6,,,,92,2],["IsDeleted:bool",,6,,,,94,2],["ContactService(IContactRepository)",0,4,10,54,9],["GetContactDetails(out Contact):bool",0,5,10,32,9],["ChangePassword(string,string):bool",0,5,11,197,9],["ValidateUser(string,string,out bool):bool",0,5,11,62,9],["GetAllUsersBy(bool,out IList&lt;User&gt;):bool",0,5,11,139,9],["CreateUser(string,string,string,out User):bool",0,5,11,171,9],["RemoveUserFromRole(string,string,out User):bool",0,5,11,223,9],["GetUserBy(int,out User):bool",69,5,11,38,9],["GetUserBy(string,out User):bool",73,5,11,88,9],["GetAllUsers(out IList&lt;User&gt;):bool",73,5,11,113,9],["UserService(IUserRepository)",100,4,11,25,9],["GetLogger():ILog",100,9,12,14,9],["InitializeUnitTests(out IList&lt;User&gt;,out User,out Mock&lt;IUserRepository&gt;):void",100,10,1,28,9],["GetUserByNameTest():void",100,5,1,89,9],["GetUserByIdTest():void",100,5,1,69,9],["GetAllsUersTest():void",100,5,1,48,9,96,3],["InitializeUnitTests(out IList&lt;User&gt;,out User,out Mock&lt;IUserRepository&gt;,bool):void",100,10,2,124,9],["ValidateUser():void",100,5,2,93,9],["GetUserByNameTest():void",100,5,2,56,9],["GetAllActiveUsersBy():void",100,5,2,75,9,99,2],["GetUserByIdTest():void",100,5,2,36,9],["GetAllsUersTest():void",100,5,2,15,9,101,3],["get",,11],["set",,12],["get",,11],["set",,12],["get",,11],["set",,12],["get",0,13,5,16,17],["get",0,13,5,21,17],["get",0,13,5,26,17],["(ColumnBuilder):{ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel}",0,14,4,11,22],["(ColumnBuilder):{ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel}",0,14,4,28,22],["(ColumnBuilder):{ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel,ColumnModel}",0,14,4,42,22],["own coverage",0,15,4,8,9],["get",,11],["set",,12],["get",,11],["set",,12],["get",,11],["set",,12],["get",,11],["set",,12],["(User):bool",100,14,1,64,37],["(User):bool",100,14,1,64,74],["own coverage",100,15,1,48,9],["(User):bool",100,14,2,88,60],["own coverage",100,15,2,75,9],["(User):bool",100,14,2,31,37],["(User):bool",100,14,2,31,74],["own coverage",100,15,2,15,9]];
+      coverageData = [block0];
+    </script>
+  </body>
+</html>
