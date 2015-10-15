@@ -1,0 +1,28 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="StyleCopLaunch">
+  <UsingTask AssemblyFile="E:\Install\Sonar Qube\StyleCop\StyleCop.dll" TaskName="StyleCopTask"/>
+
+  <PropertyGroup>
+    <FolderToAnalyse>E:\GitHub</FolderToAnalyse>
+    <ProjectPath>E:\GitHub\MvcRefactorTest</ProjectPath>
+    <StyleCopOverrideSettingsFile>E:\GitHub\MvcRefactorTest\.sonar\StyleCop-settings.StyleCop</StyleCopOverrideSettingsFile>
+    <StyleCopOutputFile>E:\GitHub\MvcRefactorTest\.sonar\StyleCop-report.xml</StyleCopOutputFile>
+  </PropertyGroup>
+
+  <Target Name="StyleCopLaunch">
+    <CreateItem Include="$(FolderToAnalyse)\**\*.cs">
+      <Output TaskParameter="Include" ItemName="StyleCopFiles"/>
+    </CreateItem>
+
+    <StyleCopTask
+      ProjectFullPath="$(ProjectPath)"
+      SourceFiles="@(StyleCopFiles)"
+      AdditionalAddinPaths=""
+      ForceFullAnalysis="true"
+      DefineConstants="DEBUG;TRACE"
+      TreatErrorsAsWarnings="true"
+      CacheResults="false"
+      OverrideSettingsFile="$(StyleCopOverrideSettingsFile)"
+      OutputFile="$(StyleCopOutputFile)"
+      MaxViolationCount="-1" />
+  </Target>
+</Project>
