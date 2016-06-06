@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 using Moq;
-
 using MvcRefactorTest.BL;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
@@ -20,66 +17,66 @@ namespace MvcRefactorTest.Tests.BL
 
         private User _userObj;
 
-        //[TestMethod]
-        //public void GetAllsUersTest()
-        //{
-        //    InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
+        [TestMethod]
+        public void GetAllsUersTest()
+        {
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
 
-        //    // Return all users
-        //    this._mockUserRepository.Setup(mr => mr.GetAllUsers(out this._userList)).Returns(true);
+            // Return all users
+            this._mockUserRepository.Setup(mr => mr.GetAllUsers(out this._userList)).Returns(true);
 
-        //    // setup of our Mock User Repository
-        //    var target = new UserService(this._mockUserRepository.Object);
-        //    IList<User> testUser;
-        //    var success = target.GetAllUsers(out testUser);
+            // setup of our Mock User Repository
+            var target = new UserService(this._mockUserRepository.Object);
+            IList<User> testUser;
+            var success = target.GetAllUsers(out testUser);
 
-        //    // assert
-        //    Assert.AreEqual(true, success);
-        //    Assert.AreEqual(3, testUser.Count);
-        //    Assert.AreNotEqual(null, testUser);
-        //    Assert.AreEqual(
-        //        false, 
-        //        testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
-        //}
+            // assert
+            Assert.AreEqual(true, success);
+            Assert.AreEqual(3, testUser.Count);
+            Assert.AreNotEqual(null, testUser);
+            Assert.AreEqual(
+                false, 
+                testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
+        }
 
-        //[TestMethod]
-        //public void GetUserByIdTest()
-        //{
-        //    InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
+        [TestMethod]
+        public void GetUserByIdTest()
+        {
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
 
-        //    // Return a user by Id
-        //    this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out this._userObj)).Returns(true);
+            // Return a user by Id
+            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out this._userObj)).Returns(true);
 
-        //    // setup of our Mock User Repository
-        //    var target = new UserService(this._mockUserRepository.Object);
-        //    User testUser;
-        //    var success = target.GetUserBy(2, out testUser);
+            // setup of our Mock User Repository
+            var target = new UserService(this._mockUserRepository.Object);
+            User testUser;
+            var success = target.GetUserBy(2, out testUser);
 
-        //    // assert
-        //    Assert.AreEqual(true, success);
-        //    Assert.AreEqual("Chris Smith", testUser.Name);
-        //    Assert.AreNotEqual("Richard Child", testUser.Name);
-        //    Assert.AreEqual(2, testUser.id);
-        //}
+            // assert
+            Assert.AreEqual(true, success);
+            Assert.AreEqual("Chris Smith", testUser.Name);
+            Assert.AreNotEqual("Richard Child", testUser.Name);
+            Assert.AreEqual(2, testUser.id);
+        }
 
-        //[TestMethod]
-        //public void GetUserByNameTest()
-        //{
-        //    InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
+        [TestMethod]
+        public void GetUserByNameTest()
+        {
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
 
-        //    // return a user by Name
-        //    this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out this._userObj)).Returns(true);
+            // return a user by Name
+            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out this._userObj)).Returns(true);
 
-        //    // setup of Mock User Repository
-        //    var target = new UserService(this._mockUserRepository.Object);
-        //    User testUser;
-        //    var success = target.GetUserBy("Richard Child", out testUser);
+            // setup of Mock User Repository
+            var target = new UserService(this._mockUserRepository.Object);
+            User testUser;
+            var success = target.GetUserBy("Richard Child", out testUser);
 
-        //    // assert
-        //    Assert.AreEqual(true, success);
-        //    Assert.AreNotEqual("Richard Child", testUser.Name);
-        //    Assert.AreEqual("Chris Smith", testUser.Name);
-        //}
+            // assert
+            Assert.AreEqual(true, success);
+            Assert.AreNotEqual("Richard Child", testUser.Name);
+            Assert.AreEqual("Chris Smith", testUser.Name);
+        }
 
         /// <summary>
         ///     Initialize unit tests
