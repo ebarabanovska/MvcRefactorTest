@@ -1,17 +1,13 @@
-﻿namespace MvcRefactorTest.BL
+﻿using System;
+using log4net;
+using MvcRefactorTest.BL.Interface;
+using MvcRefactorTest.DAL.Interface;
+using MvcRefactorTest.Domain;
+using MvcRefactorTest.Log4Net;
+
+namespace MvcRefactorTest.BL
 {
-    #region
 
-    using System;
-
-    using log4net;
-
-    using MvcRefactorTest.BL.Interface;
-    using MvcRefactorTest.DAL.Interface;
-    using MvcRefactorTest.Domain;
-    using MvcRefactorTest.Log4Net;
-
-    #endregion
 
     public class ContactService : IContactService
     {

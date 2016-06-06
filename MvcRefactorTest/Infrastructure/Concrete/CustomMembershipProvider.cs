@@ -46,22 +46,22 @@ namespace MvcRefactorTest.Infrastructure.Concrete
         }
 
         public override bool ChangePasswordQuestionAndAnswer(
-            string username, 
-            string password, 
-            string newPasswordQuestion, 
+            string username,
+            string password,
+            string newPasswordQuestion,
             string newPasswordAnswer)
         {
             throw new NotImplementedException();
         }
 
         public override MembershipUser CreateUser(
-            string username, 
-            string password, 
-            string email, 
-            string passwordQuestion, 
-            string passwordAnswer, 
-            bool isApproved, 
-            object providerUserKey, 
+            string username,
+            string password,
+            string email,
+            string passwordQuestion,
+            string passwordAnswer,
+            bool isApproved,
+            object providerUserKey,
             out MembershipCreateStatus status)
         {
             throw new NotImplementedException();
@@ -89,18 +89,18 @@ namespace MvcRefactorTest.Infrastructure.Concrete
         }
 
         public override MembershipUserCollection FindUsersByEmail(
-            string emailToMatch, 
-            int pageIndex, 
-            int pageSize, 
+            string emailToMatch,
+            int pageIndex,
+            int pageSize,
             out int totalRecords)
         {
             throw new NotImplementedException();
         }
 
         public override MembershipUserCollection FindUsersByName(
-            string usernameToMatch, 
-            int pageIndex, 
-            int pageSize, 
+            string usernameToMatch,
+            int pageIndex,
+            int pageSize,
             out int totalRecords)
         {
             throw new NotImplementedException();
