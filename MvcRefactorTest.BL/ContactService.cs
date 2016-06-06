@@ -1,5 +1,7 @@
 ﻿using System;
+
 using log4net;
+
 using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
@@ -7,8 +9,6 @@ using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.BL
 {
-
-
     public class ContactService : IContactService
     {
         #region Private Members
