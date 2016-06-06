@@ -1,7 +1,9 @@
-using System.Data.Entity.Migrations;
+
 
 namespace MvcRefactorTest.Domain.Migrations
 {
+    using System.Data.Entity.Migrations;
+
     public partial class GenerateBataBase : DbMigration
     {
         public override void Up()
