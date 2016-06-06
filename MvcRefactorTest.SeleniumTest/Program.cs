@@ -1,12 +1,15 @@
 ﻿using System;
+
 using MvcRefactorTest.SeleniumTest;
+
 using NUnit.Framework;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace SeleniumTest
 {
-    internal class Program
+    internal static class Program
     {
         [STAThread]
         private static void Main(string[] args)
@@ -49,12 +52,12 @@ namespace SeleniumTest
             SeleniumSetMethods.EnterText("Initial", "Execute Automation", PropertyType.Name);
 
             //Get Title
-            Console.WriteLine("The value from my Title is: " +
-                              SeleniumGetMethods.GetTextFromDropDownList("TitleId", PropertyType.Id));
+            Console.WriteLine(
+                "The value from my Title is: " + SeleniumGetMethods.GetTextFromDropDownList("TitleId", PropertyType.Id));
 
             //Get Initial
-            Console.WriteLine("The value from my Initial is: " +
-                              SeleniumGetMethods.GetText("Initial", PropertyType.Name));
+            Console.WriteLine(
+                "The value from my Initial is: " + SeleniumGetMethods.GetText("Initial", PropertyType.Name));
         }
 
         [Test]
@@ -64,9 +67,6 @@ namespace SeleniumTest
             //Login to application
             var pageLogin = new LoginPageObject();
             var homePage = pageLogin.Login("execute", "automation");
-
-            //Initialize th Page By calling the refference
-            //homePage.FillUserForm("Test", "Execute", "Automation");
         }
 
         [Test]

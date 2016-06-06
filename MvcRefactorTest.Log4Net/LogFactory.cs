@@ -16,7 +16,7 @@ namespace MvcRefactorTest.Log4Net
                 new Uri(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase), Log4NetConfig));
             var configFile = new FileInfo(Path.GetFullPath(uri.LocalPath));
             XmlConfigurator.ConfigureAndWatch(configFile);
-            var log = LogManager.GetLogger(typeof (LogFactory));
+            var log = LogManager.GetLogger(typeof(LogFactory));
             return log;
         }
     }

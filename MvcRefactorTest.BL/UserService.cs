@@ -10,19 +10,20 @@ namespace MvcRefactorTest.BL
 {
     public class UserService : IUserService
     {
+        #region Private Members
+
+        private readonly IUserRepository _userRepository;
+
+        private readonly ILog _logger = LogFactory.GetLogger();
+
+        #endregion
+
         #region Constructor
 
         public UserService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
-
-        #endregion
-
-        #region Private Members
-
-        private readonly IUserRepository _userRepository;
-        private readonly ILog _logger = LogFactory.GetLogger();
 
         #endregion
 
@@ -41,8 +42,7 @@ namespace MvcRefactorTest.BL
 
             try
             {
-                if (_userRepository.GetUserBy(id, out userObj))
-                    succeed = true;
+                if (_userRepository.GetUserBy(id, out userObj)) succeed = true;
             }
             catch (Exception ex)
             {

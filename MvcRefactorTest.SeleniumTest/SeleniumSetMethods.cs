@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace MvcRefactorTest.SeleniumTest
 {
-    internal class SeleniumSetMethods
+    internal static class SeleniumSetMethods
     {
         /// <summary>
         ///     Enter Text.

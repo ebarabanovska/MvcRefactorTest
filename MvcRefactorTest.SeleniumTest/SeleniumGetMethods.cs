@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace MvcRefactorTest.SeleniumTest
 {
-    internal class SeleniumGetMethods
+    internal static class SeleniumGetMethods
     {
         /// <summary>
         ///     Get Text.

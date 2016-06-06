@@ -11,7 +11,7 @@ namespace MvcRefactorTest.SeleniumTest
         ClassName
     }
 
-    internal class PropertiesCollection
+    internal static class PropertiesCollection
     {
         /// <summary>
         ///     Gets or sets the driver.
