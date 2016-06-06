@@ -18,47 +18,43 @@ namespace MvcRefactorTest.Controllers
 
         private readonly IUserService _userService;
 
-        #region Controller Constructors
-
         public HomeController(IUserService userService, IContactService contactRepository)
         {
-            _userService = userService;
-            _contactService = contactRepository;
+            this._userService = userService;
+            this._contactService = contactRepository;
         }
 
-        #endregion
+        public ActionResult About()
+        {
+            this.ViewBag.Message = "Your app description page.";
+
+            return this.View();
+        }
+
+        public ActionResult Contact()
+        {
+            this.ViewBag.Message = "Your contact page.";
+
+            Contact contactObj;
+            return this._contactService.GetContactDetails(out contactObj) ? this.View(contactObj) : this.View();
+        }
 
         public ActionResult Index()
         {
-            ViewBag.Title = "All Developers";
+            this.ViewBag.Title = "All Developers";
 
             // FormsAuthentication.SetAuthCookie(System.Security.Principal.WindowsIdentity.GetCurrent().Name, false);
             // logger.Error("Test Error");
-            return View();
+            return this.View();
         }
 
         public ActionResult LoadUsers()
         {
             IList<User> userObj;
 
-            return _userService.GetAllUsers(out userObj)
-                       ? PartialView("_UserDetailsPartial", (List<User>)userObj)
-                       : PartialView(null);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            Contact contactObj;
-            return _contactService.GetContactDetails(out contactObj) ? View(contactObj) : View();
+            return this._userService.GetAllUsers(out userObj)
+                       ? this.PartialView("_UserDetailsPartial", (List<User>)userObj)
+                       : this.PartialView(null);
         }
     }
 }

@@ -16,8 +16,6 @@ namespace MvcRefactorTest.DAL
 
         private dbContext _context;
 
-        #region Get methods
-
         /// <summary>
         ///     Get Contact Details
         /// </summary>
@@ -29,20 +27,18 @@ namespace MvcRefactorTest.DAL
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    contactObj = _context.Contact.FirstOrDefault();
+                    contactObj = this._context.Contact.FirstOrDefault();
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
-
-        #endregion
     }
 }

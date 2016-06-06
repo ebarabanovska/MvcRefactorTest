@@ -19,27 +19,11 @@ namespace SeleniumTest
 
     public class UnitTestApp
     {
-        [SetUp]
-        public void Initialize()
+        [TearDown]
+        public void CleanUp()
         {
-            // create reference for the chrome browser
-            PropertiesCollection.Driver = new ChromeDriver();
-
-            PropertiesCollection.Driver.Navigate().GoToUrl("http://localhost:56750/Account/Login");
-            Console.WriteLine("Opened URL");
-        }
-
-        [Test]
-        public void ExecuteSetTest()
-        {
-            // Title
-            SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
-
-            // Initial
-            SeleniumSetMethods.EnterText("Initial", "Execute Automation", PropertyType.Name);
-
-            // Click
-            SeleniumSetMethods.Click("Save", PropertyType.Name);
+            PropertiesCollection.Driver.Close();
+            Console.WriteLine("Closed the browser");
         }
 
         [Test]
@@ -70,6 +54,29 @@ namespace SeleniumTest
         }
 
         [Test]
+        public void ExecuteSetTest()
+        {
+            // Title
+            SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
+
+            // Initial
+            SeleniumSetMethods.EnterText("Initial", "Execute Automation", PropertyType.Name);
+
+            // Click
+            SeleniumSetMethods.Click("Save", PropertyType.Name);
+        }
+
+        [SetUp]
+        public void Initialize()
+        {
+            // create reference for the chrome browser
+            PropertiesCollection.Driver = new ChromeDriver();
+
+            PropertiesCollection.Driver.Navigate().GoToUrl("http://localhost:56750/Account/Login");
+            Console.WriteLine("Opened URL");
+        }
+
+        [Test]
         public void NextTest()
         {
             // find the element
@@ -78,13 +85,6 @@ namespace SeleniumTest
             // perform opration
             element.SendKeys("executeoperation");
             Console.WriteLine("Executed Test");
-        }
-
-        [TearDown]
-        public void CleanUp()
-        {
-            PropertiesCollection.Driver.Close();
-            Console.WriteLine("Closed the browser");
         }
     }
 }

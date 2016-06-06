@@ -14,31 +14,31 @@ namespace MvcRefactorTest.Controllers
 {
     public class AccountController : Controller
     {
-        #region Constructors
+        private readonly ICustomMembershipProvider _authProvider;
+
+        private readonly IUserService _userService;
 
         public AccountController(IUserService userService, ICustomMembershipProvider authProvider)
         {
-            _authProvider = authProvider;
-            _userService = userService;
+            this._authProvider = authProvider;
+            this._userService = userService;
         }
-
-        #endregion
 
         [HttpGet]
         public ActionResult Login()
         {
             FormsAuthentication.SignOut();
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         public ActionResult Validate(string username, string password)
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 try
                 {
-                    if (_authProvider.Authenticate(username, password)) if (SetupFormsAuthTicket(username, password, false)) return Redirect(Url.Action("Index", "Home"));
+                    if (this._authProvider.Authenticate(username, password)) if (this.SetupFormsAuthTicket(username, password, false)) return this.Redirect(this.Url.Action("Index", "Home"));
                 }
                 catch (Exception ex)
                 {
@@ -46,14 +46,8 @@ namespace MvcRefactorTest.Controllers
                 }
             }
 
-            return View("Login");
+            return this.View("Login");
         }
-
-        #region Private Properties
-
-        private readonly ICustomMembershipProvider _authProvider;
-
-        private readonly IUserService _userService;
 
         /// <summary>
         /// </summary>
@@ -68,7 +62,7 @@ namespace MvcRefactorTest.Controllers
             try
             {
                 User userObj;
-                _userService.GetUserBy(username, out userObj);
+                this._userService.GetUserBy(username, out userObj);
 
                 var userId = userObj.id;
                 var userData = userId.ToString(CultureInfo.InvariantCulture);
@@ -91,7 +85,7 @@ namespace MvcRefactorTest.Controllers
                     userData);
 
                 var encTicket = FormsAuthentication.Encrypt(authTicket);
-                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                this.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                 success = true;
             }
@@ -102,7 +96,5 @@ namespace MvcRefactorTest.Controllers
 
             return success;
         }
-
-        #endregion Private Properties
     }
 }

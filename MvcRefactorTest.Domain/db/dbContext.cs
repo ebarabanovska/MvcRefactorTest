@@ -7,13 +7,13 @@ namespace MvcRefactorTest.Domain.db
         public dbContext()
             : base("MvcRefactorTest")
         {
-            Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = false;
         }
-
-        public DbSet<User> User { get; set; }
 
         public DbSet<Contact> Contact { get; set; }
 
         public DbSet<Log> Log { get; set; }
+
+        public DbSet<User> User { get; set; }
     }
 }

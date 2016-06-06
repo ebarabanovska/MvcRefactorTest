@@ -17,87 +17,63 @@ namespace MvcRefactorTest.DAL
 
         private dbContext _context;
 
-        #region Get methods
-
         /// <summary>
-        ///     Get user By Id.
+        ///     Change Password.
         /// </summary>
-        /// <param name="id">user Id.</param>
-        /// <param name="userObj">Object to be retrieved.</param>
-        /// <returns>Returns true if success, else false.</returns>
-        public bool GetUserBy(int id, out User userObj)
-        {
-            var succeed = false;
-            userObj = null;
-
-            try
-            {
-                using (_context = new dbContext())
-                {
-                    userObj = _context.User.SingleOrDefault(p => p.id == id);
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex.Message, ex);
-            }
-
-            return succeed;
-        }
-
-        /// <summary>
-        ///     Validate User.
-        /// </summary>
-        /// <param name="userName">User name.</param>
+        /// <param name="fullName">User full name.</param>
         /// <param name="password">User password.</param>
-        /// <param name="isValid">Is user valid.</param>
-        /// <returns>Returns true if success, else false.</returns>
-        public bool ValidateUser(string userName, string password, out bool isValid)
+        /// <returns>Return true if success, else false.</returns>
+        public bool ChangePassword(string fullName, string password)
         {
             var succeed = false;
-            isValid = false;
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    isValid = _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
-                                  ? true
-                                  : false;
+                    var userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
+                    if (userObj != null) userObj.Password = password;
+
+                    this._context.SaveChanges();
+
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        ///     Get user By Name
+        ///     Create new User.
         /// </summary>
-        /// <param name="name">user Name</param>
-        /// <param name="userObj">Object to be retrieved</param>
-        /// <returns>Returns true if success, else false</returns>
-        public bool GetUserBy(string name, out User userObj)
+        /// <param name="fullName">User full name.</param>
+        /// <param name="password">User Password.</param>
+        /// <param name="role">User Role.</param>
+        /// <param name="userObj">User object to be retrieved.</param>
+        /// <returns>Return true if success, else false.</returns>
+        public bool CreateUser(string fullName, string password, string role, out User userObj)
         {
             var succeed = false;
             userObj = null;
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    userObj = _context.User.SingleOrDefault(p => p.Name == name);
+                    userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
+                    this._context.User.Add(userObj);
+                    this._context.SaveChanges();
+
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -115,15 +91,15 @@ namespace MvcRefactorTest.DAL
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    userList = _context.User.ToList();
+                    userList = this._context.User.ToList();
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -142,81 +118,69 @@ namespace MvcRefactorTest.DAL
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    userList = _context.User.Where(p => p.IsEnabled == active).ToList();
+                    userList = this._context.User.Where(p => p.IsEnabled == active).ToList();
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
-        #endregion
-
-        #region Create/Update/Delete
-
         /// <summary>
-        ///     Create new User.
+        ///     Get user By Id.
         /// </summary>
-        /// <param name="fullName">User full name.</param>
-        /// <param name="password">User Password.</param>
-        /// <param name="role">User Role.</param>
-        /// <param name="userObj">User object to be retrieved.</param>
-        /// <returns>Return true if success, else false.</returns>
-        public bool CreateUser(string fullName, string password, string role, out User userObj)
+        /// <param name="id">user Id.</param>
+        /// <param name="userObj">Object to be retrieved.</param>
+        /// <returns>Returns true if success, else false.</returns>
+        public bool GetUserBy(int id, out User userObj)
         {
             var succeed = false;
             userObj = null;
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
-                    _context.User.Add(userObj);
-                    _context.SaveChanges();
-
+                    userObj = this._context.User.SingleOrDefault(p => p.id == id);
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        ///     Change Password.
+        ///     Get user By Name
         /// </summary>
-        /// <param name="fullName">User full name.</param>
-        /// <param name="password">User password.</param>
-        /// <returns>Return true if success, else false.</returns>
-        public bool ChangePassword(string fullName, string password)
+        /// <param name="name">user Name</param>
+        /// <param name="userObj">Object to be retrieved</param>
+        /// <returns>Returns true if success, else false</returns>
+        public bool GetUserBy(string name, out User userObj)
         {
             var succeed = false;
+            userObj = null;
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    var userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null) userObj.Password = password;
-
-                    _context.SaveChanges();
-
+                    userObj = this._context.User.SingleOrDefault(p => p.Name == name);
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -236,24 +200,53 @@ namespace MvcRefactorTest.DAL
 
             try
             {
-                using (_context = new dbContext())
+                using (this._context = new dbContext())
                 {
-                    userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
+                    userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
                     if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
 
-                    _context.SaveChanges();
+                    this._context.SaveChanges();
 
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
-        #endregion
+        /// <summary>
+        ///     Validate User.
+        /// </summary>
+        /// <param name="userName">User name.</param>
+        /// <param name="password">User password.</param>
+        /// <param name="isValid">Is user valid.</param>
+        /// <returns>Returns true if success, else false.</returns>
+        public bool ValidateUser(string userName, string password, out bool isValid)
+        {
+            var succeed = false;
+            isValid = false;
+
+            try
+            {
+                using (this._context = new dbContext())
+                {
+                    isValid = this._context.User.SingleOrDefault(p => p.Name == userName && p.Password == password)
+                              != null
+                                  ? true
+                                  : false;
+                    succeed = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this._logger.Error(ex.Message, ex);
+            }
+
+            return succeed;
+        }
     }
 }

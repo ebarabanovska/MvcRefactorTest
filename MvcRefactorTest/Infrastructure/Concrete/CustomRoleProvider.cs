@@ -14,6 +14,24 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 {
     public class CustomRoleProvider : RoleProvider
     {
+        private readonly IUserRepository _userRepository;
+
+        private readonly IUserService _userService;
+
+        /// <summary>
+        ///     Initialize Constructor
+        /// </summary>
+        public CustomRoleProvider()
+        {
+            this._userRepository = new UserRepository();
+            this._userService = new UserService(this._userRepository);
+        }
+
+        /// <summary>
+        ///     Application Name
+        /// </summary>
+        public override string ApplicationName { get; set; }
+
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
             throw new NotImplementedException();
@@ -40,7 +58,7 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             try
             {
                 IList<User> userList;
-                if (_userService.GetAllUsers(out userList)) if (userList != null) return userList.Where(p => p.Role == roleName).Select(p => p.Name).ToArray();
+                if (this._userService.GetAllUsers(out userList)) if (userList != null) return userList.Where(p => p.Role == roleName).Select(p => p.Name).ToArray();
             }
             catch (Exception ex)
             {
@@ -65,7 +83,7 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             try
             {
                 User userObj;
-                if (_userService.GetUserBy(username, out userObj)) if (userObj != null) return userObj.Role != null ? new[] { userObj.Role } : new string[] { };
+                if (this._userService.GetUserBy(username, out userObj)) if (userObj != null) return userObj.Role != null ? new[] { userObj.Role } : new string[] { };
             }
             catch (Exception ex)
             {
@@ -91,7 +109,7 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             try
             {
                 User userObj;
-                if (_userService.GetUserBy(username, out userObj)) if (userObj != null) return userObj.Role != null && userObj.Role == roleName;
+                if (this._userService.GetUserBy(username, out userObj)) if (userObj != null) return userObj.Role != null && userObj.Role == roleName;
             }
             catch (Exception ex)
             {
@@ -113,12 +131,12 @@ namespace MvcRefactorTest.Infrastructure.Concrete
                 foreach (var user in usernames)
                 {
                     User userObj;
-                    if (!_userService.GetUserBy(user, out userObj)) continue;
+                    if (!this._userService.GetUserBy(user, out userObj)) continue;
                     foreach (var role in roleNames)
                     {
                         if (userObj == null) continue;
                         userObj.Role = string.Empty;
-                        _userService.RemoveUserFromRole(user, role, out userObj);
+                        this._userService.RemoveUserFromRole(user, role, out userObj);
                     }
                 }
             }
@@ -132,31 +150,5 @@ namespace MvcRefactorTest.Infrastructure.Concrete
         {
             throw new NotImplementedException();
         }
-
-        #region Private Members
-
-        private readonly IUserService _userService;
-
-        private readonly IUserRepository _userRepository;
-
-        #endregion
-
-        #region Initialise Constructor
-
-        /// <summary>
-        ///     Initialize Constructor
-        /// </summary>
-        public CustomRoleProvider()
-        {
-            _userRepository = new UserRepository();
-            _userService = new UserService(_userRepository);
-        }
-
-        /// <summary>
-        ///     Application Name
-        /// </summary>
-        public override string ApplicationName { get; set; }
-
-        #endregion Initialise Constructor
     }
 }

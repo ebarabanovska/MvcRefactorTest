@@ -26,9 +26,9 @@ namespace MvcRefactorTest.Infrastructure.Abstract
 
         bool RequiresUniqueEmail { get; }
 
-        bool ChangePassword(string username, string oldPassword, string newPassword);
-
         bool Authenticate(string username, string password);
+
+        bool ChangePassword(string username, string oldPassword, string newPassword);
 
         bool ChangePasswordQuestionAndAnswer(
             string username, 

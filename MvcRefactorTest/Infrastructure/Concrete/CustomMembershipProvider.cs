@@ -13,64 +13,10 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
         public CustomMembershipProvider(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
-        }
-
-        public bool Authenticate(string username, string password)
-        {
-            var result = ValidateUser(username, password);
-            if (result)
-            {
-                FormsAuthentication.SetAuthCookie(username, false);
-            }
-
-            return result;
+            this._userRepository = userRepository;
         }
 
         public override string ApplicationName { get; set; }
-
-        public override bool ChangePassword(string username, string oldPassword, string newPassword)
-        {
-            var success = false;
-
-            try
-            {
-                if (_userRepository.ChangePassword(username, newPassword)) success = true;
-            }
-            catch (Exception ex)
-            {
-                LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
-            }
-
-            return success;
-        }
-
-        public override bool ChangePasswordQuestionAndAnswer(
-            string username, 
-            string password, 
-            string newPasswordQuestion, 
-            string newPasswordAnswer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUser CreateUser(
-            string username, 
-            string password, 
-            string email, 
-            string passwordQuestion, 
-            string passwordAnswer, 
-            bool isApproved, 
-            object providerUserKey, 
-            out MembershipCreateStatus status)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool DeleteUser(string username, bool deleteAllRelatedData)
-        {
-            throw new NotImplementedException();
-        }
 
         public override bool EnablePasswordReset
         {
@@ -86,54 +32,6 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             {
                 throw new NotImplementedException();
             }
-        }
-
-        public override MembershipUserCollection FindUsersByEmail(
-            string emailToMatch, 
-            int pageIndex, 
-            int pageSize, 
-            out int totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUserCollection FindUsersByName(
-            string usernameToMatch, 
-            int pageIndex, 
-            int pageSize, 
-            out int totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int GetNumberOfUsersOnline()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetPassword(string username, string answer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUser GetUser(string username, bool userIsOnline)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string GetUserNameByEmail(string email)
-        {
-            throw new NotImplementedException();
         }
 
         public override int MaxInvalidPasswordAttempts
@@ -200,6 +98,108 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             }
         }
 
+        public bool Authenticate(string username, string password)
+        {
+            var result = this.ValidateUser(username, password);
+            if (result)
+            {
+                FormsAuthentication.SetAuthCookie(username, false);
+            }
+
+            return result;
+        }
+
+        public override bool ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            var success = false;
+
+            try
+            {
+                if (this._userRepository.ChangePassword(username, newPassword)) success = true;
+            }
+            catch (Exception ex)
+            {
+                LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
+            }
+
+            return success;
+        }
+
+        public override bool ChangePasswordQuestionAndAnswer(
+            string username, 
+            string password, 
+            string newPasswordQuestion, 
+            string newPasswordAnswer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override MembershipUser CreateUser(
+            string username, 
+            string password, 
+            string email, 
+            string passwordQuestion, 
+            string passwordAnswer, 
+            bool isApproved, 
+            object providerUserKey, 
+            out MembershipCreateStatus status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool DeleteUser(string username, bool deleteAllRelatedData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override MembershipUserCollection FindUsersByEmail(
+            string emailToMatch, 
+            int pageIndex, 
+            int pageSize, 
+            out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override MembershipUserCollection FindUsersByName(
+            string usernameToMatch, 
+            int pageIndex, 
+            int pageSize, 
+            out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int GetNumberOfUsersOnline()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetPassword(string username, string answer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override MembershipUser GetUser(string username, bool userIsOnline)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetUserNameByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ResetPassword(string username, string answer)
         {
             throw new NotImplementedException();
@@ -221,7 +221,7 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
             try
             {
-                _userRepository.ValidateUser(username, password, out isValid);
+                this._userRepository.ValidateUser(username, password, out isValid);
             }
             catch (Exception ex)
             {

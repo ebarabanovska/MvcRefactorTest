@@ -7,8 +7,8 @@ namespace MvcRefactorTest.Domain
     public class Contact : BaseClass
     {
         [Required]
-        [Display(Name = "Main Phone")]
-        public string MainPhone { get; set; }
+        [Display(Name = "Address")]
+        public string Address { get; set; }
 
         [Required]
         [Display(Name = "After Hours Phone")]
@@ -16,8 +16,12 @@ namespace MvcRefactorTest.Domain
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Support")]
-        public string SupportEmail { get; set; }
+        [Display(Name = "General")]
+        public string GeneralEmail { get; set; }
+
+        [Required]
+        [Display(Name = "Main Phone")]
+        public string MainPhone { get; set; }
 
         [Required]
         [EmailAddress]
@@ -26,11 +30,7 @@ namespace MvcRefactorTest.Domain
 
         [Required]
         [EmailAddress]
-        [Display(Name = "General")]
-        public string GeneralEmail { get; set; }
-
-        [Required]
-        [Display(Name = "Address")]
-        public string Address { get; set; }
+        [Display(Name = "Support")]
+        public string SupportEmail { get; set; }
     }
 }

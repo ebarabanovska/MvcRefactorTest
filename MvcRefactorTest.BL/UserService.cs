@@ -12,95 +12,63 @@ namespace MvcRefactorTest.BL
 {
     public class UserService : IUserService
     {
-        #region Private Members
+        private readonly ILog _logger = LogFactory.GetLogger();
 
         private readonly IUserRepository _userRepository;
 
-        private readonly ILog _logger = LogFactory.GetLogger();
-
-        #endregion
-
-        #region Constructor
-
         public UserService(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
+            this._userRepository = userRepository;
         }
 
-        #endregion
-
-        #region Get methods
-
         /// <summary>
-        ///     Get user By Id
+        ///     Change Users Password.
         /// </summary>
-        /// <param name="id">user Id</param>
-        /// <param name="userObj">Object to be retrieved</param>
-        /// <returns>Returns true if success, else false</returns>
-        public bool GetUserBy(int id, out User userObj)
+        /// <param name="fullName">Full Name.</param>
+        /// <param name="password">Password.</param>
+        /// <returns>Return true if success, else false.</returns>
+        public bool ChangePassword(string fullName, string password)
         {
             var succeed = false;
-            userObj = null;
 
             try
             {
-                if (_userRepository.GetUserBy(id, out userObj)) succeed = true;
+                if (this._userRepository.ChangePassword(fullName, password))
+                {
+                    succeed = true;
+                }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        ///     Validate user by username and password
+        ///     Create new User
         /// </summary>
-        /// <param name="userName">Username</param>
+        /// <param name="fullName">User full name</param>
         /// <param name="password">Password</param>
+        /// <param name="role">Role</param>
+        /// <param name="userObj">User object to be retrieved</param>
         /// <returns>Return true if success, else false</returns>
-        public bool ValidateUser(string userName, string password, out bool isValid)
-        {
-            var succeed = false;
-            isValid = false;
-
-            try
-            {
-                if (_userRepository.ValidateUser(userName, password, out isValid))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex.Message, ex);
-            }
-
-            return succeed;
-        }
-
-        /// <summary>
-        ///     Get user By Name
-        /// </summary>
-        /// <param name="name">user Name</param>
-        /// <param name="userObj">Object to be retrieved</param>
-        /// <returns>Returns true if success, else false</returns>
-        public bool GetUserBy(string name, out User userObj)
+        public bool CreateUser(string fullName, string password, string role, out User userObj)
         {
             var succeed = false;
             userObj = null;
 
             try
             {
-                if (_userRepository.GetUserBy(name, out userObj))
+                if (this._userRepository.CreateUser(fullName, password, role, out userObj))
                 {
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -118,14 +86,14 @@ namespace MvcRefactorTest.BL
 
             try
             {
-                if (_userRepository.GetAllUsers(out userList))
+                if (this._userRepository.GetAllUsers(out userList))
                 {
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -144,71 +112,63 @@ namespace MvcRefactorTest.BL
 
             try
             {
-                if (_userRepository.GetAllUsersBy(active, out userList))
+                if (this._userRepository.GetAllUsersBy(active, out userList))
                 {
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
-        #endregion
-
-        #region Create/Update/Delete
-
         /// <summary>
-        ///     Create new User
+        ///     Get user By Id
         /// </summary>
-        /// <param name="fullName">User full name</param>
-        /// <param name="password">Password</param>
-        /// <param name="role">Role</param>
-        /// <param name="userObj">User object to be retrieved</param>
-        /// <returns>Return true if success, else false</returns>
-        public bool CreateUser(string fullName, string password, string role, out User userObj)
+        /// <param name="id">user Id</param>
+        /// <param name="userObj">Object to be retrieved</param>
+        /// <returns>Returns true if success, else false</returns>
+        public bool GetUserBy(int id, out User userObj)
         {
             var succeed = false;
             userObj = null;
 
             try
             {
-                if (_userRepository.CreateUser(fullName, password, role, out userObj))
-                {
-                    succeed = true;
-                }
+                if (this._userRepository.GetUserBy(id, out userObj)) succeed = true;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
         /// <summary>
-        ///     Change Users Password.
+        ///     Get user By Name
         /// </summary>
-        /// <param name="fullName">Full Name.</param>
-        /// <param name="password">Password.</param>
-        /// <returns>Return true if success, else false.</returns>
-        public bool ChangePassword(string fullName, string password)
+        /// <param name="name">user Name</param>
+        /// <param name="userObj">Object to be retrieved</param>
+        /// <returns>Returns true if success, else false</returns>
+        public bool GetUserBy(string name, out User userObj)
         {
             var succeed = false;
+            userObj = null;
 
             try
             {
-                if (_userRepository.ChangePassword(fullName, password))
+                if (this._userRepository.GetUserBy(name, out userObj))
                 {
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
@@ -228,19 +188,43 @@ namespace MvcRefactorTest.BL
 
             try
             {
-                if (_userRepository.RemoveUserFromRole(fullName, role, out userObj))
+                if (this._userRepository.RemoveUserFromRole(fullName, role, out userObj))
                 {
                     succeed = true;
                 }
             }
             catch (Exception ex)
             {
-                _logger.Error(ex.Message, ex);
+                this._logger.Error(ex.Message, ex);
             }
 
             return succeed;
         }
 
-        #endregion
+        /// <summary>
+        ///     Validate user by username and password
+        /// </summary>
+        /// <param name="userName">Username</param>
+        /// <param name="password">Password</param>
+        /// <returns>Return true if success, else false</returns>
+        public bool ValidateUser(string userName, string password, out bool isValid)
+        {
+            var succeed = false;
+            isValid = false;
+
+            try
+            {
+                if (this._userRepository.ValidateUser(userName, password, out isValid))
+                {
+                    succeed = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this._logger.Error(ex.Message, ex);
+            }
+
+            return succeed;
+        }
     }
 }

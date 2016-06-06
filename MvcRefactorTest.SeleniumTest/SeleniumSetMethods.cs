@@ -6,6 +6,24 @@ namespace MvcRefactorTest.SeleniumTest
     internal static class SeleniumSetMethods
     {
         /// <summary>
+        ///     Click.
+        /// </summary>
+        /// <param name="element">Element.</param>
+        /// <param name="elementType">Element Type.</param>
+        public static void Click(string element, PropertyType elementType)
+        {
+            switch (elementType)
+            {
+                case PropertyType.Id:
+                    PropertiesCollection.Driver.FindElement(By.Id(element)).Click();
+                    break;
+                case PropertyType.Name:
+                    PropertiesCollection.Driver.FindElement(By.Name(element)).Click();
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     Enter Text.
         /// </summary>
         /// <param name="element">Element.</param>
@@ -20,24 +38,6 @@ namespace MvcRefactorTest.SeleniumTest
                     break;
                 case PropertyType.Name:
                     PropertiesCollection.Driver.FindElement(By.Name(element)).SendKeys(value);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     Click.
-        /// </summary>
-        /// <param name="element">Element.</param>
-        /// <param name="elementType">Element Type.</param>
-        public static void Click(string element, PropertyType elementType)
-        {
-            switch (elementType)
-            {
-                case PropertyType.Id:
-                    PropertiesCollection.Driver.FindElement(By.Id(element)).Click();
-                    break;
-                case PropertyType.Name:
-                    PropertiesCollection.Driver.FindElement(By.Name(element)).Click();
                     break;
             }
         }

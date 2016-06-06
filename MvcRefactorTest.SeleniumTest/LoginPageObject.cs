@@ -14,27 +14,27 @@ namespace SeleniumTest
             PageFactory.InitElements(PropertiesCollection.Driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = "UserName")]
-        public IWebElement TxtUserName { get; set; }
+        [FindsBy(How = How.Name, Using = "btnLogin")]
+        public IWebElement BtnLogin { get; set; }
 
         [FindsBy(How = How.Name, Using = "Password")]
         public IWebElement TxtPassword { get; set; }
 
-        [FindsBy(How = How.Name, Using = "btnLogin")]
-        public IWebElement BtnLogin { get; set; }
+        [FindsBy(How = How.Id, Using = "UserName")]
+        public IWebElement TxtUserName { get; set; }
 
         public HomePageObject Login(string initial, string firstName)
         {
             try
             {
                 // populate username
-                TxtUserName.SendKeys(initial);
+                this.TxtUserName.SendKeys(initial);
 
                 // populate password
-                TxtPassword.SendKeys(firstName);
+                this.TxtPassword.SendKeys(firstName);
 
                 // initiate click
-                BtnLogin.Click();
+                this.BtnLogin.Click();
             }
             catch (Exception)
             {

@@ -21,7 +21,7 @@ namespace MvcRefactorTest
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
+            XmlConfigurator.Configure(new FileInfo(this.Server.MapPath("~/Web.config")));
         }
     }
 }

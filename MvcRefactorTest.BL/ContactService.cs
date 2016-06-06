@@ -11,15 +11,9 @@ namespace MvcRefactorTest.BL
 {
     public class ContactService : IContactService
     {
-        #region Private Members
-
         private readonly IContactRepository _contactRepository;
 
         private readonly ILog _logger = LogFactory.GetLogger();
-
-        #endregion
-
-        #region Constructor
 
         /// <summary>
         ///     Contact Servce default constructor.
@@ -29,10 +23,6 @@ namespace MvcRefactorTest.BL
         {
             this._contactRepository = contactRepository;
         }
-
-        #endregion
-
-        #region Get methods
 
         /// <summary>
         ///     Get Contact Details.
@@ -54,7 +44,5 @@ namespace MvcRefactorTest.BL
 
             return succeed;
         }
-
-        #endregion
     }
 }

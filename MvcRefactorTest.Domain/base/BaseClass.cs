@@ -7,14 +7,10 @@ namespace MvcRefactorTest.Domain.@base
     {
         public BaseClass()
         {
-            DateCreated = DateTime.Now;
-            DateUpdated = DateTime.Now;
-            IsDeleted = false;
+            this.DateCreated = DateTime.Now;
+            this.DateUpdated = DateTime.Now;
+            this.IsDeleted = false;
         }
-
-        [Key]
-        [Required]
-        public int id { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -27,6 +23,10 @@ namespace MvcRefactorTest.Domain.@base
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date Updated ")]
         public DateTime DateUpdated { get; set; }
+
+        [Key]
+        [Required]
+        public int id { get; set; }
 
         [Display(Name = "Is Deleted")]
         [Required(ErrorMessage = "Please set the Deleted flag")]

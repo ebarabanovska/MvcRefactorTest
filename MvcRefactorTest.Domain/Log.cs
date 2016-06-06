@@ -6,14 +6,13 @@ namespace MvcRefactorTest.Domain
     public class Log
     {
         [Required]
-        public int Id { get; set; }
-
-        [Required]
         public DateTime Date { get; set; }
 
+        [StringLength(2000)]
+        public string Exception { get; set; }
+
         [Required]
-        [StringLength(255)]
-        public string Thread { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -27,7 +26,8 @@ namespace MvcRefactorTest.Domain
         [StringLength(4000)]
         public string Message { get; set; }
 
-        [StringLength(2000)]
-        public string Exception { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Thread { get; set; }
     }
 }

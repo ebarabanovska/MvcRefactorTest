@@ -4,9 +4,16 @@ namespace MvcRefactorTest.Domain.Migrations
 
     public partial class GenerateBataBase : DbMigration
     {
+        public override void Down()
+        {
+            this.DropTable("dbo.Users");
+            this.DropTable("dbo.Logs");
+            this.DropTable("dbo.Contacts");
+        }
+
         public override void Up()
         {
-            CreateTable(
+            this.CreateTable(
                 "dbo.Contacts", 
                 c =>
                 new
@@ -23,7 +30,7 @@ namespace MvcRefactorTest.Domain.Migrations
                         isDeleted = c.Boolean(false)
                     }).PrimaryKey(t => t.id);
 
-            CreateTable(
+            this.CreateTable(
                 "dbo.Logs", 
                 c =>
                 new
@@ -37,7 +44,7 @@ namespace MvcRefactorTest.Domain.Migrations
                         Exception = c.String(maxLength: 2000)
                     }).PrimaryKey(t => t.Id);
 
-            CreateTable(
+            this.CreateTable(
                 "dbo.Users", 
                 c =>
                 new
@@ -51,13 +58,6 @@ namespace MvcRefactorTest.Domain.Migrations
                         date_updated = c.DateTime(false), 
                         isDeleted = c.Boolean(false)
                     }).PrimaryKey(t => t.id);
-        }
-
-        public override void Down()
-        {
-            DropTable("dbo.Users");
-            DropTable("dbo.Logs");
-            DropTable("dbo.Contacts");
         }
     }
 }

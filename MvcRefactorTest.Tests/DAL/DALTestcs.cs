@@ -1,19 +1,15 @@
-﻿namespace MvcRefactorTest.Tests.DAL
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Moq;
+
+using MvcRefactorTest.DAL.Interface;
+using MvcRefactorTest.Domain;
+
+namespace MvcRefactorTest.Tests.DAL
 {
-    #region
-
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using Moq;
-
-    using MvcRefactorTest.DAL.Interface;
-    using MvcRefactorTest.Domain;
-
-    #endregion
-
     [TestClass]
     public class DALTestcs
     {
