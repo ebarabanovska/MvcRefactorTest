@@ -3,10 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MvcRefactorTest.Domain.@base
 {
-    public static class Extensions
-    {
-    }
-
     public class BaseClass
     {
         public BaseClass()

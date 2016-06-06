@@ -1,28 +1,58 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using Moq;
-
-using MvcRefactorTest.DAL.Interface;
-using MvcRefactorTest.Domain;
-
-namespace MvcRefactorTest.Tests.DAL
+﻿namespace MvcRefactorTest.Tests.DAL
 {
+    #region
+
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Moq;
+
+    using MvcRefactorTest.DAL.Interface;
+    using MvcRefactorTest.Domain;
+
+    #endregion
+
     [TestClass]
     public class DALTestcs
     {
+        private static bool _isValid;
+
+        private Mock<IUserRepository> _mockUserRepository;
+
+        private IList<User> _userList;
+
+        private User _userObj;
+
+        [TestMethod]
+        public void GetAllActiveUsersBy()
+        {
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
+
+            // return a user by Name
+            this._mockUserRepository.Setup(mr => mr.GetAllUsersBy(It.IsAny<bool>(), out this._userList)).Returns(true);
+
+            // setup of Mock User Repository
+            var target = this._mockUserRepository.Object;
+            IList<User> testUserList;
+            var success = target.GetAllUsersBy(true, out testUserList);
+
+            // assert
+            Assert.AreEqual(true, success);
+            Assert.AreNotEqual(2, testUserList.Select(p => p.IsEnabled).Count());
+        }
+
         [TestMethod]
         public void GetAllsUersTest()
         {
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
 
             // Return all users
-            _mockUserRepository.Setup(mr => mr.GetAllUsers(out _userList)).Returns(true);
+            this._mockUserRepository.Setup(mr => mr.GetAllUsers(out this._userList)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = _mockUserRepository.Object;
+            var target = this._mockUserRepository.Object;
             IList<User> testUser;
             var success = target.GetAllUsers(out testUser);
 
@@ -38,13 +68,13 @@ namespace MvcRefactorTest.Tests.DAL
         [TestMethod]
         public void GetUserByIdTest()
         {
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
 
             // Return a user by Id
-            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out _userObj)).Returns(true);
+            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out this._userObj)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = _mockUserRepository.Object;
+            var target = this._mockUserRepository.Object;
             User testUser;
             var success = target.GetUserBy(2, out testUser);
 
@@ -58,13 +88,13 @@ namespace MvcRefactorTest.Tests.DAL
         [TestMethod]
         public void GetUserByNameTest()
         {
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
 
             // return a user by Name
-            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out _userObj)).Returns(true);
+            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out this._userObj)).Returns(true);
 
             // setup of Mock User Repository
-            var target = _mockUserRepository.Object;
+            var target = this._mockUserRepository.Object;
             User testUser;
             var success = target.GetUserBy("Richard Child", out testUser);
 
@@ -75,34 +105,16 @@ namespace MvcRefactorTest.Tests.DAL
         }
 
         [TestMethod]
-        public void GetAllActiveUsersBy()
-        {
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository);
-
-            // return a user by Name
-            _mockUserRepository.Setup(mr => mr.GetAllUsersBy(It.IsAny<bool>(), out _userList)).Returns(true);
-
-            // setup of Mock User Repository
-            var target = _mockUserRepository.Object;
-            IList<User> testUserList;
-            var success = target.GetAllUsersBy(true, out testUserList);
-
-            // assert
-            Assert.AreEqual(true, success);
-            Assert.AreNotEqual(2, testUserList.Select(p => p.IsEnabled).Count());
-        }
-
-        [TestMethod]
         public void ValidateUser()
         {
-            InitializeUnitTests(out _userList, out _userObj, out _mockUserRepository, true);
+            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository, true);
 
             // return a user by Name
-            _mockUserRepository.Setup(mr => mr.ValidateUser(It.IsAny<string>(), It.IsAny<string>(), out _isValid))
+            this._mockUserRepository.Setup(mr => mr.ValidateUser(It.IsAny<string>(), It.IsAny<string>(), out _isValid))
                 .Returns(true);
 
             // setup of Mock User Repository
-            var target = _mockUserRepository.Object;
+            var target = this._mockUserRepository.Object;
             bool isValid;
             var success = target.ValidateUser("Richard Child", "Test Password", out isValid);
 
@@ -110,16 +122,6 @@ namespace MvcRefactorTest.Tests.DAL
             Assert.AreEqual(true, success);
             Assert.AreEqual(true, isValid);
         }
-
-        #region Private Members
-
-        private IList<User> _userList;
-
-        private User _userObj;
-
-        private Mock<IUserRepository> _mockUserRepository;
-
-        private static bool _isValid;
 
         /// <summary>
         ///     Initialize unit tests
@@ -167,7 +169,5 @@ namespace MvcRefactorTest.Tests.DAL
 
             mockUserRepository = new Mock<IUserRepository>();
         }
-
-        #endregion
     }
 }
