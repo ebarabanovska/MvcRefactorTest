@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+
 using MvcRefactorTest.Domain;
 
 namespace MvcRefactorTest.DAL.Interface

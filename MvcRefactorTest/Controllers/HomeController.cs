@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+
 using log4net;
+
 using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Log4Net;
@@ -11,7 +13,9 @@ namespace MvcRefactorTest.Controllers
     public class HomeController : Controller
     {
         private static readonly ILog Logger = LogFactory.GetLogger();
+
         private readonly IContactService _contactService;
+
         private readonly IUserService _userService;
 
         #region Controller Constructors
@@ -28,8 +32,8 @@ namespace MvcRefactorTest.Controllers
         {
             ViewBag.Title = "All Developers";
 
-            //FormsAuthentication.SetAuthCookie(System.Security.Principal.WindowsIdentity.GetCurrent().Name, false);
-            //logger.Error("Test Error");
+            // FormsAuthentication.SetAuthCookie(System.Security.Principal.WindowsIdentity.GetCurrent().Name, false);
+            // logger.Error("Test Error");
             return View();
         }
 
@@ -38,8 +42,8 @@ namespace MvcRefactorTest.Controllers
             IList<User> userObj;
 
             return _userService.GetAllUsers(out userObj)
-                ? PartialView("_UserDetailsPartial", (List<User>) userObj)
-                : PartialView(null);
+                       ? PartialView("_UserDetailsPartial", (List<User>)userObj)
+                       : PartialView(null);
         }
 
         public ActionResult About()

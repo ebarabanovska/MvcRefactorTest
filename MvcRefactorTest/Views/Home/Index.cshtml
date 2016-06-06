@@ -12,18 +12,20 @@
             $(function() {
                     $.ajax({
                         url: "@Url.Action(\
-                                  "LoadUsers\",\"Home\")",
-                                  "GET",
-                                  false,
-                                  //data: { meter_id: meterId }
+                                  "LoadUsers\",\"Home\")", 
+                                  "GET", 
+                                  false, 
+
+                                  // data: { meter_id: meterId }
 }
 
-    ).
+).
 
                     done(function (result);
                 {
                     $
-                    ("#contUserDetails").html(result);
+                        ("#contUserDetails")
+                        .html(result);
                 }
             );
         });
@@ -32,8 +34,8 @@
 </head>
 
 <hgroup class="title">
-    <h1>@ViewBag.Title </h1>
-    <h2>@ViewBag.Message </h2>
+    <h1>@Title </h1>
+    <h2>@Vessage </h2>
 </hgroup>
 
 @*<h1>All Developers</h1>
@@ -42,7 +44,7 @@
     <input type="Button" name="Submit" value="Load Users" onclick=" OpenUserDetails(); " style="background: #ffa20f; border: 2px outset #d7b9c9; color: #000;"/>
 
     <div id="contUserDetails">
-        @Html.Partial ( "_UserDetailsPartial", Model )
-    
+        @Htrtial ( "_UserDetailsPartial", Model )
+
     </div>
 </form>

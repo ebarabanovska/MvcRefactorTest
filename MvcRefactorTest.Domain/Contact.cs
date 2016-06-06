@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 using MvcRefactorTest.Domain.@base;
 
 namespace MvcRefactorTest.Domain

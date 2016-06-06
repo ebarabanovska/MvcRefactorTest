@@ -5,6 +5,5 @@ namespace MvcRefactorTest.Tests.Controllers
     [TestClass]
     public class HomeControllerTest
     {
-        
     }
 }

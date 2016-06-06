@@ -1,5 +1,7 @@
 ﻿using System;
+
 using MvcRefactorTest.SeleniumTest;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -38,6 +40,7 @@ namespace SeleniumTest
             {
                 // ignored
             }
+
             return new HomePageObject();
         }
     }

@@ -22,7 +22,7 @@ namespace SeleniumTest
         [SetUp]
         public void Initialize()
         {
-            //create reference for the chrome browser
+            // create reference for the chrome browser
             PropertiesCollection.Driver = new ChromeDriver();
 
             PropertiesCollection.Driver.Navigate().GoToUrl("http://localhost:56750/Account/Login");
@@ -32,30 +32,30 @@ namespace SeleniumTest
         [Test]
         public void ExecuteSetTest()
         {
-            //Title
+            // Title
             SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
 
-            //Initial
+            // Initial
             SeleniumSetMethods.EnterText("Initial", "Execute Automation", PropertyType.Name);
 
-            //Click
+            // Click
             SeleniumSetMethods.Click("Save", PropertyType.Name);
         }
 
         [Test]
         public void ExecuteGetTest()
         {
-            //Set Title
+            // Set Title
             SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Id);
 
-            //Set Initial
+            // Set Initial
             SeleniumSetMethods.EnterText("Initial", "Execute Automation", PropertyType.Name);
 
-            //Get Title
+            // Get Title
             Console.WriteLine(
                 "The value from my Title is: " + SeleniumGetMethods.GetTextFromDropDownList("TitleId", PropertyType.Id));
 
-            //Get Initial
+            // Get Initial
             Console.WriteLine(
                 "The value from my Initial is: " + SeleniumGetMethods.GetText("Initial", PropertyType.Name));
         }
@@ -64,7 +64,7 @@ namespace SeleniumTest
         [Category("RunOnlyThis")]
         public void ExecuteLogin()
         {
-            //Login to application
+            // Login to application
             var pageLogin = new LoginPageObject();
             var homePage = pageLogin.Login("execute", "automation");
         }
@@ -72,10 +72,10 @@ namespace SeleniumTest
         [Test]
         public void NextTest()
         {
-            //find the element
+            // find the element
             var element = PropertiesCollection.Driver.FindElement(By.Name("q"));
 
-            //perform opration
+            // perform opration
             element.SendKeys("executeoperation");
             Console.WriteLine("Executed Test");
         }

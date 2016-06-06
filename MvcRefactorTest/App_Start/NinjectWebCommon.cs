@@ -1,6 +1,8 @@
 using System;
 using System.Web;
+
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
 using MvcRefactorTest.App_Start;
 using MvcRefactorTest.BL;
 using MvcRefactorTest.BL.Interface;
@@ -8,12 +10,14 @@ using MvcRefactorTest.DAL;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Infrastructure.Abstract;
 using MvcRefactorTest.Infrastructure.Concrete;
+
 using Ninject;
 using Ninject.Web.Common;
+
 using WebActivatorEx;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof (NinjectWebCommon), "Start")]
-[assembly: ApplicationShutdownMethod(typeof (NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
 
 namespace MvcRefactorTest.App_Start
 {
@@ -26,8 +30,8 @@ namespace MvcRefactorTest.App_Start
         /// </summary>
         public static void Start()
         {
-            DynamicModuleUtility.RegisterModule(typeof (OnePerRequestHttpModule));
-            DynamicModuleUtility.RegisterModule(typeof (NinjectHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
+            DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
 

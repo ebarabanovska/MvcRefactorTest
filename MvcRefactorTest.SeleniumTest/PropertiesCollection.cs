@@ -4,10 +4,14 @@ namespace MvcRefactorTest.SeleniumTest
 {
     internal enum PropertyType
     {
-        Id,
-        Name,
-        LinkedText,
-        CssName,
+        Id, 
+
+        Name, 
+
+        LinkedText, 
+
+        CssName, 
+
         ClassName
     }
 

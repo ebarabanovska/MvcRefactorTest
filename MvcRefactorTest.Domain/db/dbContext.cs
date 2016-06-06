@@ -11,7 +11,9 @@ namespace MvcRefactorTest.Domain.db
         }
 
         public DbSet<User> User { get; set; }
+
         public DbSet<Contact> Contact { get; set; }
+
         public DbSet<Log> Log { get; set; }
     }
 }

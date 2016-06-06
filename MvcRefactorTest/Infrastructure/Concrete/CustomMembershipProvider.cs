@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Security;
+
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Infrastructure.Abstract;
 using MvcRefactorTest.Log4Net;
@@ -22,6 +23,7 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             {
                 FormsAuthentication.SetAuthCookie(username, false);
             }
+
             return result;
         }
 
@@ -33,8 +35,7 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
             try
             {
-                if (_userRepository.ChangePassword(username, newPassword))
-                    success = true;
+                if (_userRepository.ChangePassword(username, newPassword)) success = true;
             }
             catch (Exception ex)
             {
@@ -44,14 +45,23 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             return success;
         }
 
-        public override bool ChangePasswordQuestionAndAnswer(string username, string password,
-            string newPasswordQuestion, string newPasswordAnswer)
+        public override bool ChangePasswordQuestionAndAnswer(
+            string username, 
+            string password, 
+            string newPasswordQuestion, 
+            string newPasswordAnswer)
         {
             throw new NotImplementedException();
         }
 
-        public override MembershipUser CreateUser(string username, string password, string email,
-            string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey,
+        public override MembershipUser CreateUser(
+            string username, 
+            string password, 
+            string email, 
+            string passwordQuestion, 
+            string passwordAnswer, 
+            bool isApproved, 
+            object providerUserKey, 
             out MembershipCreateStatus status)
         {
             throw new NotImplementedException();
@@ -64,21 +74,33 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
         public override bool EnablePasswordReset
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override bool EnablePasswordRetrieval
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize,
+        public override MembershipUserCollection FindUsersByEmail(
+            string emailToMatch, 
+            int pageIndex, 
+            int pageSize, 
             out int totalRecords)
         {
             throw new NotImplementedException();
         }
 
-        public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize,
+        public override MembershipUserCollection FindUsersByName(
+            string usernameToMatch, 
+            int pageIndex, 
+            int pageSize, 
             out int totalRecords)
         {
             throw new NotImplementedException();
@@ -116,42 +138,66 @@ namespace MvcRefactorTest.Infrastructure.Concrete
 
         public override int MaxInvalidPasswordAttempts
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override int MinRequiredNonAlphanumericCharacters
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override int MinRequiredPasswordLength
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override int PasswordAttemptWindow
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override MembershipPasswordFormat PasswordFormat
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override string PasswordStrengthRegularExpression
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override bool RequiresQuestionAndAnswer
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override bool RequiresUniqueEmail
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override string ResetPassword(string username, string answer)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
+
 using MvcRefactorTest.BL;
 using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.DAL;
@@ -39,15 +40,14 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             try
             {
                 IList<User> userList;
-                if (_userService.GetAllUsers(out userList))
-                    if (userList != null)
-                        return userList.Where(p => p.Role == roleName).Select(p => p.Name).ToArray();
+                if (_userService.GetAllUsers(out userList)) if (userList != null) return userList.Where(p => p.Role == roleName).Select(p => p.Name).ToArray();
             }
             catch (Exception ex)
             {
                 LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
             }
-            return new string[] {};
+
+            return new string[] { };
         }
 
         public override string[] GetAllRoles()
@@ -65,15 +65,14 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             try
             {
                 User userObj;
-                if (_userService.GetUserBy(username, out userObj))
-                    if (userObj != null)
-                        return userObj.Role != null ? new[] {userObj.Role} : new string[] {};
+                if (_userService.GetUserBy(username, out userObj)) if (userObj != null) return userObj.Role != null ? new[] { userObj.Role } : new string[] { };
             }
             catch (Exception ex)
             {
                 LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
             }
-            return new string[] {};
+
+            return new string[] { };
         }
 
         public override string[] GetUsersInRole(string roleName)
@@ -92,14 +91,13 @@ namespace MvcRefactorTest.Infrastructure.Concrete
             try
             {
                 User userObj;
-                if (_userService.GetUserBy(username, out userObj))
-                    if (userObj != null)
-                        return (userObj.Role != null && userObj.Role == roleName);
+                if (_userService.GetUserBy(username, out userObj)) if (userObj != null) return userObj.Role != null && userObj.Role == roleName;
             }
             catch (Exception ex)
             {
                 LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
             }
+
             return false;
         }
 

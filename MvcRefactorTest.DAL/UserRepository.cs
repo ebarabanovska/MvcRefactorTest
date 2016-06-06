@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using log4net;
+
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
@@ -12,6 +14,7 @@ namespace MvcRefactorTest.DAL
     public class UserRepository : IUserRepository
     {
         private readonly ILog _logger = LogFactory.GetLogger();
+
         private dbContext _context;
 
         #region Get methods
@@ -59,10 +62,9 @@ namespace MvcRefactorTest.DAL
             {
                 using (_context = new dbContext())
                 {
-                    isValid =
-                        _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
-                            ? true
-                            : false;
+                    isValid = _context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
+                                  ? true
+                                  : false;
                     succeed = true;
                 }
             }
@@ -175,13 +177,7 @@ namespace MvcRefactorTest.DAL
             {
                 using (_context = new dbContext())
                 {
-                    userObj = new User
-                    {
-                        Name = fullName,
-                        Password = password,
-                        Role = role,
-                        IsEnabled = true
-                    };
+                    userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
                     _context.User.Add(userObj);
                     _context.SaveChanges();
 
@@ -211,8 +207,7 @@ namespace MvcRefactorTest.DAL
                 using (_context = new dbContext())
                 {
                     var userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null)
-                        userObj.Password = password;
+                    if (userObj != null) userObj.Password = password;
 
                     _context.SaveChanges();
 
@@ -244,8 +239,7 @@ namespace MvcRefactorTest.DAL
                 using (_context = new dbContext())
                 {
                     userObj = _context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null && userObj.Role == role)
-                        userObj.Role = string.Empty;
+                    if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
 
                     _context.SaveChanges();
 

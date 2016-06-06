@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -33,21 +34,18 @@ namespace MvcRefactorTest.SeleniumTest
                     var singleOrDefault =
                         new SelectElement(PropertiesCollection.Driver.FindElement(By.Id(element))).AllSelectedOptions
                             .SingleOrDefault();
-                    if (singleOrDefault != null)
-                        return
-                            singleOrDefault.Text;
+                    if (singleOrDefault != null) return singleOrDefault.Text;
                     break;
                 case PropertyType.Name:
                     var webElement =
                         new SelectElement(PropertiesCollection.Driver.FindElement(By.Name(element))).AllSelectedOptions
                             .SingleOrDefault();
-                    if (webElement != null)
-                        return
-                            webElement.Text;
+                    if (webElement != null) return webElement.Text;
                     break;
                 default:
                     return string.Empty;
             }
+
             return string.Empty;
         }
     }

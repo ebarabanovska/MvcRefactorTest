@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+
 using log4net;
+
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
@@ -11,6 +13,7 @@ namespace MvcRefactorTest.DAL
     public class ContactRepository : IContactRepository
     {
         private readonly ILog _logger = LogFactory.GetLogger();
+
         private dbContext _context;
 
         #region Get methods

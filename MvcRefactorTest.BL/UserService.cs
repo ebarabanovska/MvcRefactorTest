@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using log4net;
+
 using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
