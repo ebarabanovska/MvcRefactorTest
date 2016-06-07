@@ -123,9 +123,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\UserServiceTest.cs" />
+    <Compile Include="BL\UserServiceFixture.cs" />
     <Compile Include="Controllers\AccountControllerTest.cs" />
-    <Compile Include="DAL\DALTestcs.cs" />
+    <Compile Include="DAL\UserRepositoryFixture.cs" />
+    <Compile Include="ExceptionAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
