@@ -126,24 +126,25 @@ namespace MvcRefactorTest.Infrastructure.Concrete
         /// <param name="roleNames">Remove users from these roles</param>
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
         {
-            try
-            {
-                foreach (var user in usernames)
-                {
-                    User userObj;
-                    if (!this._userService.GetUserBy(user, out userObj)) continue;
-                    foreach (var role in roleNames)
-                    {
-                        if (userObj == null) continue;
-                        userObj.Role = string.Empty;
-                        this._userService.RemoveUserFromRole(user, role, out userObj);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
-            }
+            throw new NotImplementedException();
+            //try
+            //{
+            //    foreach (var user in usernames)
+            //    {
+            //        User userObj;
+            //        if (!this._userService.GetUserBy(user, out userObj)) continue;
+            //        foreach (var role in roleNames)
+            //        {
+            //            if (userObj == null) continue;
+            //            userObj.Role = string.Empty;
+            //            this._userService.RemoveUserFromRole(user, role, out userObj);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
+            //}
         }
 
         public override bool RoleExists(string roleName)

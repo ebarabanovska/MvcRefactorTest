@@ -47,22 +47,21 @@ namespace MvcRefactorTest.DAL
         /// <param name="role">User Role.</param>
         /// <param name="userObj">User object to be retrieved.</param>
         /// <returns>Return true if success, else false.</returns>
-        public bool CreateUser(string fullName, string password, string role, out User userObj)
-        {
-            var succeed = false;
-            userObj = null;
+        //public bool CreateUser(string fullName, string password, string role, out User userObj)
+        //{
+        //    var succeed = false;
 
-            using (this._context = new dbContext())
-            {
-                userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
-                this._context.User.Add(userObj);
-                this._context.SaveChanges();
+        //    using (this._context = new dbContext())
+        //    {
+        //        userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
+        //        this._context.User.Add(userObj);
+        //        this._context.SaveChanges();
 
-                succeed = true;
-            }
+        //        succeed = true;
+        //    }
 
-            return succeed;
-        }
+        //    return succeed;
+        //}
 
         /// <summary>
         ///     Get All users
@@ -72,7 +71,6 @@ namespace MvcRefactorTest.DAL
         public bool GetAllUsers(out IList<User> userList)
         {
             var succeed = false;
-            userList = null;
 
             using (this._context = new dbContext())
             {
@@ -92,7 +90,6 @@ namespace MvcRefactorTest.DAL
         public bool GetAllUsersBy(bool active, out IList<User> userList)
         {
             var succeed = false;
-            userList = null;
 
             using (this._context = new dbContext())
             {
@@ -112,7 +109,6 @@ namespace MvcRefactorTest.DAL
         public bool GetUserBy(int id, out User userObj)
         {
             var succeed = false;
-            userObj = null;
 
             using (this._context = new dbContext())
             {
@@ -132,7 +128,6 @@ namespace MvcRefactorTest.DAL
         public bool GetUserBy(string name, out User userObj)
         {
             var succeed = false;
-            userObj = null;
 
             using (this._context = new dbContext())
             {
@@ -150,23 +145,22 @@ namespace MvcRefactorTest.DAL
         /// <param name="role">User Role.</param>
         /// <param name="userObj">User object to be retrieved.</param>
         /// <returns>Return true if success, else false.</returns>
-        public bool RemoveUserFromRole(string fullName, string role, out User userObj)
-        {
-            var succeed = false;
-            userObj = new User();
+        //public bool RemoveUserFromRole(string fullName, string role, out User userObj)
+        //{
+        //    var succeed = false;
 
-            using (this._context = new dbContext())
-            {
-                userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
-                if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
+        //    using (this._context = new dbContext())
+        //    {
+        //        userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
+        //        if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
 
-                this._context.SaveChanges();
+        //        this._context.SaveChanges();
 
-                succeed = true;
-            }
+        //        succeed = true;
+        //    }
 
-            return succeed;
-        }
+        //    return succeed;
+        //}
 
         /// <summary>
         ///     Validate User.
@@ -178,7 +172,6 @@ namespace MvcRefactorTest.DAL
         public bool ValidateUser(string userName, string password, out bool isValid)
         {
             var succeed = false;
-            isValid = false;
 
             using (this._context = new dbContext())
             {

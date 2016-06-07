@@ -26,17 +26,17 @@ namespace MvcRefactorTest.BL
         /// <param name="fullName">Full Name.</param>
         /// <param name="password">Password.</param>
         /// <returns>Return true if success, else false.</returns>
-        public bool ChangePassword(string fullName, string password)
-        {
-            var succeed = false;
+        //public bool ChangePassword(string fullName, string password)
+        //{
+        //    var succeed = false;
 
-            if (this._userRepository.ChangePassword(fullName, password))
-            {
-                succeed = true;
-            }
+        //    if (this._userRepository.ChangePassword(fullName, password))
+        //    {
+        //        succeed = true;
+        //    }
 
-            return succeed;
-        }
+        //    return succeed;
+        //}
 
         /// <summary>
         ///     Create new User
@@ -46,18 +46,18 @@ namespace MvcRefactorTest.BL
         /// <param name="role">Role</param>
         /// <param name="userObj">User object to be retrieved</param>
         /// <returns>Return true if success, else false</returns>
-        public bool CreateUser(string fullName, string password, string role, out User userObj)
-        {
-            var succeed = false;
-            userObj = null;
+        //public bool CreateUser(string fullName, string password, string role, out User userObj)
+        //{
+        //    var succeed = false;
+        //    userObj = null;
 
-            if (this._userRepository.CreateUser(fullName, password, role, out userObj))
-            {
-                succeed = true;
-            }
+        //    if (this._userRepository.CreateUser(fullName, password, role, out userObj))
+        //    {
+        //        succeed = true;
+        //    }
 
-            return succeed;
-        }
+        //    return succeed;
+        //}
 
         /// <summary>
         ///     Get All users
@@ -138,18 +138,18 @@ namespace MvcRefactorTest.BL
         /// <param name="role">Role.</param>
         /// <param name="userObj">User Object.</param>
         /// <returns>Return true if success, else false.</returns>
-        public bool RemoveUserFromRole(string fullName, string role, out User userObj)
-        {
-            var succeed = false;
-            userObj = new User();
+        //public bool RemoveUserFromRole(string fullName, string role, out User userObj)
+        //{
+        //    var succeed = false;
+        //    userObj = new User();
 
-            if (this._userRepository.RemoveUserFromRole(fullName, role, out userObj))
-            {
-                succeed = true;
-            }
+        //    if (this._userRepository.RemoveUserFromRole(fullName, role, out userObj))
+        //    {
+        //        succeed = true;
+        //    }
 
-            return succeed;
-        }
+        //    return succeed;
+        //}
 
         /// <summary>
         ///     Validate user by username and password
