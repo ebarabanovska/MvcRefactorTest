@@ -14,74 +14,78 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MvcRefactorTest.Tests.DAL
 {
+    using System;
+
     [TestFixture]
     public class UserRepositoryFixture
     {
         private static bool _isValid;
 
-        private Mock<IUserRepository> _mockUserRepository;
+        private static Mock<IUserRepository> _mockUserRepository;
 
-        private IList<User> _userList;
+        private static IList<User> _userList;
 
-        private User _userObj;
+        private static User _userObj;
 
         /// <summary>
         ///     Initialize unit tests
         /// </summary>
         /// <param name="userList">userList</param>
         /// <param name="userObj">userObj</param>
-        private static void InitializeUnitTests(
-            out IList<User> userList, 
-            out User userObj, 
-            out Mock<IUserRepository> mockUserRepository, 
-            bool isValid = true)
+        [TestFixtureSetUp]
+        public static void InitializeUnitTests()
         {
             // create some mock products to play with
-            userList = new List<User>
+            _isValid = true;
+
+            _userObj = new User
                            {
-                               new User
-                                   {
-                                       Name = "Chris Smith", 
-                                       Password = "pass", 
-                                       Role = "Developer", 
-                                       IsEnabled = true, 
-                                       id = 2
-                                   }, 
-                               new User
-                                   {
-                                       Name = "Awin George", 
-                                       Password = "pass", 
-                                       Role = "Developer", 
-                                       IsEnabled = false, 
-                                       id = 3
-                                   }, 
-                               new User
-                                   {
-                                       Name = "Richard Child", 
-                                       Password = "pass", 
-                                       Role = "Developer", 
-                                       IsEnabled = true, 
-                                       id = 4
-                                   }
+                               Name = "Chris Smith",
+                               Password = "pass",
+                               Role = "Developer",
+                               IsEnabled = true,
+                               id = 2
                            };
 
-            userObj = new User { Name = "Chris Smith", id = 2, Password = "pass", Role = "Developer", IsEnabled = true };
+            _userList = new List<User>
+                            {
+                                _userObj, 
+                                new User
+                                    {
+                                        Name = "Awin George", 
+                                        Password = "pass", 
+                                        Role = "Developer", 
+                                        IsEnabled = false, 
+                                        id = 3
+                                    }, 
+                                new User
+                                    {
+                                        Name = "Richard Child", 
+                                        Password = "pass", 
+                                        Role = "Developer", 
+                                        IsEnabled = true, 
+                                        id = 4
+                                    }
+                            };
 
-            _isValid = isValid;
+            _mockUserRepository = new Mock<IUserRepository>();
+        }
 
-            mockUserRepository = new Mock<IUserRepository>();
+        [TestFixtureTearDown]
+        public void TearDownObjects()
+        {
+            _userList = null;
+            _mockUserRepository = null;
         }
 
         [Test]
         public void GetAllActiveUsersBy()
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // return a user by Name
-            this._mockUserRepository.Setup(mr => mr.GetAllUsersBy(It.IsAny<bool>(), out this._userList)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetAllUsersBy(It.IsAny<bool>(), out _userList)).Returns(true);
 
             // setup of Mock User Repository
-            var target = this._mockUserRepository.Object;
+            var target = _mockUserRepository.Object;
             IList<User> testUserList;
             var success = target.GetAllUsersBy(true, out testUserList);
 
@@ -93,13 +97,11 @@ namespace MvcRefactorTest.Tests.DAL
         [Test]
         public void GetAllsUersTest()
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // Return all users
-            this._mockUserRepository.Setup(mr => mr.GetAllUsers(out this._userList)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetAllUsers(out _userList)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = this._mockUserRepository.Object;
+            var target = _mockUserRepository.Object;
             IList<User> testUser;
             var success = target.GetAllUsers(out testUser);
 
@@ -108,20 +110,18 @@ namespace MvcRefactorTest.Tests.DAL
             Assert.AreEqual(3, testUser.Count);
             Assert.AreNotEqual(null, testUser);
             Assert.AreEqual(
-                false, 
+                false,
                 testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
         }
 
         [Test]
         public void GetUserByIdTest()
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // Return a user by Id
-            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out this._userObj)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out _userObj)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = this._mockUserRepository.Object;
+            var target = _mockUserRepository.Object;
             User testUser;
             var success = target.GetUserBy(2, out testUser);
 
@@ -133,41 +133,48 @@ namespace MvcRefactorTest.Tests.DAL
         }
 
         [Test]
-        public void GetUserByNameTest()
+        [Combinatorial]
+        public void GetUserByNameTest([Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName)
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // return a user by Name
-            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out this._userObj)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out _userObj)).Returns(true);
 
             // setup of Mock User Repository
-            var target = this._mockUserRepository.Object;
+            var target = _mockUserRepository.Object;
             User testUser;
-            var success = target.GetUserBy("Richard Child", out testUser);
+            var success = target.GetUserBy(userName, out testUser);
 
             // assert
             Assert.AreEqual(true, success);
-            Assert.AreNotEqual("Richard Child", testUser.Name);
-            Assert.AreEqual("Chris Smith", testUser.Name);
+            if (userName == testUser.Name) Assert.AreEqual(userName, testUser.Name);
+            else Assert.AreNotEqual(userName, testUser.Name);
         }
 
         [Test]
-        public void ValidateUser()
+        [Combinatorial]
+        public void ValidateUser([Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName,
+            [Values("pass", "Test Password", "", null)] string password)
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository, true);
+
+            var mockDelegate = new Mock<Func<IUserRepository>>();
+
+            Func<IUserRepository> mockDelegatetest = () => _mockUserRepository.Object;
+            mockDelegate.Setup(x => x()).Returns(_mockUserRepository.Object);
+
+            var success = _mockUserRepository.Object.ValidateUser(userName, password, out _isValid);
 
             // return a user by Name
-            this._mockUserRepository.Setup(mr => mr.ValidateUser(It.IsAny<string>(), It.IsAny<string>(), out _isValid))
-                .Returns(true);
+            //_mockUserRepository.Setup(mr => mr.ValidateUser(It.IsAny<string>(), It.IsAny<string>(), out _isValid))
+            //    .Returns(true);
 
             // setup of Mock User Repository
-            var target = this._mockUserRepository.Object;
-            bool isValid;
-            var success = target.ValidateUser("Richard Child", "Test Password", out isValid);
+            //var target = _mockUserRepository.Object;
+            //bool isValid;
+            // = target.ValidateUser(userName, password, out isValid);
 
             // assert
-            Assert.AreEqual(true, success);
-            Assert.AreEqual(true, isValid);
+            //Assert.AreEqual(true, success);
+            Assert.AreEqual(true, _isValid);
         }
     }
 }

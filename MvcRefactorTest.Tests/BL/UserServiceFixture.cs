@@ -13,6 +13,8 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace MvcRefactorTest.Tests.BL
 {
+    using System;
+
     [TestFixture]
     public class UserServiceFixture
     {
@@ -28,55 +30,59 @@ namespace MvcRefactorTest.Tests.BL
         /// <param name="userList">userList</param>
         /// <param name="userObj">userObj</param>
         /// <param name="mockUserRepository">UserRepository Mock</param>
-        private static void InitializeUnitTests(
-            out IList<User> userList, 
-            out User userObj, 
-            out Mock<IUserRepository> mockUserRepository)
+        [TestFixtureSetUp]
+        public void InitializeUnitTests()
         {
             // create some mock products to play with
-            userList = new List<User>
+            _userObj = new User
                            {
-                               new User
-                                   {
-                                       Name = "Chris Smith", 
-                                       Password = "pass", 
-                                       Role = "Developer", 
-                                       IsEnabled = true, 
-                                       id = 2
-                                   }, 
-                               new User
-                                   {
-                                       Name = "Awin George", 
-                                       Password = "pass", 
-                                       Role = "Developer", 
-                                       IsEnabled = false, 
-                                       id = 3
-                                   }, 
-                               new User
-                                   {
-                                       Name = "Richard Child", 
-                                       Password = "pass", 
-                                       Role = "Developer", 
-                                       IsEnabled = true, 
-                                       id = 4
-                                   }
+                               Name = "Chris Smith", 
+                               id = 2, 
+                               Password = "pass", 
+                               Role = "Developer", 
+                               IsEnabled = true
                            };
 
-            userObj = new User { Name = "Chris Smith", id = 2, Password = "pass", Role = "Developer", IsEnabled = true };
+            _userList = new List<User>
+                            {
+                                _userObj, 
+                                new User
+                                    {
+                                        Name = "Awin George", 
+                                        Password = "pass", 
+                                        Role = "Developer", 
+                                        IsEnabled = false, 
+                                        id = 3
+                                    }, 
+                                new User
+                                    {
+                                        Name = "Richard Child", 
+                                        Password = "pass", 
+                                        Role = "Developer", 
+                                        IsEnabled = true, 
+                                        id = 4
+                                    }
+                            };
 
-            mockUserRepository = new Mock<IUserRepository>();
+            _mockUserRepository = new Mock<IUserRepository>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDownObjects()
+        {
+            _userList = null;
+            _userObj = null;
+            _mockUserRepository = null;
         }
 
         [Test]
         public void GetAllsUersTest()
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // Return all users
-            this._mockUserRepository.Setup(mr => mr.GetAllUsers(out this._userList)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetAllUsers(out _userList)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = new UserService(this._mockUserRepository.Object);
+            var target = new UserService(_mockUserRepository.Object);
             IList<User> testUser;
             var success = target.GetAllUsers(out testUser);
 
@@ -92,13 +98,11 @@ namespace MvcRefactorTest.Tests.BL
         [Test]
         public void GetUserByIdTest()
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // Return a user by Id
-            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out this._userObj)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<int>(), out _userObj)).Returns(true);
 
             // setup of our Mock User Repository
-            var target = new UserService(this._mockUserRepository.Object);
+            var target = new UserService(_mockUserRepository.Object);
             User testUser;
             var success = target.GetUserBy(2, out testUser);
 
@@ -110,22 +114,57 @@ namespace MvcRefactorTest.Tests.BL
         }
 
         [Test]
-        public void GetUserByNameTest()
+        [Combinatorial]
+        public void GetUserByNameTest([Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName)
         {
-            InitializeUnitTests(out this._userList, out this._userObj, out this._mockUserRepository);
-
             // return a user by Name
-            this._mockUserRepository.Setup(mr => mr.GetUserBy(It.IsAny<string>(), out this._userObj)).Returns(true);
+            _mockUserRepository.Setup(mr => mr.GetUserBy(It.IsIn("Chris Smith"), out _userObj)).Returns(true);
 
             // setup of Mock User Repository
-            var target = new UserService(this._mockUserRepository.Object);
+            var target = new UserService(_mockUserRepository.Object);
             User testUser;
-            var success = target.GetUserBy("Richard Child", out testUser);
+            var success = target.GetUserBy(userName, out testUser);
 
             // assert
-            Assert.AreEqual(true, success);
-            Assert.AreNotEqual("Richard Child", testUser.Name);
-            Assert.AreEqual("Chris Smith", testUser.Name);
+            if (testUser != null && userName == testUser.Name)
+            {
+                Assert.AreEqual(userName, testUser.Name);
+                Assert.AreEqual(true, success);
+            }
+            else
+            {
+                Assert.AreEqual(false, success);
+            }
+        }
+
+        [Test]
+        [Combinatorial]
+        public void ValidateUser(
+            [Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName, 
+            [Values("pass", "Test Password", "", null)] string password)
+        {
+            // return valid user
+            var Valid = true;
+            _userObj = _userList.FirstOrDefault(p => p.Name == userName && p.Password == password);
+            _mockUserRepository.Setup(
+                mr =>
+                mr.ValidateUser(
+                    It.IsIn(_userObj != null ? _userObj.Name : string.Empty), 
+                    It.IsIn(_userObj != null ? _userObj.Password : string.Empty), 
+                    out Valid)).Returns(true);
+
+            // setup of Mock User Repository
+            var target = new UserService(_mockUserRepository.Object);
+
+            var success = target.ValidateUser(userName, password, out Valid);
+
+            // assert
+            if (success)
+            {
+                Assert.IsTrue(success);
+                Assert.AreEqual(true, Valid);
+            }
+            else Assert.IsTrue(!success);
         }
     }
 }
