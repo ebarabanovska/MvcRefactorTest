@@ -3,7 +3,7 @@ using System.Web.Security;
 
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Infrastructure.Abstract;
-using MvcRefactorTest.Log4Net;
+using MvcRefactorTest.Common;
 
 namespace MvcRefactorTest.Infrastructure.Concrete
 {

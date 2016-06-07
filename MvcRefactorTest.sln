@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest", "MvcRefactorTest\MvcRefactorTest.csproj", "{7C1C9BC2-D3A8-4519-B5E7-C20CDD1D8AD9}"
 EndProject
@@ -21,6 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{38647A
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest.SeleniumTest", "MvcRefactorTest.SeleniumTest\MvcRefactorTest.SeleniumTest.csproj", "{707C7056-1E53-474B-95BA-65B5C7221593}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F14598D7-8574-4899-9068-D6E8C009BAFE}"
+	ProjectSection(SolutionItems) = preProject
+		MvcRefactorTest.pssln = MvcRefactorTest.pssln
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

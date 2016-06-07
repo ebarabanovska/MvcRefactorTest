@@ -4,16 +4,15 @@ using System.Collections.Generic;
 using log4net;
 
 using MvcRefactorTest.BL.Interface;
+using MvcRefactorTest.Common;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
-using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.BL
 {
+    [LoggingAspect]
     public class UserService : IUserService
     {
-        private readonly ILog _logger = LogFactory.GetLogger();
-
         private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository userRepository)
@@ -31,16 +30,9 @@ namespace MvcRefactorTest.BL
         {
             var succeed = false;
 
-            try
+            if (this._userRepository.ChangePassword(fullName, password))
             {
-                if (this._userRepository.ChangePassword(fullName, password))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -59,16 +51,9 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             userObj = null;
 
-            try
+            if (this._userRepository.CreateUser(fullName, password, role, out userObj))
             {
-                if (this._userRepository.CreateUser(fullName, password, role, out userObj))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -84,16 +69,9 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             userList = null;
 
-            try
+            if (this._userRepository.GetAllUsers(out userList))
             {
-                if (this._userRepository.GetAllUsers(out userList))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -110,16 +88,9 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             userList = null;
 
-            try
+            if (this._userRepository.GetAllUsersBy(active, out userList))
             {
-                if (this._userRepository.GetAllUsersBy(active, out userList))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -136,14 +107,7 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             userObj = null;
 
-            try
-            {
-                if (this._userRepository.GetUserBy(id, out userObj)) succeed = true;
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
-            }
+            if (this._userRepository.GetUserBy(id, out userObj)) succeed = true;
 
             return succeed;
         }
@@ -159,16 +123,9 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             userObj = null;
 
-            try
+            if (this._userRepository.GetUserBy(name, out userObj))
             {
-                if (this._userRepository.GetUserBy(name, out userObj))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -186,16 +143,9 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             userObj = new User();
 
-            try
+            if (this._userRepository.RemoveUserFromRole(fullName, role, out userObj))
             {
-                if (this._userRepository.RemoveUserFromRole(fullName, role, out userObj))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -212,16 +162,9 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             isValid = false;
 
-            try
+            if (this._userRepository.ValidateUser(userName, password, out isValid))
             {
-                if (this._userRepository.ValidateUser(userName, password, out isValid))
-                {
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;

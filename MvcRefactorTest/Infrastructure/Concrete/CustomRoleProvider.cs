@@ -8,7 +8,7 @@ using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.DAL;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
-using MvcRefactorTest.Log4Net;
+using MvcRefactorTest.Common;
 
 namespace MvcRefactorTest.Infrastructure.Concrete
 {

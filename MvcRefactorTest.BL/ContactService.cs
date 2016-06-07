@@ -3,17 +3,16 @@
 using log4net;
 
 using MvcRefactorTest.BL.Interface;
+using MvcRefactorTest.Common;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
-using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.BL
 {
+    [LoggingAspect]
     public class ContactService : IContactService
     {
         private readonly IContactRepository _contactRepository;
-
-        private readonly ILog _logger = LogFactory.GetLogger();
 
         /// <summary>
         ///     Contact Servce default constructor.
@@ -33,14 +32,7 @@ namespace MvcRefactorTest.BL
             var succeed = false;
             contactObj = null;
 
-            try
-            {
-                if (this._contactRepository.GetContactDetails(out contactObj)) succeed = true;
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
-            }
+            if (this._contactRepository.GetContactDetails(out contactObj)) succeed = true;
 
             return succeed;
         }

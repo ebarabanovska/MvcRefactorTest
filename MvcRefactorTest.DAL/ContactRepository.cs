@@ -3,13 +3,14 @@ using System.Linq;
 
 using log4net;
 
+using MvcRefactorTest.Common;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
-using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.DAL
 {
+    [LoggingAspect]
     public class ContactRepository : IContactRepository
     {
         private readonly ILog _logger = LogFactory.GetLogger();
@@ -25,17 +26,10 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             contactObj = null;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    contactObj = this._context.Contact.FirstOrDefault();
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                contactObj = this._context.Contact.FirstOrDefault();
+                succeed = true;
             }
 
             return succeed;

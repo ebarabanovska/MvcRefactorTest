@@ -8,7 +8,7 @@ namespace MvcRefactorTest.Domain.Migrations
     {
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(dbContext context)

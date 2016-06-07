@@ -4,16 +4,15 @@ using System.Web.Mvc;
 using log4net;
 
 using MvcRefactorTest.BL.Interface;
+using MvcRefactorTest.Common;
 using MvcRefactorTest.Domain;
-using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.Controllers
 {
+    [LoggingAspect]
     [Authorize(Roles = "Developer")]
     public class HomeController : Controller
     {
-        private static readonly ILog Logger = LogFactory.GetLogger();
-
         private readonly IContactService _contactService;
 
         private readonly IUserService _userService;

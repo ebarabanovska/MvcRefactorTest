@@ -4,17 +4,16 @@ using System.Linq;
 
 using log4net;
 
+using MvcRefactorTest.Common;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
-using MvcRefactorTest.Log4Net;
 
 namespace MvcRefactorTest.DAL
 {
+    [LoggingAspect]
     public class UserRepository : IUserRepository
     {
-        private readonly ILog _logger = LogFactory.GetLogger();
-
         private dbContext _context;
 
         /// <summary>
@@ -27,21 +26,14 @@ namespace MvcRefactorTest.DAL
         {
             var succeed = false;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    var userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null) userObj.Password = password;
+                var userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
+                if (userObj != null) userObj.Password = password;
 
-                    this._context.SaveChanges();
+                this._context.SaveChanges();
 
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -60,20 +52,13 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             userObj = null;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
-                    this._context.User.Add(userObj);
-                    this._context.SaveChanges();
+                userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
+                this._context.User.Add(userObj);
+                this._context.SaveChanges();
 
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -89,17 +74,10 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             userList = null;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    userList = this._context.User.ToList();
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                userList = this._context.User.ToList();
+                succeed = true;
             }
 
             return succeed;
@@ -116,17 +94,10 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             userList = null;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    userList = this._context.User.Where(p => p.IsEnabled == active).ToList();
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                userList = this._context.User.Where(p => p.IsEnabled == active).ToList();
+                succeed = true;
             }
 
             return succeed;
@@ -143,17 +114,10 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             userObj = null;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    userObj = this._context.User.SingleOrDefault(p => p.id == id);
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                userObj = this._context.User.SingleOrDefault(p => p.id == id);
+                succeed = true;
             }
 
             return succeed;
@@ -170,17 +134,10 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             userObj = null;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    userObj = this._context.User.SingleOrDefault(p => p.Name == name);
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                userObj = this._context.User.SingleOrDefault(p => p.Name == name);
+                succeed = true;
             }
 
             return succeed;
@@ -198,21 +155,14 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             userObj = new User();
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
-                    if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
+                userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
+                if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
 
-                    this._context.SaveChanges();
+                this._context.SaveChanges();
 
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                succeed = true;
             }
 
             return succeed;
@@ -230,20 +180,12 @@ namespace MvcRefactorTest.DAL
             var succeed = false;
             isValid = false;
 
-            try
+            using (this._context = new dbContext())
             {
-                using (this._context = new dbContext())
-                {
-                    isValid = this._context.User.SingleOrDefault(p => p.Name == userName && p.Password == password)
-                              != null
-                                  ? true
-                                  : false;
-                    succeed = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this._logger.Error(ex.Message, ex);
+                isValid = this._context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
+                              ? true
+                              : false;
+                succeed = true;
             }
 
             return succeed;

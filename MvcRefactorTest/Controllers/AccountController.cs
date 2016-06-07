@@ -8,10 +8,11 @@ using System.Web.Security;
 using MvcRefactorTest.BL.Interface;
 using MvcRefactorTest.Domain;
 using MvcRefactorTest.Infrastructure.Abstract;
-using MvcRefactorTest.Log4Net;
+using MvcRefactorTest.Common;
 
 namespace MvcRefactorTest.Controllers
 {
+    [LoggingAspect]
     public class AccountController : Controller
     {
         private readonly ICustomMembershipProvider _authProvider;
@@ -36,16 +37,11 @@ namespace MvcRefactorTest.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                try
-                {
+                
                     if (this._authProvider.Authenticate(username, password)) if (this.SetupFormsAuthTicket(username, password, false)) return this.Redirect(this.Url.Action("Index", "Home"));
-                }
-                catch (Exception ex)
-                {
-                    LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
-                }
+               
             }
-
+            LogFactory.GetLogger().Info("OK");
             return this.View("Login");
         }
 
@@ -59,8 +55,7 @@ namespace MvcRefactorTest.Controllers
         {
             var success = false;
 
-            try
-            {
+            
                 User userObj;
                 this._userService.GetUserBy(username, out userObj);
 
@@ -88,11 +83,7 @@ namespace MvcRefactorTest.Controllers
                 this.Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
                 success = true;
-            }
-            catch (Exception ex)
-            {
-                LogFactory.GetLogger().Error(ex.Message, ex.InnerException);
-            }
+           
 
             return success;
         }
