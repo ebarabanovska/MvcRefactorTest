@@ -19,13 +19,13 @@ namespace MvcRefactorTest.Tests.DAL
     [TestFixture]
     public class UserRepositoryFixture
     {
-        private static bool _isValid;
+        private bool _isValid;
 
-        private static Mock<IUserRepository> _mockUserRepository;
+        private Mock<IUserRepository> _mockUserRepository;
 
-        private static IList<User> _userList;
+        private IList<User> _userList;
 
-        private static User _userObj;
+        private User _userObj;
 
         /// <summary>
         ///     Initialize unit tests
@@ -33,17 +33,17 @@ namespace MvcRefactorTest.Tests.DAL
         /// <param name="userList">userList</param>
         /// <param name="userObj">userObj</param>
         [TestFixtureSetUp]
-        public static void InitializeUnitTests()
+        public void InitializeUnitTests()
         {
             // create some mock products to play with
             _isValid = true;
 
             _userObj = new User
                            {
-                               Name = "Chris Smith",
-                               Password = "pass",
-                               Role = "Developer",
-                               IsEnabled = true,
+                               Name = "Chris Smith", 
+                               Password = "pass", 
+                               Role = "Developer", 
+                               IsEnabled = true, 
                                id = 2
                            };
 
@@ -110,7 +110,7 @@ namespace MvcRefactorTest.Tests.DAL
             Assert.AreEqual(3, testUser.Count);
             Assert.AreNotEqual(null, testUser);
             Assert.AreEqual(
-                false,
+                false, 
                 testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
         }
 
@@ -152,10 +152,10 @@ namespace MvcRefactorTest.Tests.DAL
 
         [Test]
         [Combinatorial]
-        public void ValidateUser([Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName,
+        public void ValidateUser(
+            [Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName, 
             [Values("pass", "Test Password", "", null)] string password)
         {
-
             var mockDelegate = new Mock<Func<IUserRepository>>();
 
             Func<IUserRepository> mockDelegatetest = () => _mockUserRepository.Object;
@@ -164,16 +164,16 @@ namespace MvcRefactorTest.Tests.DAL
             var success = _mockUserRepository.Object.ValidateUser(userName, password, out _isValid);
 
             // return a user by Name
-            //_mockUserRepository.Setup(mr => mr.ValidateUser(It.IsAny<string>(), It.IsAny<string>(), out _isValid))
-            //    .Returns(true);
+            // _mockUserRepository.Setup(mr => mr.ValidateUser(It.IsAny<string>(), It.IsAny<string>(), out _isValid))
+            // .Returns(true);
 
             // setup of Mock User Repository
-            //var target = _mockUserRepository.Object;
-            //bool isValid;
+            // var target = _mockUserRepository.Object;
+            // bool isValid;
             // = target.ValidateUser(userName, password, out isValid);
 
             // assert
-            //Assert.AreEqual(true, success);
+            // Assert.AreEqual(true, success);
             Assert.AreEqual(true, _isValid);
         }
     }
