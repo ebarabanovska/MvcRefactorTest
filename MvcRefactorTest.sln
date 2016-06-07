@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest.Domain", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest.DAL", "MvcRefactorTest.DAL\MvcRefactorTest.DAL.csproj", "{D03265F4-123A-41CA-8793-5293315F2505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest.Common", "MvcRefactorTest.Log4Net\MvcRefactorTest.Common.csproj", "{897BDE9B-A072-4E8C-AC0C-00C22F5B6B07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest.Common", "MvcRefactorTest.Common\MvcRefactorTest.Common.csproj", "{897BDE9B-A072-4E8C-AC0C-00C22F5B6B07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcRefactorTest.BL", "MvcRefactorTest.BL\MvcRefactorTest.BL.csproj", "{1D5430AE-1804-48C8-BCDE-7793480C7B4C}"
 EndProject

@@ -62,7 +62,7 @@
       <Project>{3f422f79-6aa7-4978-aceb-d4a6b4387b02}</Project>
       <Name>MvcRefactorTest.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MvcRefactorTest.Log4Net\MvcRefactorTest.Common.csproj">
+    <ProjectReference Include="..\MvcRefactorTest.Common\MvcRefactorTest.Common.csproj">
       <Project>{897bde9b-a072-4e8c-ac0c-00c22f5b6b07}</Project>
       <Name>MvcRefactorTest.Common</Name>
     </ProjectReference>
