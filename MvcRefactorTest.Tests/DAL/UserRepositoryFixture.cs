@@ -19,13 +19,13 @@ namespace MvcRefactorTest.Tests.DAL
     [TestFixture]
     public class UserRepositoryFixture
     {
-        private static bool _isValid;
+        private bool _isValid;
 
-        private static Mock<IUserRepository> _mockUserRepository;
+        private Mock<IUserRepository> _mockUserRepository;
 
-        private static IList<User> _userList;
+        private IList<User> _userList;
 
-        private static User _userObj;
+        private User _userObj;
 
         /// <summary>
         ///     Initialize unit tests
