@@ -10,9 +10,8 @@ using MvcRefactorTest.Domain;
 using MvcRefactorTest.Domain.db;
 
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 
-namespace MvcRefactorTest.NUnitTests.DAL
+namespace MvcRefactorTest.NUnitTest.DAL
 {
     [TestFixture]
     public class UserRepositoryFixture

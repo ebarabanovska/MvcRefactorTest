@@ -2,7 +2,7 @@
 
 using NUnit.Framework;
 
-namespace MvcRefactorTest.NUnitTests.ExceptionsHandlers
+namespace MvcRefactorTest.NUnitTest.ExceptionsHandlers
 {
     public static class ExceptionAssert
     {

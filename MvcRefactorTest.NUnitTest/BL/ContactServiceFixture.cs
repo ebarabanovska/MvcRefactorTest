@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Moq;
 
 using MvcRefactorTest.BL;
-using MvcRefactorTest.DAL;
 using MvcRefactorTest.DAL.Interface;
 using MvcRefactorTest.Domain;
 
 using NUnit.Framework;
 
-namespace MvcRefactorTest.NUnitTests.BL
+namespace MvcRefactorTest.NUnitTest.BL
 {
     [TestFixture]
     public class ContactServiceFixture

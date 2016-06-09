@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MvcRefactorTest.NUnitTests")]
+[assembly: AssemblyTitle("MvcRefactorTest.NUnitTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MvcRefactorTest.NUnitTests")]
+[assembly: AssemblyProduct("MvcRefactorTest.NUnitTest")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,13 +20,15 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5272b8e9-318f-4494-b7bc-1a4c08cb2523")]
+[assembly: Guid("c93591d5-1de3-4b21-82f9-43fb6c34d5d1")]
 
 // Version information for an assembly consists of the following four values:
+//
 //      Major Version
 //      Minor Version 
 //      Build Number
 //      Revision
+//
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]

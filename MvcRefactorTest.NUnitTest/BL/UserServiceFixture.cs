@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Moq;
@@ -10,7 +9,7 @@ using MvcRefactorTest.Domain;
 
 using NUnit.Framework;
 
-namespace MvcRefactorTest.NUnitTests.BL
+namespace MvcRefactorTest.NUnitTest.BL
 {
     [TestFixture]
     public class UserServiceFixture
