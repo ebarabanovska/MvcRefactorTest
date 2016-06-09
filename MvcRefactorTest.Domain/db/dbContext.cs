@@ -2,7 +2,9 @@
 
 namespace MvcRefactorTest.Domain.db
 {
-    public class dbContext : DbContext
+    using System;
+
+    public class dbContext : DbContext, IDisposable
     {
         public dbContext()
             : base("MvcRefactorTest")
@@ -10,10 +12,10 @@ namespace MvcRefactorTest.Domain.db
             this.Configuration.LazyLoadingEnabled = false;
         }
 
-        public DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
 
-        public DbSet<Log> Log { get; set; }
+        public virtual DbSet<Log> Log { get; set; }
 
-        public DbSet<User> User { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

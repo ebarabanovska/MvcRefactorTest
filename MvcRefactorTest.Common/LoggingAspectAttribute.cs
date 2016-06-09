@@ -61,7 +61,7 @@ namespace MvcRefactorTest.Common
 
         private void InitializeLogger()
         {
-            var configFile = new FileInfo(@"E:\GitHub\MvcRefactorTest\MvcRefactorTest.Log4Net\App.config");
+            var configFile = new FileInfo(@"E:\GitHub\MvcRefactorTest\MvcRefactorTest.Common\App.config");
             XmlConfigurator.ConfigureAndWatch(configFile);
         }
     }

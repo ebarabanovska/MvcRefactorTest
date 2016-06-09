@@ -30,7 +30,7 @@ angular.mock = {};
  * that there are several helper methods available which can be used in tests.
  */
 angular.mock.$BrowserProvider = function() {
-  this.$get = function() {
+  $get = function() {
     return new angular.mock.$Browser();
   };
 };
@@ -38,7 +38,7 @@ angular.mock.$BrowserProvider = function() {
 angular.mock.$Browser = function() {
   var self = this;
 
-  this.isMock = true;
+  isMock = true;
   self.$$url = "http://server/";
   self.$$lastUrl = self.$$url; // used by url polling fn
   self.pollFns = [];
@@ -130,7 +130,7 @@ angular.mock.$Browser = function() {
 
   self.$$baseHref = '/';
   self.baseHref = function() {
-    return this.$$baseHref;
+    return $$baseHref;
   };
 };
 angular.mock.$Browser.prototype = {
@@ -142,13 +142,13 @@ angular.mock.$Browser.prototype = {
   * run all fns in pollFns
   */
   poll: function poll() {
-    angular.forEach(this.pollFns, function(pollFn) {
+    angular.forEach(pollFns, function(pollFn) {
       pollFn();
     });
   },
 
   addPollFn: function(pollFn) {
-    this.pollFns.push(pollFn);
+    pollFns.push(pollFn);
     return pollFn;
   },
 
@@ -157,35 +157,35 @@ angular.mock.$Browser.prototype = {
       state = null;
     }
     if (url) {
-      this.$$url = url;
+      $$url = url;
       // Native pushState serializes & copies the object; simulate it.
-      this.$$state = angular.copy(state);
+      $$state = angular.copy(state);
       return this;
     }
 
-    return this.$$url;
+    return $$url;
   },
 
   state: function() {
-    return this.$$state;
+    return $$state;
   },
 
   cookies:  function(name, value) {
     if (name) {
       if (angular.isUndefined(value)) {
-        delete this.cookieHash[name];
+        delete cookieHash[name];
       } else {
         if (angular.isString(value) &&       //strings only
             value.length <= 4096) {          //strict cookie storage limits
-          this.cookieHash[name] = value;
+          cookieHash[name] = value;
         }
       }
     } else {
-      if (!angular.equals(this.cookieHash, this.lastCookieHash)) {
-        this.lastCookieHash = angular.copy(this.cookieHash);
-        this.cookieHash = angular.copy(this.cookieHash);
+      if (!angular.equals(cookieHash, lastCookieHash)) {
+        lastCookieHash = angular.copy(cookieHash);
+        cookieHash = angular.copy(cookieHash);
       }
-      return this.cookieHash;
+      return cookieHash;
     }
   },
 
@@ -259,7 +259,7 @@ angular.mock.$ExceptionHandlerProvider = function() {
    *                For any implementations that expect exceptions to be thrown, the `rethrow` mode
    *                will also maintain a log of thrown errors.
    */
-  this.mode = function(mode) {
+  mode = function(mode) {
 
     switch (mode) {
       case 'log':
@@ -282,11 +282,11 @@ angular.mock.$ExceptionHandlerProvider = function() {
     }
   };
 
-  this.$get = function() {
+  $get = function() {
     return handler;
   };
 
-  this.mode('rethrow');
+  mode('rethrow');
 };
 
 
@@ -307,7 +307,7 @@ angular.mock.$LogProvider = function() {
     return array1.concat(Array.prototype.slice.call(array2, index));
   }
 
-  this.debugEnabled = function(flag) {
+  debugEnabled = function(flag) {
     if (angular.isDefined(flag)) {
       debug = flag;
       return this;
@@ -316,7 +316,7 @@ angular.mock.$LogProvider = function() {
     }
   };
 
-  this.$get = function() {
+  $get = function() {
     var $log = {
       log: function() { $log.log.logs.push(concat([], arguments, 0)); },
       warn: function() { $log.warn.logs.push(concat([], arguments, 0)); },
@@ -461,7 +461,7 @@ angular.mock.$LogProvider = function() {
  * @returns {promise} A promise which will be notified on each iteration.
  */
 angular.mock.$IntervalProvider = function() {
-  this.$get = ['$browser', '$rootScope', '$q', '$$q',
+  $get = ['$browser', '$rootScope', '$q', '$$q',
        function($browser,   $rootScope,   $q,   $$q) {
     var repeatFns = [],
         nextRepeatId = 0,
@@ -802,8 +802,8 @@ angular.mock.animate = angular.module('ngAnimateMock', ['ng'])
           $timeout.flush(0);
         },
         triggerCallbacks: function() {
-          this.triggerCallbackEvents();
-          this.triggerCallbackPromise();
+          triggerCallbackEvents();
+          triggerCallbackPromise();
         },
         triggerReflow: function() {
           angular.forEach(reflowQueue, function(fn) {
@@ -1119,7 +1119,7 @@ angular.mock.dump = function(object) {
    ```
  */
 angular.mock.$HttpBackendProvider = function() {
-  this.$get = ['$rootScope', '$timeout', createHttpBackendMock];
+  $get = ['$rootScope', '$timeout', createHttpBackendMock];
 };
 
 /**
@@ -1614,31 +1614,31 @@ function createHttpBackendMock($rootScope, $timeout, $delegate, $browser) {
 
 function MockHttpExpectation(method, url, data, headers) {
 
-  this.data = data;
-  this.headers = headers;
+  data = data;
+  headers = headers;
 
-  this.match = function(m, u, d, h) {
+  match = function(m, u, d, h) {
     if (method != m) return false;
-    if (!this.matchUrl(u)) return false;
-    if (angular.isDefined(d) && !this.matchData(d)) return false;
-    if (angular.isDefined(h) && !this.matchHeaders(h)) return false;
+    if (!matchUrl(u)) return false;
+    if (angular.isDefined(d) && !matchData(d)) return false;
+    if (angular.isDefined(h) && !matchHeaders(h)) return false;
     return true;
   };
 
-  this.matchUrl = function(u) {
+  matchUrl = function(u) {
     if (!url) return true;
     if (angular.isFunction(url.test)) return url.test(u);
     if (angular.isFunction(url)) return url(u);
     return url == u;
   };
 
-  this.matchHeaders = function(h) {
+  matchHeaders = function(h) {
     if (angular.isUndefined(headers)) return true;
     if (angular.isFunction(headers)) return headers(h);
     return angular.equals(headers, h);
   };
 
-  this.matchData = function(d) {
+  matchData = function(d) {
     if (angular.isUndefined(data)) return true;
     if (data && angular.isFunction(data.test)) return data.test(d);
     if (data && angular.isFunction(data)) return data(d);
@@ -1648,7 +1648,7 @@ function MockHttpExpectation(method, url, data, headers) {
     return data == d;
   };
 
-  this.toString = function() {
+  toString = function() {
     return method + ' ' + url;
   };
 }
@@ -1662,49 +1662,49 @@ function MockXhr() {
   // hack for testing $http, $httpBackend
   MockXhr.$$lastInstance = this;
 
-  this.open = function(method, url, async) {
-    this.$$method = method;
-    this.$$url = url;
-    this.$$async = async;
-    this.$$reqHeaders = {};
-    this.$$respHeaders = {};
+  open = function(method, url, async) {
+    $$method = method;
+    $$url = url;
+    $$async = async;
+    $$reqHeaders = {};
+    $$respHeaders = {};
   };
 
-  this.send = function(data) {
-    this.$$data = data;
+  send = function(data) {
+    $$data = data;
   };
 
-  this.setRequestHeader = function(key, value) {
-    this.$$reqHeaders[key] = value;
+  setRequestHeader = function(key, value) {
+    $$reqHeaders[key] = value;
   };
 
-  this.getResponseHeader = function(name) {
+  getResponseHeader = function(name) {
     // the lookup must be case insensitive,
     // that's why we try two quick lookups first and full scan last
-    var header = this.$$respHeaders[name];
+    var header = $$respHeaders[name];
     if (header) return header;
 
     name = angular.lowercase(name);
-    header = this.$$respHeaders[name];
+    header = $$respHeaders[name];
     if (header) return header;
 
     header = undefined;
-    angular.forEach(this.$$respHeaders, function(headerVal, headerName) {
+    angular.forEach($$respHeaders, function(headerVal, headerName) {
       if (!header && angular.lowercase(headerName) == name) header = headerVal;
     });
     return header;
   };
 
-  this.getAllResponseHeaders = function() {
+  getAllResponseHeaders = function() {
     var lines = [];
 
-    angular.forEach(this.$$respHeaders, function(value, key) {
+    angular.forEach($$respHeaders, function(value, key) {
       lines.push(key + ': ' + value);
     });
     return lines.join('\n');
   };
 
-  this.abort = angular.noop;
+  abort = angular.noop;
 }
 
 
@@ -1804,7 +1804,7 @@ angular.mock.$AsyncCallbackDecorator = ['$delegate', function($delegate) {
  *
  */
 angular.mock.$RootElementProvider = function() {
-  this.$get = function() {
+  $get = function() {
     return angular.element('<div ng-app></div>');
   };
 };
@@ -2081,7 +2081,7 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
   function countChildScopes() {
     // jshint validthis: true
     var count = 0; // exclude the current scope
-    var pendingChildHeads = [this.$$childHead];
+    var pendingChildHeads = [$$childHead];
     var currentScope;
 
     while (pendingChildHeads.length) {
@@ -2112,8 +2112,8 @@ angular.mock.$RootScopeDecorator = ['$delegate', function($delegate) {
    */
   function countWatchers() {
     // jshint validthis: true
-    var count = this.$$watchers ? this.$$watchers.length : 0; // include the current scope
-    var pendingChildHeads = [this.$$childHead];
+    var count = $$watchers ? $$watchers.length : 0; // include the current scope
+    var pendingChildHeads = [$$childHead];
     var currentScope;
 
     while (pendingChildHeads.length) {
@@ -2320,13 +2320,13 @@ if (window.jasmine || window.mocha) {
 
 
   var ErrorAddingDeclarationLocationStack = function(e, errorForStack) {
-    this.message = e.message;
-    this.name = e.name;
-    if (e.line) this.line = e.line;
-    if (e.sourceId) this.sourceId = e.sourceId;
+    message = e.message;
+    name = e.name;
+    if (e.line) line = e.line;
+    if (e.sourceId) sourceId = e.sourceId;
     if (e.stack && errorForStack)
-      this.stack = e.stack + '\n' + errorForStack.stack;
-    if (e.stackArray) this.stackArray = e.stackArray;
+      stack = e.stack + '\n' + errorForStack.stack;
+    if (e.stackArray) stackArray = e.stackArray;
   };
   ErrorAddingDeclarationLocationStack.prototype.toString = Error.prototype.toString;
 

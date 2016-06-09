@@ -464,7 +464,7 @@ ngTouch.directive('ngClick', ['$parse', '$timeout', '$rootElement',
     // Actual click handler.
     // There are three different kinds of clicks, only two of which reach this point.
     // - On desktop browsers without touch events, their clicks will always come here.
-    // - On mobile browsers, the simulated "fast" click will call this.
+    // - On mobile browsers, the simulated "fast" click will call 
     // - But the browser's follow-up slow click will be "busted" before it reaches this handler.
     // Therefore it's safe to use this directive on both mobile and desktop.
     element.on('click', function(event, touchend) {

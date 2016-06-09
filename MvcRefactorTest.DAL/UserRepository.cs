@@ -1,42 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using log4net;
-
-using MvcRefactorTest.Common;
-using MvcRefactorTest.DAL.Interface;
-using MvcRefactorTest.Domain;
-using MvcRefactorTest.Domain.db;
-
-namespace MvcRefactorTest.DAL
+﻿namespace MvcRefactorTest.DAL
 {
+    #region
+
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using MvcRefactorTest.Common;
+    using MvcRefactorTest.DAL.Interface;
+    using MvcRefactorTest.Domain;
+    using MvcRefactorTest.Domain.db;
+
+    #endregion
+
     [LoggingAspect]
     public class UserRepository : IUserRepository
     {
-        private dbContext _context;
+        private readonly dbContext _context;
 
-        /// <summary>
-        ///     Change Password.
-        /// </summary>
-        /// <param name="fullName">User full name.</param>
-        /// <param name="password">User password.</param>
-        /// <returns>Return true if success, else false.</returns>
-        public bool ChangePassword(string fullName, string password)
+        public UserRepository(dbContext context)
         {
-            var succeed = false;
-
-            using (this._context = new dbContext())
-            {
-                var userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
-                if (userObj != null) userObj.Password = password;
-
-                this._context.SaveChanges();
-
-                succeed = true;
-            }
-
-            return succeed;
+            _context = context;
         }
 
         /// <summary>
@@ -47,22 +30,21 @@ namespace MvcRefactorTest.DAL
         /// <param name="role">User Role.</param>
         /// <param name="userObj">User object to be retrieved.</param>
         /// <returns>Return true if success, else false.</returns>
-        //public bool CreateUser(string fullName, string password, string role, out User userObj)
-        //{
-        //    var succeed = false;
+        // public bool CreateUser(string fullName, string password, string role, out User userObj)
+        // {
+        // var succeed = false;
 
-        //    using (this._context = new dbContext())
-        //    {
-        //        userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
-        //        this._context.User.Add(userObj);
-        //        this._context.SaveChanges();
+        // using (this._context = new dbContext())
+        // {
+        // userObj = new User { Name = fullName, Password = password, Role = role, IsEnabled = true };
+        // this._context.User.Add(userObj);
+        // this._context.SaveChanges();
 
-        //        succeed = true;
-        //    }
+        // succeed = true;
+        // }
 
-        //    return succeed;
-        //}
-
+        // return succeed;
+        // }
         /// <summary>
         ///     Get All users
         /// </summary>
@@ -72,11 +54,8 @@ namespace MvcRefactorTest.DAL
         {
             var succeed = false;
 
-            using (this._context = new dbContext())
-            {
-                userList = this._context.User.ToList();
-                succeed = true;
-            }
+            userList = this._context.User.ToList();
+            succeed = true;
 
             return succeed;
         }
@@ -91,11 +70,8 @@ namespace MvcRefactorTest.DAL
         {
             var succeed = false;
 
-            using (this._context = new dbContext())
-            {
-                userList = this._context.User.Where(p => p.IsEnabled == active).ToList();
-                succeed = true;
-            }
+            userList = this._context.User.Where(p => p.IsEnabled == active).ToList();
+            succeed = true;
 
             return succeed;
         }
@@ -110,11 +86,8 @@ namespace MvcRefactorTest.DAL
         {
             var succeed = false;
 
-            using (this._context = new dbContext())
-            {
-                userObj = this._context.User.SingleOrDefault(p => p.id == id);
-                succeed = true;
-            }
+            userObj = this._context.User.SingleOrDefault(p => p.id == id);
+            succeed = true;
 
             return succeed;
         }
@@ -129,11 +102,8 @@ namespace MvcRefactorTest.DAL
         {
             var succeed = false;
 
-            using (this._context = new dbContext())
-            {
-                userObj = this._context.User.SingleOrDefault(p => p.Name == name);
-                succeed = true;
-            }
+            userObj = this._context.User.SingleOrDefault(p => p.Name == name);
+            succeed = true;
 
             return succeed;
         }
@@ -145,23 +115,22 @@ namespace MvcRefactorTest.DAL
         /// <param name="role">User Role.</param>
         /// <param name="userObj">User object to be retrieved.</param>
         /// <returns>Return true if success, else false.</returns>
-        //public bool RemoveUserFromRole(string fullName, string role, out User userObj)
-        //{
-        //    var succeed = false;
+        // public bool RemoveUserFromRole(string fullName, string role, out User userObj)
+        // {
+        // var succeed = false;
 
-        //    using (this._context = new dbContext())
-        //    {
-        //        userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
-        //        if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
+        // using (this._context = new dbContext())
+        // {
+        // userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
+        // if (userObj != null && userObj.Role == role) userObj.Role = string.Empty;
 
-        //        this._context.SaveChanges();
+        // this._context.SaveChanges();
 
-        //        succeed = true;
-        //    }
+        // succeed = true;
+        // }
 
-        //    return succeed;
-        //}
-
+        // return succeed;
+        // }
         /// <summary>
         ///     Validate User.
         /// </summary>
@@ -173,13 +142,33 @@ namespace MvcRefactorTest.DAL
         {
             var succeed = false;
 
-            using (this._context = new dbContext())
+            isValid = this._context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
+                          ? true
+                          : false;
+            succeed = true;
+
+            return succeed;
+        }
+
+        /// <summary>
+        ///     Change Password.
+        /// </summary>
+        /// <param name="fullName">User full name.</param>
+        /// <param name="password">User password.</param>
+        /// <returns>Return true if success, else false.</returns>
+        public bool ChangePassword(string fullName, string password)
+        {
+            var succeed = false;
+
+            var userObj = this._context.User.SingleOrDefault(p => p.Name == fullName);
+            if (userObj != null)
             {
-                isValid = this._context.User.SingleOrDefault(p => p.Name == userName && p.Password == password) != null
-                              ? true
-                              : false;
-                succeed = true;
+                userObj.Password = password;
             }
+
+            ((dbContext)_context).SaveChanges();
+
+            succeed = true;
 
             return succeed;
         }

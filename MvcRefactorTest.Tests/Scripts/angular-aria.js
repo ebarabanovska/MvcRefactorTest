@@ -111,7 +111,7 @@ function $AriaProvider() {
    * @description
    * Enables/disables various ARIA attributes
    */
-  this.config = function(newConfig) {
+  config = function(newConfig) {
     config = angular.extend(config, newConfig);
   };
 
@@ -174,7 +174,7 @@ function $AriaProvider() {
    * ## Dependencies
    * Requires the {@link ngAria} module to be installed.
    */
-  this.$get = function() {
+  $get = function() {
     return {
       config: function(key) {
         return config[key];

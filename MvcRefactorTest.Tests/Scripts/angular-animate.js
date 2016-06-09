@@ -1083,7 +1083,7 @@ angular.module('ngAnimate', ['ng'])
          * @return {Promise} the animation callback promise
         */
         addClass: function(element, className, options) {
-          return this.setClass(element, className, [], options);
+          return setClass(element, className, [], options);
         },
 
         /**
@@ -1117,7 +1117,7 @@ angular.module('ngAnimate', ['ng'])
          * @return {Promise} the animation callback promise
         */
         removeClass: function(element, className, options) {
-          return this.setClass(element, [], className, options);
+          return setClass(element, [], className, options);
         },
 
         /**

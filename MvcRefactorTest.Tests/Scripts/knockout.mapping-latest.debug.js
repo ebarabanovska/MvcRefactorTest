@@ -751,7 +751,7 @@
 	function simpleObjectLookup() {
 		var keys = [];
 		var values = [];
-		this.save = function (key, value) {
+		save = function (key, value) {
 			var existingIndex = ko.utils.arrayIndexOf(keys, key);
 			if (existingIndex >= 0) values[existingIndex] = value;
 			else {
@@ -759,7 +759,7 @@
 				values.push(value);
 			}
 		};
-		this.get = function (key) {
+		get = function (key) {
 			var existingIndex = ko.utils.arrayIndexOf(keys, key);
 			var value = (existingIndex >= 0) ? values[existingIndex] : undefined;
 			return value;
@@ -786,10 +786,10 @@
 			return bucket;
 		};
 		
-		this.save = function (key, value) {
+		save = function (key, value) {
 			findBucket(key).save(key, value);
 		};
-		this.get = function (key) {
+		get = function (key) {
 			return findBucket(key).get(key);
 		};
 	};

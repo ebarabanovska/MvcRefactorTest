@@ -64,7 +64,7 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
            .controller('ExampleController', ['$scope', '$sce', function($scope, $sce) {
              $scope.snippet =
                '<p style="color:blue">an html\n' +
-               '<em onmouseover="this.textContent=\'PWN3D!\'">click here</em>\n' +
+               '<em onmouseover="textContent=\'PWN3D!\'">click here</em>\n' +
                'snippet</p>';
              $scope.deliberatelyTrustDangerousSnippet = function() {
                return $sce.trustAsHtml($scope.snippet);
@@ -113,14 +113,14 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
      it('should inline raw snippet if bound to a trusted value', function() {
        expect(element(by.css('#bind-html-with-trust div')).getInnerHtml()).
          toBe("<p style=\"color:blue\">an html\n" +
-              "<em onmouseover=\"this.textContent='PWN3D!'\">click here</em>\n" +
+              "<em onmouseover=\"textContent='PWN3D!'\">click here</em>\n" +
               "snippet</p>");
      });
 
      it('should escape snippet without any filter', function() {
        expect(element(by.css('#bind-default div')).getInnerHtml()).
          toBe("&lt;p style=\"color:blue\"&gt;an html\n" +
-              "&lt;em onmouseover=\"this.textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
+              "&lt;em onmouseover=\"textContent='PWN3D!'\"&gt;click here&lt;/em&gt;\n" +
               "snippet&lt;/p&gt;");
      });
 
@@ -138,7 +138,7 @@ var $sanitizeMinErr = angular.$$minErr('$sanitize');
    </example>
  */
 function $SanitizeProvider() {
-  this.$get = ['$$sanitizeUri', function($$sanitizeUri) {
+  $get = ['$$sanitizeUri', function($$sanitizeUri) {
     return function(html) {
       var buf = [];
       htmlParser(html, htmlSanitizeWriter(buf, function(uri, isImage) {

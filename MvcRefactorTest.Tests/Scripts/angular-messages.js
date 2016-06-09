@@ -241,10 +241,10 @@ angular.module('ngMessages', [])
     return {
       restrict: 'AE',
       controller: function() {
-        this.$renderNgMessageClasses = angular.noop;
+        $renderNgMessageClasses = angular.noop;
 
         var messages = [];
-        this.registerMessage = function(index, message) {
+        registerMessage = function(index, message) {
           for (var i = 0; i < messages.length; i++) {
             if (messages[i].type == message.type) {
               if (index != i) {
@@ -262,7 +262,7 @@ angular.module('ngMessages', [])
           messages.splice(index, 0, message); //add the new one (and shift right)
         };
 
-        this.renderMessages = function(values, multiple) {
+        renderMessages = function(values, multiple) {
           values = values || {};
 
           var found;
@@ -275,7 +275,7 @@ angular.module('ngMessages', [])
             }
           });
 
-          this.renderElementClasses(found);
+          renderElementClasses(found);
 
           function truthyVal(value) {
             return value !== null && value !== false && value;
