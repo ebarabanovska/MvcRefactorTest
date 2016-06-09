@@ -51,10 +51,10 @@
 
             _userObj = new User
                            {
-                               Name = "Chris Smith", 
-                               Password = "pass", 
-                               Role = "Developer", 
-                               IsEnabled = true, 
+                               Name = "Chris Smith",
+                               Password = "pass",
+                               Role = "Developer",
+                               IsEnabled = true,
                                id = 2
                            };
 
@@ -109,7 +109,8 @@
         public void GetAllActiveUsers()
         {
             // return a user by Name
-            _dbContextMock.Setup(x => x.User).Returns(_userList as DbSet<User>);
+            _dbSetMock.Setup(x => x.Select(p => p)).Returns(_userList);
+            _dbContextMock.Setup(x => x.User).Returns(_dbSetMock.Object as DbSet<User>);
 
             // dbSetMock.Setup(m => m.Find(1)).Returns(test);
 
@@ -142,7 +143,7 @@
             Assert.AreEqual(3, testUser.Count);
             Assert.AreNotEqual(null, testUser);
             Assert.AreEqual(
-                false, 
+                false,
                 testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
         }
 
@@ -193,7 +194,7 @@
         [Test]
         [Combinatorial]
         public void ValidateUser(
-            [Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName, 
+            [Values("Richard Child", "Chris Smith", "Awin George", "", null)] string userName,
             [Values("pass", "Test Password", "", null)] string password)
         {
             _dbContextMock.Setup(mockContext => mockContext.User).Returns(_dbSetMock.Object as DbSet<User>);
