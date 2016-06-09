@@ -145,14 +145,14 @@ function $RouteProvider() {
    * @description
    * Adds a new route definition to the `$route` service.
    */
-  this.when = function(path, route) {
+  when = function(path, route) {
     //copy original route object to preserve params inherited from proto chain
     var routeCopy = angular.copy(route);
     if (angular.isUndefined(routeCopy.reloadOnSearch)) {
       routeCopy.reloadOnSearch = true;
     }
     if (angular.isUndefined(routeCopy.caseInsensitiveMatch)) {
-      routeCopy.caseInsensitiveMatch = this.caseInsensitiveMatch;
+      routeCopy.caseInsensitiveMatch = caseInsensitiveMatch;
     }
     routes[path] = angular.extend(
       routeCopy,
@@ -183,7 +183,7 @@ function $RouteProvider() {
    * using this provider should be matched using a case insensitive
    * algorithm. Defaults to `false`.
    */
-  this.caseInsensitiveMatch = false;
+  caseInsensitiveMatch = false;
 
    /**
     * @param path {string} path
@@ -238,16 +238,16 @@ function $RouteProvider() {
    * If called with a string, the value maps to `redirectTo`.
    * @returns {Object} self
    */
-  this.otherwise = function(params) {
+  otherwise = function(params) {
     if (typeof params === 'string') {
       params = {redirectTo: params};
     }
-    this.when(null, params);
+    when(null, params);
     return this;
   };
 
 
-  this.$get = ['$rootScope',
+  $get = ['$rootScope',
                '$location',
                '$routeParams',
                '$q',
@@ -485,9 +485,9 @@ function $RouteProvider() {
            * @param {!Object<string, string>} newParams mapping of URL parameter names to values
            */
           updateParams: function(newParams) {
-            if (this.current && this.current.$$route) {
-              newParams = angular.extend({}, this.current.params, newParams);
-              $location.path(interpolate(this.current.$$route.originalPath, newParams));
+            if (current && current.$$route) {
+              newParams = angular.extend({}, current.params, newParams);
+              $location.path(interpolate(current.$$route.originalPath, newParams));
               // interpolate modifies newParams, only query params are left
               $location.search(newParams);
             } else {
@@ -700,7 +700,7 @@ ngRouteModule.provider('$routeParams', $RouteParamsProvider);
  * ```
  */
 function $RouteParamsProvider() {
-  this.$get = function() { return {}; };
+  $get = function() { return {}; };
 }
 
 ngRouteModule.directive('ngView', ngViewFactory);
@@ -839,17 +839,17 @@ ngRouteModule.directive('ngView', ngViewFillContentFactory);
           }])
           .controller('MainCtrl', ['$route', '$routeParams', '$location',
             function($route, $routeParams, $location) {
-              this.$route = $route;
-              this.$location = $location;
-              this.$routeParams = $routeParams;
+              $route = $route;
+              $location = $location;
+              $routeParams = $routeParams;
           }])
           .controller('BookCtrl', ['$routeParams', function($routeParams) {
-            this.name = "BookCtrl";
-            this.params = $routeParams;
+            name = "BookCtrl";
+            params = $routeParams;
           }])
           .controller('ChapterCtrl', ['$routeParams', function($routeParams) {
-            this.name = "ChapterCtrl";
-            this.params = $routeParams;
+            name = "ChapterCtrl";
+            params = $routeParams;
           }]);
 
       </file>

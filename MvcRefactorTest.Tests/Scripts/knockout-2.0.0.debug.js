@@ -219,11 +219,11 @@ ko.utils = new (function () {
                     // Fix this by intecepting the handler and applying the correct checkedness before it runs.            	
                     var originalHandler = handler;
                     handler = function(event, eventData) {
-                        var jQuerySuppliedCheckedState = this.checked;
+                        var jQuerySuppliedCheckedState = checked;
                         if (eventData)
-                            this.checked = eventData.checkedStateBeforeEvent !== true;
+                            checked = eventData.checkedStateBeforeEvent !== true;
                         originalHandler.call(this, event);
-                        this.checked = jQuerySuppliedCheckedState; // Restore the state jQuery applied
+                        checked = jQuerySuppliedCheckedState; // Restore the state jQuery applied
                     };                	
                 }
                 jQuery(element)['bind'](eventType, handler);
@@ -376,7 +376,7 @@ ko.utils = new (function () {
         postJson: function (urlOrForm, data, options) {
             options = options || {};
             var params = options['params'] || {};
-            var includeFields = options['includeFields'] || this.fieldsIncludedWithJsonPost;
+            var includeFields = options['includeFields'] || fieldsIncludedWithJsonPost;
             var url = urlOrForm;
             
             // If we were given a form, use its 'action' URL and pick out any requested field values 	
@@ -764,22 +764,22 @@ function applyExtenders(requestedExtenders) {
 
 ko.exportSymbol('ko.extenders', ko.extenders);
 ko.subscription = function (callback, disposeCallback) {
-    this.callback = callback;
-    this.disposeCallback = disposeCallback;
-    ko.exportProperty(this, 'dispose', this.dispose);
+    callback = callback;
+    disposeCallback = disposeCallback;
+    ko.exportProperty(this, 'dispose', dispose);
 };
 ko.subscription.prototype.dispose = function () {
-    this.isDisposed = true;
-    this.disposeCallback();
+    isDisposed = true;
+    disposeCallback();
 };
 
 ko.subscribable = function () {
-    this._subscriptions = {};
+    _subscriptions = {};
 
     ko.utils.extend(this, ko.subscribable['fn']);
-    ko.exportProperty(this, 'subscribe', this.subscribe);
-    ko.exportProperty(this, 'extend', this.extend);
-    ko.exportProperty(this, 'getSubscriptionsCount', this.getSubscriptionsCount);
+    ko.exportProperty(this, 'subscribe', subscribe);
+    ko.exportProperty(this, 'extend', extend);
+    ko.exportProperty(this, 'getSubscriptionsCount', getSubscriptionsCount);
 }
 
 var defaultEvent = "change";
@@ -790,19 +790,19 @@ ko.subscribable['fn'] = {
         var boundCallback = callbackTarget ? callback.bind(callbackTarget) : callback;
 
         var subscription = new ko.subscription(boundCallback, function () {
-            ko.utils.arrayRemoveItem(this._subscriptions[event], subscription);
+            ko.utils.arrayRemoveItem(_subscriptions[event], subscription);
         }.bind(this));
 
-        if (!this._subscriptions[event])
-            this._subscriptions[event] = [];
-        this._subscriptions[event].push(subscription);
+        if (!_subscriptions[event])
+            _subscriptions[event] = [];
+        _subscriptions[event].push(subscription);
         return subscription;
     },
 
     "notifySubscribers": function (valueToNotify, event) {
         event = event || defaultEvent;
-        if (this._subscriptions[event]) {
-            ko.utils.arrayForEach(this._subscriptions[event].slice(0), function (subscription) {
+        if (_subscriptions[event]) {
+            ko.utils.arrayForEach(_subscriptions[event].slice(0), function (subscription) {
                 // In case a subscription was disposed during the arrayForEach cycle, check
                 // for isDisposed on each subscription before invoking its callback
                 if (subscription && (subscription.isDisposed !== true))
@@ -813,9 +813,9 @@ ko.subscribable['fn'] = {
 
     getSubscriptionsCount: function () {
         var total = 0;
-        for (var eventName in this._subscriptions) {
-            if (this._subscriptions.hasOwnProperty(eventName))
-                total += this._subscriptions[eventName].length;
+        for (var eventName in _subscriptions) {
+            if (_subscriptions.hasOwnProperty(eventName))
+                total += _subscriptions[eventName].length;
         }
         return total;
     },
@@ -948,7 +948,7 @@ ko.observableArray['fn'] = {
             var value = underlyingArray[i];
             if (predicate(value)) {
                 if (removedValues.length === 0) {
-                    this.valueWillMutate();
+                    valueWillMutate();
                 }
                 removedValues.push(value);
                 underlyingArray.splice(i, 1);
@@ -956,7 +956,7 @@ ko.observableArray['fn'] = {
             }
         }
         if (removedValues.length) {
-            this.valueHasMutated();
+            valueHasMutated();
         }
         return removedValues;
     },
@@ -966,15 +966,15 @@ ko.observableArray['fn'] = {
         if (arrayOfValues === undefined) {
             var underlyingArray = this();
             var allValues = underlyingArray.slice(0);
-            this.valueWillMutate();
+            valueWillMutate();
             underlyingArray.splice(0, underlyingArray.length);
-            this.valueHasMutated();
+            valueHasMutated();
             return allValues;
         }
         // If you passed an arg, we interpret it as an array of entries to remove
         if (!arrayOfValues)
             return [];
-        return this.remove(function (value) {
+        return remove(function (value) {
             return ko.utils.arrayIndexOf(arrayOfValues, value) >= 0;
         });
     },
@@ -982,24 +982,24 @@ ko.observableArray['fn'] = {
     destroy: function (valueOrPredicate) {
         var underlyingArray = this();
         var predicate = typeof valueOrPredicate == "function" ? valueOrPredicate : function (value) { return value === valueOrPredicate; };
-        this.valueWillMutate();
+        valueWillMutate();
         for (var i = underlyingArray.length - 1; i >= 0; i--) {
             var value = underlyingArray[i];
             if (predicate(value))
                 underlyingArray[i]["_destroy"] = true;
         }
-        this.valueHasMutated();
+        valueHasMutated();
     },
         
     destroyAll: function (arrayOfValues) {
         // If you passed zero args, we destroy everything
         if (arrayOfValues === undefined)
-            return this.destroy(function() { return true });
+            return destroy(function() { return true });
                 
         // If you passed an arg, we interpret it as an array of entries to destroy
         if (!arrayOfValues)
             return [];
-        return this.destroy(function (value) {
+        return destroy(function (value) {
             return ko.utils.arrayIndexOf(arrayOfValues, value) >= 0;
         });             
     },
@@ -1010,11 +1010,11 @@ ko.observableArray['fn'] = {
     },
     
     replace: function(oldItem, newItem) {
-        var index = this.indexOf(oldItem);
+        var index = indexOf(oldItem);
         if (index >= 0) {
-            this.valueWillMutate();
+            valueWillMutate();
             this()[index] = newItem;
-            this.valueHasMutated();
+            valueHasMutated();
         }
     }    
 }
@@ -1023,9 +1023,9 @@ ko.observableArray['fn'] = {
 ko.utils.arrayForEach(["pop", "push", "reverse", "shift", "sort", "splice", "unshift"], function (methodName) {
     ko.observableArray['fn'][methodName] = function () { 
         var underlyingArray = this();
-        this.valueWillMutate();
+        valueWillMutate();
         var methodCallResult = underlyingArray[methodName].apply(underlyingArray, arguments);
-        this.valueHasMutated();
+        valueHasMutated();
         return methodCallResult;
     };
 });
@@ -1235,7 +1235,7 @@ ko.exportSymbol('ko.computed', ko.dependentObservable); // Make "ko.computed" an
     function objectLookup() {
         var keys = [];
         var values = [];
-        this.save = function(key, value) {
+        save = function(key, value) {
             var existingIndex = ko.utils.arrayIndexOf(keys, key);
             if (existingIndex >= 0)
                 values[existingIndex] = value;
@@ -1244,7 +1244,7 @@ ko.exportSymbol('ko.computed', ko.dependentObservable); // Make "ko.computed" an
                 values.push(value);	
             }				
         };
-        this.get = function(key) {
+        get = function(key) {
             var existingIndex = ko.utils.arrayIndexOf(keys, key);
             return (existingIndex >= 0) ? values[existingIndex] : undefined;
         };
@@ -2515,7 +2515,7 @@ ko.templateEngine.prototype['isTemplateRewritten'] = function (template) {
         return true;
     
     // Perf optimisation - see below
-    if (this.knownRewrittenTemplates && this.knownRewrittenTemplates[template])
+    if (knownRewrittenTemplates && knownRewrittenTemplates[template])
         return true;
     
     return this['makeTemplateSource'](template)['data']("isRewritten");
@@ -2530,8 +2530,8 @@ ko.templateEngine.prototype['rewriteTemplate'] = function (template, rewriterCal
     // Perf optimisation - for named templates, track which ones have been rewritten so we can
     // answer 'isTemplateRewritten' *without* having to use getElementById (which is slow on IE < 8)
     if (typeof template == "string") {
-        this.knownRewrittenTemplates = this.knownRewrittenTemplates || {};
-        this.knownRewrittenTemplates[template] = true;            
+        knownRewrittenTemplates = knownRewrittenTemplates || {};
+        knownRewrittenTemplates[template] = true;            
     }
 };
 
@@ -2623,26 +2623,26 @@ ko.exportSymbol('ko.templateRewriting.applyMemoizedBindingsToNextSibling', ko.te
     // ---- ko.templateSources.domElement -----
     
     ko.templateSources.domElement = function(element) {
-        this.domElement = element;
+        domElement = element;
     }
     
     ko.templateSources.domElement.prototype['text'] = function(/* valueToWrite */) {
         if (arguments.length == 0) {
-            return this.domElement.tagName.toLowerCase() == "script" ? this.domElement.text : this.domElement.innerHTML;
+            return domElement.tagName.toLowerCase() == "script" ? domElement.text : domElement.innerHTML;
         } else {
             var valueToWrite = arguments[0];
-            if (this.domElement.tagName.toLowerCase() == "script")
-                this.domElement.text = valueToWrite;
+            if (domElement.tagName.toLowerCase() == "script")
+                domElement.text = valueToWrite;
             else
-                ko.utils.setHtml(this.domElement, valueToWrite);
+                ko.utils.setHtml(domElement, valueToWrite);
         }
     };
     
     ko.templateSources.domElement.prototype['data'] = function(key /*, valueToWrite */) {
         if (arguments.length === 1) {
-            return ko.utils.domData.get(this.domElement, "templateSourceData_" + key);
+            return ko.utils.domData.get(domElement, "templateSourceData_" + key);
         } else {
-            ko.utils.domData.set(this.domElement, "templateSourceData_" + key, arguments[1]);
+            ko.utils.domData.set(domElement, "templateSourceData_" + key, arguments[1]);
         }
     };
     
@@ -2650,15 +2650,15 @@ ko.exportSymbol('ko.templateRewriting.applyMemoizedBindingsToNextSibling', ko.te
     
     var anonymousTemplatesDomDataKey = "__ko_anon_template__";
     ko.templateSources.anonymousTemplate = function(element) {		
-        this.domElement = element;
+        domElement = element;
     }
     ko.templateSources.anonymousTemplate.prototype = new ko.templateSources.domElement();
     ko.templateSources.anonymousTemplate.prototype['text'] = function(/* valueToWrite */) {
         if (arguments.length == 0) {
-            return ko.utils.domData.get(this.domElement, anonymousTemplatesDomDataKey);
+            return ko.utils.domData.get(domElement, anonymousTemplatesDomDataKey);
         } else {
             var valueToWrite = arguments[0];
-            ko.utils.domData.set(this.domElement, anonymousTemplatesDomDataKey, valueToWrite);
+            ko.utils.domData.set(domElement, anonymousTemplatesDomDataKey, valueToWrite);
         }
     };
     
@@ -3000,7 +3000,7 @@ ko.exportSymbol('ko.utils.compareArrays', ko.utils.compareArrays);
                 newContiguousSet.push(current);
             }
 
-            // ... then mutate the input array to match this. 
+            // ... then mutate the input array to match  
             // (The following line replaces the contents of contiguousNodeArray with newContiguousSet)
             Array.prototype.splice.apply(contiguousNodeArray, [0, contiguousNodeArray.length].concat(newContiguousSet));
         }
@@ -3146,7 +3146,7 @@ ko.exportSymbol('ko.nativeTemplateEngine', ko.nativeTemplateEngine);(function() 
         // doesn't expose a version number, so we have to infer it.
         // Note that as of Knockout 1.3, we only support jQuery.tmpl 1.0.0pre and later,
         // which KO internally refers to as version "2", so older versions are no longer detected.
-        var jQueryTmplVersion = this.jQueryTmplVersion = (function() {      
+        var jQueryTmplVersion = jQueryTmplVersion = (function() {      
             if ((typeof(jQuery) == "undefined") || !(jQuery['tmpl']))
                 return 0;
             // Since it exposes no official version number, we use our own numbering system. To be updated as jquery-tmpl evolves.

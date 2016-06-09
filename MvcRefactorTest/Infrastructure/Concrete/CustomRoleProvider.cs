@@ -12,6 +12,11 @@ using MvcRefactorTest.Common;
 
 namespace MvcRefactorTest.Infrastructure.Concrete
 {
+    using MvcRefactorTest.Domain.db;
+
+    using Ninject;
+    using Ninject.Parameters;
+
     public class CustomRoleProvider : RoleProvider
     {
         private readonly IUserRepository _userRepository;
@@ -23,8 +28,10 @@ namespace MvcRefactorTest.Infrastructure.Concrete
         /// </summary>
         public CustomRoleProvider()
         {
-            this._userRepository = new UserRepository();
-            this._userService = new UserService(this._userRepository);
+            IKernel kernel = new StandardKernel();
+            var samurai =
+            this._userRepository = kernel.Get<UserRepository>(new ConstructorArgument("context", kernel.Get<dbContext>()));
+            this._userService = kernel.Get<UserService>(new ConstructorArgument("userRepository", _userRepository));
         }
 
         /// <summary>

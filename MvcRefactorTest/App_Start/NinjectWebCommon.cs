@@ -21,6 +21,11 @@ using WebActivatorEx;
 
 namespace MvcRefactorTest.App_Start
 {
+    using MvcRefactorTest.Domain.db;
+
+    using Ninject.Activation.Strategies;
+    using Ninject.Parameters;
+
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -76,6 +81,7 @@ namespace MvcRefactorTest.App_Start
             kernel.Bind<IContactService>().To<ContactService>().InSingletonScope();
             kernel.Bind<IContactRepository>().To<ContactRepository>().InSingletonScope();
             kernel.Bind<ICustomMembershipProvider>().To<CustomMembershipProvider>();
+            kernel.Bind<dbContext>().To<dbContext>().InRequestScope();
         }
     }
 }

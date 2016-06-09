@@ -294,7 +294,7 @@ function isArrayLike(obj) {
      var values = {name: 'misko', gender: 'male'};
      var log = [];
      angular.forEach(values, function(value, key) {
-       this.push(key + ': ' + value);
+       push(key + ': ' + value);
      }, log);
      expect(log).toEqual(['name: misko', 'gender: male']);
    ```
@@ -2378,7 +2378,7 @@ var jqCache = JQLite.cache = {},
  */
 JQLite._data = function(node) {
   //jQuery always returns an object on cache miss
-  return this.cache[node[this.expando]] || {};
+  return cache[node[expando]] || {};
 };
 
 function jqNextId() { return ++jqId; }
@@ -2748,7 +2748,7 @@ var JQLitePrototype = JQLite.prototype = {
     if (document.readyState === 'complete') {
       setTimeout(trigger);
     } else {
-      this.on('DOMContentLoaded', trigger); // works for modern browsers and IE9
+      on('DOMContentLoaded', trigger); // works for modern browsers and IE9
       // we can not use jqLite since we are not done loading and jQuery could be loaded later.
       // jshint -W064
       JQLite(window).on('load', trigger); // fallback to window.onload for others
@@ -2762,7 +2762,7 @@ var JQLitePrototype = JQLite.prototype = {
   },
 
   eq: function(index) {
-      return (index >= 0) ? jqLite(this[index]) : jqLite(this[this.length + index]);
+      return (index >= 0) ? jqLite(this[index]) : jqLite(this[length + index]);
   },
 
   length: 0,
@@ -2928,7 +2928,7 @@ forEach({
    */
   JQLite.prototype[name] = function(arg1, arg2) {
     var i, key;
-    var nodeCount = this.length;
+    var nodeCount = length;
 
     // jqLiteHasClass has only two arguments, but is a getter-only fn, so we need to special-case it
     // in a way that survives minification.
@@ -3215,10 +3215,10 @@ forEach({
     if (eventFns) {
       // Create a dummy event to pass to the handlers
       dummyEvent = {
-        preventDefault: function() { this.defaultPrevented = true; },
-        isDefaultPrevented: function() { return this.defaultPrevented === true; },
-        stopImmediatePropagation: function() { this.immediatePropagationStopped = true; },
-        isImmediatePropagationStopped: function() { return this.immediatePropagationStopped === true; },
+        preventDefault: function() { defaultPrevented = true; },
+        isDefaultPrevented: function() { return defaultPrevented === true; },
+        stopImmediatePropagation: function() { immediatePropagationStopped = true; },
+        isImmediatePropagationStopped: function() { return immediatePropagationStopped === true; },
         stopPropagation: noop,
         type: eventName,
         target: element
@@ -3247,7 +3247,7 @@ forEach({
   JQLite.prototype[name] = function(arg1, arg2, arg3) {
     var value;
 
-    for (var i = 0, ii = this.length; i < ii; i++) {
+    for (var i = 0, ii = length; i < ii; i++) {
       if (isUndefined(value)) {
         value = fn(this[i], arg1, arg2, arg3);
         if (isDefined(value)) {
@@ -3269,7 +3269,7 @@ forEach({
 
 // Provider for private $$jqLite service
 function $$jqLiteProvider() {
-  this.$get = function $$jqLite() {
+  $get = function $$jqLite() {
     return extend(JQLite, {
       hasClass: function(node, classes) {
         if (node.attr) node = node[0];
@@ -3325,11 +3325,11 @@ function hashKey(obj, nextUidFn) {
 function HashMap(array, isolatedUid) {
   if (isolatedUid) {
     var uid = 0;
-    this.nextUid = function() {
+    nextUid = function() {
       return ++uid;
     };
   }
-  forEach(array, this.put, this);
+  forEach(array, put, this);
 }
 HashMap.prototype = {
   /**
@@ -3338,7 +3338,7 @@ HashMap.prototype = {
    * @param value value to store can be any type
    */
   put: function(key, value) {
-    this[hashKey(key, this.nextUid)] = value;
+    this[hashKey(key, nextUid)] = value;
   },
 
   /**
@@ -3346,7 +3346,7 @@ HashMap.prototype = {
    * @returns {Object} the value for the key
    */
   get: function(key) {
-    return this[hashKey(key, this.nextUid)];
+    return this[hashKey(key, nextUid)];
   },
 
   /**
@@ -3354,7 +3354,7 @@ HashMap.prototype = {
    * @param key
    */
   remove: function(key) {
-    var value = this[key = hashKey(key, this.nextUid)];
+    var value = this[key = hashKey(key, nextUid)];
     delete this[key];
     return value;
   }
@@ -3752,12 +3752,12 @@ function annotate(fn, strictDi, name) {
  *    var trackingUrl = '/track';
  *
  *    // A provider method for configuring where the tracked events should been saved
- *    this.setTrackingUrl = function(url) {
+ *    setTrackingUrl = function(url) {
  *      trackingUrl = url;
  *    };
  *
  *    // The service factory function
- *    this.$get = ['$http', function($http) {
+ *    $get = ['$http', function($http) {
  *      var trackedEvents = {};
  *      return {
  *        // Call this to track an event
@@ -3862,13 +3862,13 @@ function annotate(fn, strictDi, name) {
  * {@link auto.$provide#service $provide.service(class)}.
  * ```js
  *   var Ping = function($http) {
- *     this.$http = $http;
+ *     $http = $http;
  *   };
  *
  *   Ping.$inject = ['$http'];
  *
  *   Ping.prototype.send = function() {
- *     return this.$http.get('/ping');
+ *     return $http.get('/ping');
  *   };
  *   $provide.service('ping', Ping);
  * ```
@@ -4234,7 +4234,7 @@ function $AnchorScrollProvider() {
    * {@link ng.$anchorScroll $anchorScroll()} in order to scroll to the element related to the
    * current hash.
    */
-  this.disableAutoScrolling = function() {
+  disableAutoScrolling = function() {
     autoScrollingEnabled = false;
   };
 
@@ -4375,7 +4375,7 @@ function $AnchorScrollProvider() {
        </file>
      </example>
    */
-  this.$get = ['$window', '$location', '$rootScope', function($window, $location, $rootScope) {
+  $get = ['$window', '$location', '$rootScope', function($window, $location, $rootScope) {
     var document = $window.document;
 
     // Helper function to get first anchor from a NodeList
@@ -4493,7 +4493,7 @@ var $animateMinErr = minErr('$animate');
 var $AnimateProvider = ['$provide', function($provide) {
 
 
-  this.$$selectors = {};
+  $$selectors = {};
 
 
   /**
@@ -4527,11 +4527,11 @@ var $AnimateProvider = ['$provide', function($provide) {
    * @param {Function} factory The factory function that will be executed to return the animation
    *                           object.
    */
-  this.register = function(name, factory) {
+  register = function(name, factory) {
     var key = name + '-animation';
     if (name && name.charAt(0) != '.') throw $animateMinErr('notcsel',
         "Expecting class selector starting with '.' got '{0}'.", name);
-    this.$$selectors[name.substr(1)] = key;
+    $$selectors[name.substr(1)] = key;
     $provide.factory(key, factory);
   };
 
@@ -4549,14 +4549,14 @@ var $AnimateProvider = ['$provide', function($provide) {
    * @param {RegExp=} expression The className expression which will be checked against all animations
    * @return {RegExp} The current CSS className expression value. If null then there is no expression value
    */
-  this.classNameFilter = function(expression) {
+  classNameFilter = function(expression) {
     if (arguments.length === 1) {
-      this.$$classNameFilter = (expression instanceof RegExp) ? expression : null;
+      $$classNameFilter = (expression instanceof RegExp) ? expression : null;
     }
-    return this.$$classNameFilter;
+    return $$classNameFilter;
   };
 
-  this.$get = ['$$q', '$$asyncCallback', '$rootScope', function($$q, $$asyncCallback, $rootScope) {
+  $get = ['$$q', '$$asyncCallback', '$rootScope', function($$q, $$asyncCallback, $rootScope) {
 
     var currentDefer;
 
@@ -4710,7 +4710,7 @@ var $AnimateProvider = ['$provide', function($provide) {
       move: function(element, parent, after, options) {
         // Do not remove element before insert. Removing will cause data associated with the
         // element to be dropped. Insert will implicitly do the remove.
-        return this.enter(element, parent, after, options);
+        return enter(element, parent, after, options);
       },
 
       /**
@@ -4727,7 +4727,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        * @return {Promise} the animation callback promise
        */
       addClass: function(element, className, options) {
-        return this.setClass(element, className, [], options);
+        return setClass(element, className, [], options);
       },
 
       $$addClassImmediately: function(element, className, options) {
@@ -4756,7 +4756,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        * @return {Promise} the animation callback promise
        */
       removeClass: function(element, className, options) {
-        return this.setClass(element, [], className, options);
+        return setClass(element, [], className, options);
       },
 
       $$removeClassImmediately: function(element, className, options) {
@@ -4833,8 +4833,8 @@ var $AnimateProvider = ['$provide', function($provide) {
       },
 
       $$setClassImmediately: function(element, add, remove, options) {
-        add && this.$$addClassImmediately(element, add);
-        remove && this.$$removeClassImmediately(element, remove);
+        add && $$addClassImmediately(element, add);
+        remove && $$removeClassImmediately(element, remove);
         applyStyles(element, options);
         return asyncPromise();
       },
@@ -4846,7 +4846,7 @@ var $AnimateProvider = ['$provide', function($provide) {
 }];
 
 function $$AsyncCallbackProvider() {
-  this.$get = ['$$rAF', '$timeout', function($$rAF, $timeout) {
+  $get = ['$$rAF', '$timeout', function($$rAF, $timeout) {
     return $$rAF.supported
       ? function(fn) { return $$rAF(fn); }
       : function(fn) {
@@ -5312,7 +5312,7 @@ function Browser(window, document, $log, $sniffer) {
 }
 
 function $BrowserProvider() {
-  this.$get = ['$window', '$log', '$sniffer', '$document',
+  $get = ['$window', '$log', '$sniffer', '$document',
       function($window, $log, $sniffer, $document) {
         return new Browser($window, $document, $log, $sniffer);
       }];
@@ -5401,7 +5401,7 @@ function $BrowserProvider() {
  */
 function $CacheFactoryProvider() {
 
-  this.$get = function() {
+  $get = function() {
     var caches = {};
 
     function cacheFactory(cacheId, options) {
@@ -5488,7 +5488,7 @@ function $CacheFactoryProvider() {
           data[key] = value;
 
           if (size > capacity) {
-            this.remove(staleEnd.key);
+            remove(staleEnd.key);
           }
 
           return value;
@@ -5713,7 +5713,7 @@ function $CacheFactoryProvider() {
  *
  */
 function $TemplateCacheProvider() {
-  this.$get = ['$cacheFactory', function($cacheFactory) {
+  $get = ['$cacheFactory', function($cacheFactory) {
     return $cacheFactory('templates');
   }];
 }
@@ -6471,7 +6471,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    *    {@link guide/directive} for more info.
    * @returns {ng.$compileProvider} Self for chaining.
    */
-   this.directive = function registerDirective(name, directiveFactory) {
+   directive = function registerDirective(name, directiveFactory) {
     assertNotHasOwnProperty(name, 'directive');
     if (isString(name)) {
       assertArg(directiveFactory, 'directiveFactory');
@@ -6532,7 +6532,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * @returns {RegExp|ng.$compileProvider} Current RegExp if called without value or self for
    *    chaining otherwise.
    */
-  this.aHrefSanitizationWhitelist = function(regexp) {
+  aHrefSanitizationWhitelist = function(regexp) {
     if (isDefined(regexp)) {
       $$sanitizeUriProvider.aHrefSanitizationWhitelist(regexp);
       return this;
@@ -6562,7 +6562,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * @returns {RegExp|ng.$compileProvider} Current RegExp if called without value or self for
    *    chaining otherwise.
    */
-  this.imgSrcSanitizationWhitelist = function(regexp) {
+  imgSrcSanitizationWhitelist = function(regexp) {
     if (isDefined(regexp)) {
       $$sanitizeUriProvider.imgSrcSanitizationWhitelist(regexp);
       return this;
@@ -6594,7 +6594,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * The default value is true.
    */
   var debugInfoEnabled = true;
-  this.debugInfoEnabled = function(enabled) {
+  debugInfoEnabled = function(enabled) {
     if (isDefined(enabled)) {
       debugInfoEnabled = enabled;
       return this;
@@ -6602,7 +6602,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
     return debugInfoEnabled;
   };
 
-  this.$get = [
+  $get = [
             '$injector', '$interpolate', '$exceptionHandler', '$templateRequest', '$parse',
             '$controller', '$rootScope', '$document', '$sce', '$animate', '$$sanitizeUri',
     function($injector,   $interpolate,   $exceptionHandler,   $templateRequest,   $parse,
@@ -6618,10 +6618,10 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
           this[key] = attributesToCopy[key];
         }
       } else {
-        this.$attr = {};
+        $attr = {};
       }
 
-      this.$$element = element;
+      $$element = element;
     };
 
     Attributes.prototype = {
@@ -6656,7 +6656,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
        */
       $addClass: function(classVal) {
         if (classVal && classVal.length > 0) {
-          $animate.addClass(this.$$element, classVal);
+          $animate.addClass($$element, classVal);
         }
       },
 
@@ -6673,7 +6673,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
        */
       $removeClass: function(classVal) {
         if (classVal && classVal.length > 0) {
-          $animate.removeClass(this.$$element, classVal);
+          $animate.removeClass($$element, classVal);
         }
       },
 
@@ -6692,12 +6692,12 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       $updateClass: function(newClasses, oldClasses) {
         var toAdd = tokenDifference(newClasses, oldClasses);
         if (toAdd && toAdd.length) {
-          $animate.addClass(this.$$element, toAdd);
+          $animate.addClass($$element, toAdd);
         }
 
         var toRemove = tokenDifference(oldClasses, newClasses);
         if (toRemove && toRemove.length) {
-          $animate.removeClass(this.$$element, toRemove);
+          $animate.removeClass($$element, toRemove);
         }
       },
 
@@ -6715,14 +6715,14 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         //is set through this function since it may cause $updateClass to
         //become unstable.
 
-        var node = this.$$element[0],
+        var node = $$element[0],
             booleanKey = getBooleanAttrName(node, key),
             aliasedKey = getAliasedAttrName(node, key),
             observer = key,
             nodeName;
 
         if (booleanKey) {
-          this.$$element.prop(key, value);
+          $$element.prop(key, value);
           attrName = booleanKey;
         } else if (aliasedKey) {
           this[aliasedKey] = value;
@@ -6733,15 +6733,15 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
         // translate normalized key to actual key
         if (attrName) {
-          this.$attr[key] = attrName;
+          $attr[key] = attrName;
         } else {
-          attrName = this.$attr[key];
+          attrName = $attr[key];
           if (!attrName) {
-            this.$attr[key] = attrName = snake_case(key, '-');
+            $attr[key] = attrName = snake_case(key, '-');
           }
         }
 
-        nodeName = nodeName_(this.$$element);
+        nodeName = nodeName_($$element);
 
         if ((nodeName === 'a' && key === 'href') ||
             (nodeName === 'img' && key === 'src')) {
@@ -6785,14 +6785,14 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
         if (writeAttr !== false) {
           if (value === null || value === undefined) {
-            this.$$element.removeAttr(attrName);
+            $$element.removeAttr(attrName);
           } else {
-            this.$$element.attr(attrName, value);
+            $$element.attr(attrName, value);
           }
         }
 
         // fire observers
-        var $$observers = this.$$observers;
+        var $$observers = $$observers;
         $$observers && forEach($$observers[observer], function(fn) {
           try {
             fn(value);
@@ -8352,7 +8352,7 @@ function $ControllerProvider() {
    * @param {Function|Array} constructor Controller constructor fn (optionally decorated with DI
    *    annotations in the array notation).
    */
-  this.register = function(name, constructor) {
+  register = function(name, constructor) {
     assertNotHasOwnProperty(name, 'controller');
     if (isObject(name)) {
       extend(controllers, name);
@@ -8366,12 +8366,12 @@ function $ControllerProvider() {
    * @name $controllerProvider#allowGlobals
    * @description If called, allows `$controller` to find controller constructors on `window`
    */
-  this.allowGlobals = function() {
+  allowGlobals = function() {
     globals = true;
   };
 
 
-  this.$get = ['$injector', '$window', function($injector, $window) {
+  $get = ['$injector', '$window', function($injector, $window) {
 
     /**
      * @ngdoc service
@@ -8506,7 +8506,7 @@ function $ControllerProvider() {
    </example>
  */
 function $DocumentProvider() {
-  this.$get = ['$window', function(window) {
+  $get = ['$window', function(window) {
     return jqLite(window.document);
   }];
 }
@@ -8552,7 +8552,7 @@ function $DocumentProvider() {
  *
  */
 function $ExceptionHandlerProvider() {
-  this.$get = ['$log', function($log) {
+  $get = ['$log', function($log) {
     return function(exception, cause) {
       $log.error.apply($log, arguments);
     };
@@ -8707,7 +8707,7 @@ function $HttpProvider() {
    *     - **`defaults.headers.patch`**
    *
    **/
-  var defaults = this.defaults = {
+  var defaults = defaults = {
     // transform incoming response data
     transformResponse: [defaultHttpResponseTransform],
 
@@ -8750,7 +8750,7 @@ function $HttpProvider() {
    * @returns {boolean|Object} If a value is specified, returns the $httpProvider for chaining.
    *    otherwise, returns the current configured value.
    **/
-  this.useApplyAsync = function(value) {
+  useApplyAsync = function(value) {
     if (isDefined(value)) {
       useApplyAsync = !!value;
       return this;
@@ -8771,9 +8771,9 @@ function $HttpProvider() {
    *
    * {@link ng.$http#interceptors Interceptors detailed info}
    **/
-  var interceptorFactories = this.interceptors = [];
+  var interceptorFactories = interceptors = [];
 
-  this.$get = ['$httpBackend', '$browser', '$cacheFactory', '$rootScope', '$q', '$injector',
+  $get = ['$httpBackend', '$browser', '$cacheFactory', '$rootScope', '$q', '$injector',
       function($httpBackend, $browser, $cacheFactory, $rootScope, $q, $injector) {
 
     var defaultCache = $cacheFactory('$http');
@@ -9736,7 +9736,7 @@ function createXhr() {
  * $httpBackend} which can be trained with responses.
  */
 function $HttpBackendProvider() {
-  this.$get = ['$browser', '$window', '$document', function($browser, $window, $document) {
+  $get = ['$browser', '$window', '$document', function($browser, $window, $document) {
     return createHttpBackend($browser, createXhr, $browser.defer, $window.angular.callbacks, $document[0]);
   }];
 }
@@ -9911,7 +9911,7 @@ var $interpolateMinErr = minErr('$interpolate');
 
 
   customInterpolationApp.controller('DemoController', function() {
-      this.label = "This binding is brought you by // interpolation symbols.";
+      label = "This binding is brought you by // interpolation symbols.";
   });
 </script>
 <div ng-app="App" ng-controller="DemoController as demo">
@@ -9938,7 +9938,7 @@ function $InterpolateProvider() {
    * @param {string=} value new value to set the starting symbol to.
    * @returns {string|self} Returns the symbol when used as getter and self if used as setter.
    */
-  this.startSymbol = function(value) {
+  startSymbol = function(value) {
     if (value) {
       startSymbol = value;
       return this;
@@ -9956,7 +9956,7 @@ function $InterpolateProvider() {
    * @param {string=} value new value to set the ending symbol to.
    * @returns {string|self} Returns the symbol when used as getter and self if used as setter.
    */
-  this.endSymbol = function(value) {
+  endSymbol = function(value) {
     if (value) {
       endSymbol = value;
       return this;
@@ -9966,7 +9966,7 @@ function $InterpolateProvider() {
   };
 
 
-  this.$get = ['$parse', '$exceptionHandler', '$sce', function($parse, $exceptionHandler, $sce) {
+  $get = ['$parse', '$exceptionHandler', '$sce', function($parse, $exceptionHandler, $sce) {
     var startSymbolLength = startSymbol.length,
         endSymbolLength = endSymbol.length,
         escapedStartRegexp = new RegExp(startSymbol.replace(/./g, escape), 'g'),
@@ -10236,7 +10236,7 @@ function $InterpolateProvider() {
 }
 
 function $IntervalProvider() {
-  this.$get = ['$rootScope', '$window', '$q', '$$q',
+  $get = ['$rootScope', '$window', '$q', '$$q',
        function($rootScope,   $window,   $q,   $$q) {
     var intervals = {};
 
@@ -10264,7 +10264,7 @@ function $IntervalProvider() {
       * with them.  In particular they are not automatically destroyed when a controller's scope or a
       * directive's element are destroyed.
       * You should take this into consideration and make sure to always cancel the interval at the
-      * appropriate moment.  See the example below for more details on how and when to do this.
+      * appropriate moment.  See the example below for more details on how and when to do 
       * </div>
       *
       * @param {function()} fn A function that should be called repeatedly.
@@ -10431,7 +10431,7 @@ function $IntervalProvider() {
  * * `id` – `{string}` – locale id formatted as `languageId-countryId` (e.g. `en-us`)
  */
 function $LocaleProvider() {
-  this.$get = function() {
+  $get = function() {
     return {
       id: 'en-us',
 
@@ -10584,7 +10584,7 @@ function serverBase(url) {
  * @param {string} basePrefix url path prefix
  */
 function LocationHtml5Url(appBase, basePrefix) {
-  this.$$html5 = true;
+  $$html5 = true;
   basePrefix = basePrefix || '';
   var appBaseNoFile = stripFile(appBase);
   parseAbsoluteUrl(appBase, this);
@@ -10595,7 +10595,7 @@ function LocationHtml5Url(appBase, basePrefix) {
    * @param {string} url HTML5 url
    * @private
    */
-  this.$$parse = function(url) {
+  $$parse = function(url) {
     var pathUrl = beginsWith(appBaseNoFile, url);
     if (!isString(pathUrl)) {
       throw $locationMinErr('ipthprfx', 'Invalid url "{0}", missing path prefix "{1}".', url,
@@ -10604,30 +10604,30 @@ function LocationHtml5Url(appBase, basePrefix) {
 
     parseAppUrl(pathUrl, this);
 
-    if (!this.$$path) {
-      this.$$path = '/';
+    if (!$$path) {
+      $$path = '/';
     }
 
-    this.$$compose();
+    $$compose();
   };
 
   /**
    * Compose url and update `absUrl` property
    * @private
    */
-  this.$$compose = function() {
-    var search = toKeyValue(this.$$search),
-        hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
+  $$compose = function() {
+    var search = toKeyValue($$search),
+        hash = $$hash ? '#' + encodeUriSegment($$hash) : '';
 
-    this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
-    this.$$absUrl = appBaseNoFile + this.$$url.substr(1); // first char is always '/'
+    $$url = encodePath($$path) + (search ? '?' + search : '') + hash;
+    $$absUrl = appBaseNoFile + $$url.substr(1); // first char is always '/'
   };
 
-  this.$$parseLinkUrl = function(url, relHref) {
+  $$parseLinkUrl = function(url, relHref) {
     if (relHref && relHref[0] === '#') {
       // special case for links to hash fragments:
       // keep the old url and only replace the hash fragment
-      this.hash(relHref.slice(1));
+      hash(relHref.slice(1));
       return true;
     }
     var appUrl, prevAppUrl;
@@ -10646,7 +10646,7 @@ function LocationHtml5Url(appBase, basePrefix) {
       rewrittenUrl = appBaseNoFile;
     }
     if (rewrittenUrl) {
-      this.$$parse(rewrittenUrl);
+      $$parse(rewrittenUrl);
     }
     return !!rewrittenUrl;
   };
@@ -10673,7 +10673,7 @@ function LocationHashbangUrl(appBase, hashPrefix) {
    * @param {string} url Hashbang url
    * @private
    */
-  this.$$parse = function(url) {
+  $$parse = function(url) {
     var withoutBaseUrl = beginsWith(appBase, url) || beginsWith(appBaseNoFile, url);
     var withoutHashUrl;
 
@@ -10691,14 +10691,14 @@ function LocationHashbangUrl(appBase, hashPrefix) {
       // There was no hashbang path nor hash fragment:
       // If we are in HTML5 mode we use what is left as the path;
       // Otherwise we ignore what is left
-      withoutHashUrl = this.$$html5 ? withoutBaseUrl : '';
+      withoutHashUrl = $$html5 ? withoutBaseUrl : '';
     }
 
     parseAppUrl(withoutHashUrl, this);
 
-    this.$$path = removeWindowsDriveName(this.$$path, withoutHashUrl, appBase);
+    $$path = removeWindowsDriveName($$path, withoutHashUrl, appBase);
 
-    this.$$compose();
+    $$compose();
 
     /*
      * In Windows, on an anchor node on documents loaded from
@@ -10739,17 +10739,17 @@ function LocationHashbangUrl(appBase, hashPrefix) {
    * Compose hashbang url and update `absUrl` property
    * @private
    */
-  this.$$compose = function() {
-    var search = toKeyValue(this.$$search),
-        hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
+  $$compose = function() {
+    var search = toKeyValue($$search),
+        hash = $$hash ? '#' + encodeUriSegment($$hash) : '';
 
-    this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
-    this.$$absUrl = appBase + (this.$$url ? hashPrefix + this.$$url : '');
+    $$url = encodePath($$path) + (search ? '?' + search : '') + hash;
+    $$absUrl = appBase + ($$url ? hashPrefix + $$url : '');
   };
 
-  this.$$parseLinkUrl = function(url, relHref) {
+  $$parseLinkUrl = function(url, relHref) {
     if (stripHash(appBase) == stripHash(url)) {
-      this.$$parse(url);
+      $$parse(url);
       return true;
     }
     return false;
@@ -10767,16 +10767,16 @@ function LocationHashbangUrl(appBase, hashPrefix) {
  * @param {string} hashPrefix hashbang prefix
  */
 function LocationHashbangInHtml5Url(appBase, hashPrefix) {
-  this.$$html5 = true;
+  $$html5 = true;
   LocationHashbangUrl.apply(this, arguments);
 
   var appBaseNoFile = stripFile(appBase);
 
-  this.$$parseLinkUrl = function(url, relHref) {
+  $$parseLinkUrl = function(url, relHref) {
     if (relHref && relHref[0] === '#') {
       // special case for links to hash fragments:
       // keep the old url and only replace the hash fragment
-      this.hash(relHref.slice(1));
+      hash(relHref.slice(1));
       return true;
     }
 
@@ -10791,18 +10791,18 @@ function LocationHashbangInHtml5Url(appBase, hashPrefix) {
       rewrittenUrl = appBaseNoFile;
     }
     if (rewrittenUrl) {
-      this.$$parse(rewrittenUrl);
+      $$parse(rewrittenUrl);
     }
     return !!rewrittenUrl;
   };
 
-  this.$$compose = function() {
-    var search = toKeyValue(this.$$search),
-        hash = this.$$hash ? '#' + encodeUriSegment(this.$$hash) : '';
+  $$compose = function() {
+    var search = toKeyValue($$search),
+        hash = $$hash ? '#' + encodeUriSegment($$hash) : '';
 
-    this.$$url = encodePath(this.$$path) + (search ? '?' + search : '') + hash;
+    $$url = encodePath($$path) + (search ? '?' + search : '') + hash;
     // include hashPrefix in $$absUrl when $$url is empty so IE8 & 9 do not reload page because of removal of '#'
-    this.$$absUrl = appBase + hashPrefix + this.$$url;
+    $$absUrl = appBase + hashPrefix + $$url;
   };
 
 }
@@ -10866,12 +10866,12 @@ var locationPrototype = {
    */
   url: function(url) {
     if (isUndefined(url))
-      return this.$$url;
+      return $$url;
 
     var match = PATH_MATCH.exec(url);
-    if (match[1] || url === '') this.path(decodeURIComponent(match[1]));
-    if (match[2] || match[1] || url === '') this.search(match[3] || '');
-    this.hash(match[5] || '');
+    if (match[1] || url === '') path(decodeURIComponent(match[1]));
+    if (match[2] || match[1] || url === '') search(match[3] || '');
+    hash(match[5] || '');
 
     return this;
   },
@@ -11013,11 +11013,11 @@ var locationPrototype = {
   search: function(search, paramValue) {
     switch (arguments.length) {
       case 0:
-        return this.$$search;
+        return $$search;
       case 1:
         if (isString(search) || isNumber(search)) {
           search = search.toString();
-          this.$$search = parseKeyValue(search);
+          $$search = parseKeyValue(search);
         } else if (isObject(search)) {
           search = copy(search, {});
           // remove object undefined or null properties
@@ -11025,7 +11025,7 @@ var locationPrototype = {
             if (value == null) delete search[key];
           });
 
-          this.$$search = search;
+          $$search = search;
         } else {
           throw $locationMinErr('isrcharg',
               'The first argument of the `$location#search()` call must be a string or an object.');
@@ -11033,13 +11033,13 @@ var locationPrototype = {
         break;
       default:
         if (isUndefined(paramValue) || paramValue === null) {
-          delete this.$$search[search];
+          delete $$search[search];
         } else {
-          this.$$search[search] = paramValue;
+          $$search[search] = paramValue;
         }
     }
 
-    this.$$compose();
+    $$compose();
     return this;
   },
 
@@ -11077,7 +11077,7 @@ var locationPrototype = {
    * record, instead of adding new one.
    */
   replace: function() {
-    this.$$replace = true;
+    $$replace = true;
     return this;
   }
 };
@@ -11106,16 +11106,16 @@ forEach([LocationHashbangInHtml5Url, LocationHashbangUrl, LocationHtml5Url], fun
    */
   Location.prototype.state = function(state) {
     if (!arguments.length)
-      return this.$$state;
+      return $$state;
 
-    if (Location !== LocationHtml5Url || !this.$$html5) {
+    if (Location !== LocationHtml5Url || !$$html5) {
       throw $locationMinErr('nostate', 'History API state support is available only ' +
         'in HTML5 mode and only in browsers supporting HTML5 History API');
     }
     // The user might modify `stateObject` after invoking `$location.state(stateObject)`
     // but we're changing the $$state reference to $browser.state() during the $digest
     // so the modification window is narrow.
-    this.$$state = isUndefined(state) ? null : state;
+    $$state = isUndefined(state) ? null : state;
 
     return this;
   };
@@ -11135,7 +11135,7 @@ function locationGetterSetter(property, preprocess) {
       return this[property];
 
     this[property] = preprocess(value);
-    this.$$compose();
+    $$compose();
 
     return this;
   };
@@ -11189,7 +11189,7 @@ function $LocationProvider() {
    * @param {string=} prefix Prefix for hash part (containing path and search)
    * @returns {*} current value if used as getter or itself (chaining) if used as setter
    */
-  this.hashPrefix = function(prefix) {
+  hashPrefix = function(prefix) {
     if (isDefined(prefix)) {
       hashPrefix = prefix;
       return this;
@@ -11217,7 +11217,7 @@ function $LocationProvider() {
    *
    * @returns {Object} html5Mode object if used as getter or itself (chaining) if used as setter
    */
-  this.html5Mode = function(mode) {
+  html5Mode = function(mode) {
     if (isBoolean(mode)) {
       html5Mode.enabled = mode;
       return this;
@@ -11280,7 +11280,7 @@ function $LocationProvider() {
    * @param {string=} oldState History state object that was before it was changed.
    */
 
-  this.$get = ['$rootScope', '$browser', '$sniffer', '$rootElement', '$window',
+  $get = ['$rootScope', '$browser', '$sniffer', '$rootElement', '$window',
       function($rootScope, $browser, $sniffer, $rootElement, $window) {
     var $location,
         LocationMode,
@@ -11467,7 +11467,7 @@ function $LocationProvider() {
  * The main purpose of this service is to simplify debugging and troubleshooting.
  *
  * The default is to log `debug` messages. You can use
- * {@link ng.$logProvider ng.$logProvider#debugEnabled} to change this.
+ * {@link ng.$logProvider ng.$logProvider#debugEnabled} to change 
  *
  * @example
    <example module="logExample">
@@ -11509,7 +11509,7 @@ function $LogProvider() {
    * @param {boolean=} flag enable or disable debug level messages
    * @returns {*} current value if used as getter or itself (chaining) if used as setter
    */
-  this.debugEnabled = function(flag) {
+  debugEnabled = function(flag) {
     if (isDefined(flag)) {
       debug = flag;
     return this;
@@ -11518,7 +11518,7 @@ function $LogProvider() {
     }
   };
 
-  this.$get = ['$window', function($window) {
+  $get = ['$window', function($window) {
     return {
       /**
        * @ngdoc method
@@ -11760,46 +11760,46 @@ var ESCAPE = {"n":"\n", "f":"\f", "r":"\r", "t":"\t", "v":"\v", "'":"'", '"':'"'
  * @constructor
  */
 var Lexer = function(options) {
-  this.options = options;
+  options = options;
 };
 
 Lexer.prototype = {
   constructor: Lexer,
 
   lex: function(text) {
-    this.text = text;
-    this.index = 0;
-    this.tokens = [];
+    text = text;
+    index = 0;
+    tokens = [];
 
-    while (this.index < this.text.length) {
-      var ch = this.text.charAt(this.index);
+    while (index < text.length) {
+      var ch = text.charAt(index);
       if (ch === '"' || ch === "'") {
-        this.readString(ch);
-      } else if (this.isNumber(ch) || ch === '.' && this.isNumber(this.peek())) {
-        this.readNumber();
-      } else if (this.isIdent(ch)) {
-        this.readIdent();
-      } else if (this.is(ch, '(){}[].,;:?')) {
-        this.tokens.push({index: this.index, text: ch});
-        this.index++;
-      } else if (this.isWhitespace(ch)) {
-        this.index++;
+        readString(ch);
+      } else if (isNumber(ch) || ch === '.' && isNumber(peek())) {
+        readNumber();
+      } else if (isIdent(ch)) {
+        readIdent();
+      } else if (is(ch, '(){}[].,;:?')) {
+        tokens.push({index: index, text: ch});
+        index++;
+      } else if (isWhitespace(ch)) {
+        index++;
       } else {
-        var ch2 = ch + this.peek();
-        var ch3 = ch2 + this.peek(2);
+        var ch2 = ch + peek();
+        var ch3 = ch2 + peek(2);
         var op1 = OPERATORS[ch];
         var op2 = OPERATORS[ch2];
         var op3 = OPERATORS[ch3];
         if (op1 || op2 || op3) {
           var token = op3 ? ch3 : (op2 ? ch2 : ch);
-          this.tokens.push({index: this.index, text: token, operator: true});
-          this.index += token.length;
+          tokens.push({index: index, text: token, operator: true});
+          index += token.length;
         } else {
-          this.throwError('Unexpected next character ', this.index, this.index + 1);
+          throwError('Unexpected next character ', index, index + 1);
         }
       }
     }
-    return this.tokens;
+    return tokens;
   },
 
   is: function(ch, chars) {
@@ -11808,7 +11808,7 @@ Lexer.prototype = {
 
   peek: function(i) {
     var num = i || 1;
-    return (this.index + num < this.text.length) ? this.text.charAt(this.index + num) : false;
+    return (index + num < text.length) ? text.charAt(index + num) : false;
   },
 
   isNumber: function(ch) {
@@ -11828,44 +11828,44 @@ Lexer.prototype = {
   },
 
   isExpOperator: function(ch) {
-    return (ch === '-' || ch === '+' || this.isNumber(ch));
+    return (ch === '-' || ch === '+' || isNumber(ch));
   },
 
   throwError: function(error, start, end) {
-    end = end || this.index;
+    end = end || index;
     var colStr = (isDefined(start)
-            ? 's ' + start +  '-' + this.index + ' [' + this.text.substring(start, end) + ']'
+            ? 's ' + start +  '-' + index + ' [' + text.substring(start, end) + ']'
             : ' ' + end);
     throw $parseMinErr('lexerr', 'Lexer Error: {0} at column{1} in expression [{2}].',
-        error, colStr, this.text);
+        error, colStr, text);
   },
 
   readNumber: function() {
     var number = '';
-    var start = this.index;
-    while (this.index < this.text.length) {
-      var ch = lowercase(this.text.charAt(this.index));
-      if (ch == '.' || this.isNumber(ch)) {
+    var start = index;
+    while (index < text.length) {
+      var ch = lowercase(text.charAt(index));
+      if (ch == '.' || isNumber(ch)) {
         number += ch;
       } else {
-        var peekCh = this.peek();
-        if (ch == 'e' && this.isExpOperator(peekCh)) {
+        var peekCh = peek();
+        if (ch == 'e' && isExpOperator(peekCh)) {
           number += ch;
-        } else if (this.isExpOperator(ch) &&
-            peekCh && this.isNumber(peekCh) &&
+        } else if (isExpOperator(ch) &&
+            peekCh && isNumber(peekCh) &&
             number.charAt(number.length - 1) == 'e') {
           number += ch;
-        } else if (this.isExpOperator(ch) &&
-            (!peekCh || !this.isNumber(peekCh)) &&
+        } else if (isExpOperator(ch) &&
+            (!peekCh || !isNumber(peekCh)) &&
             number.charAt(number.length - 1) == 'e') {
-          this.throwError('Invalid exponent');
+          throwError('Invalid exponent');
         } else {
           break;
         }
       }
-      this.index++;
+      index++;
     }
-    this.tokens.push({
+    tokens.push({
       index: start,
       text: number,
       constant: true,
@@ -11874,36 +11874,36 @@ Lexer.prototype = {
   },
 
   readIdent: function() {
-    var start = this.index;
-    while (this.index < this.text.length) {
-      var ch = this.text.charAt(this.index);
-      if (!(this.isIdent(ch) || this.isNumber(ch))) {
+    var start = index;
+    while (index < text.length) {
+      var ch = text.charAt(index);
+      if (!(isIdent(ch) || isNumber(ch))) {
         break;
       }
-      this.index++;
+      index++;
     }
-    this.tokens.push({
+    tokens.push({
       index: start,
-      text: this.text.slice(start, this.index),
+      text: text.slice(start, index),
       identifier: true
     });
   },
 
   readString: function(quote) {
-    var start = this.index;
-    this.index++;
+    var start = index;
+    index++;
     var string = '';
     var rawString = quote;
     var escape = false;
-    while (this.index < this.text.length) {
-      var ch = this.text.charAt(this.index);
+    while (index < text.length) {
+      var ch = text.charAt(index);
       rawString += ch;
       if (escape) {
         if (ch === 'u') {
-          var hex = this.text.substring(this.index + 1, this.index + 5);
+          var hex = text.substring(index + 1, index + 5);
           if (!hex.match(/[\da-f]{4}/i))
-            this.throwError('Invalid unicode escape [\\u' + hex + ']');
-          this.index += 4;
+            throwError('Invalid unicode escape [\\u' + hex + ']');
+          index += 4;
           string += String.fromCharCode(parseInt(hex, 16));
         } else {
           var rep = ESCAPE[ch];
@@ -11913,8 +11913,8 @@ Lexer.prototype = {
       } else if (ch === '\\') {
         escape = true;
       } else if (ch === quote) {
-        this.index++;
-        this.tokens.push({
+        index++;
+        tokens.push({
           index: start,
           text: rawString,
           constant: true,
@@ -11924,9 +11924,9 @@ Lexer.prototype = {
       } else {
         string += ch;
       }
-      this.index++;
+      index++;
     }
-    this.throwError('Unterminated quote', start);
+    throwError('Unterminated quote', start);
   }
 };
 
@@ -11939,9 +11939,9 @@ function isConstant(exp) {
  * @constructor
  */
 var Parser = function(lexer, $filter, options) {
-  this.lexer = lexer;
-  this.$filter = $filter;
-  this.options = options;
+  lexer = lexer;
+  $filter = $filter;
+  options = options;
 };
 
 Parser.ZERO = extend(function() {
@@ -11955,13 +11955,13 @@ Parser.prototype = {
   constructor: Parser,
 
   parse: function(text) {
-    this.text = text;
-    this.tokens = this.lexer.lex(text);
+    text = text;
+    tokens = lexer.lex(text);
 
-    var value = this.statements();
+    var value = statements();
 
-    if (this.tokens.length !== 0) {
-      this.throwError('is an unexpected token', this.tokens[0]);
+    if (tokens.length !== 0) {
+      throwError('is an unexpected token', tokens[0]);
     }
 
     value.literal = !!value.literal;
@@ -11972,36 +11972,36 @@ Parser.prototype = {
 
   primary: function() {
     var primary;
-    if (this.expect('(')) {
-      primary = this.filterChain();
-      this.consume(')');
-    } else if (this.expect('[')) {
-      primary = this.arrayDeclaration();
-    } else if (this.expect('{')) {
-      primary = this.object();
-    } else if (this.peek().identifier && this.peek().text in CONSTANTS) {
-      primary = CONSTANTS[this.consume().text];
-    } else if (this.peek().identifier) {
-      primary = this.identifier();
-    } else if (this.peek().constant) {
-      primary = this.constant();
+    if (expect('(')) {
+      primary = filterChain();
+      consume(')');
+    } else if (expect('[')) {
+      primary = arrayDeclaration();
+    } else if (expect('{')) {
+      primary = object();
+    } else if (peek().identifier && peek().text in CONSTANTS) {
+      primary = CONSTANTS[consume().text];
+    } else if (peek().identifier) {
+      primary = identifier();
+    } else if (peek().constant) {
+      primary = constant();
     } else {
-      this.throwError('not a primary expression', this.peek());
+      throwError('not a primary expression', peek());
     }
 
     var next, context;
-    while ((next = this.expect('(', '[', '.'))) {
+    while ((next = expect('(', '[', '.'))) {
       if (next.text === '(') {
-        primary = this.functionCall(primary, context);
+        primary = functionCall(primary, context);
         context = null;
       } else if (next.text === '[') {
         context = primary;
-        primary = this.objectIndex(primary);
+        primary = objectIndex(primary);
       } else if (next.text === '.') {
         context = primary;
-        primary = this.fieldAccess(primary);
+        primary = fieldAccess(primary);
       } else {
-        this.throwError('IMPOSSIBLE');
+        throwError('IMPOSSIBLE');
       }
     }
     return primary;
@@ -12010,21 +12010,21 @@ Parser.prototype = {
   throwError: function(msg, token) {
     throw $parseMinErr('syntax',
         'Syntax Error: Token \'{0}\' {1} at column {2} of the expression [{3}] starting at [{4}].',
-          token.text, msg, (token.index + 1), this.text, this.text.substring(token.index));
+          token.text, msg, (token.index + 1), text, text.substring(token.index));
   },
 
   peekToken: function() {
-    if (this.tokens.length === 0)
-      throw $parseMinErr('ueoe', 'Unexpected end of expression: {0}', this.text);
-    return this.tokens[0];
+    if (tokens.length === 0)
+      throw $parseMinErr('ueoe', 'Unexpected end of expression: {0}', text);
+    return tokens[0];
   },
 
   peek: function(e1, e2, e3, e4) {
-    return this.peekAhead(0, e1, e2, e3, e4);
+    return peekAhead(0, e1, e2, e3, e4);
   },
   peekAhead: function(i, e1, e2, e3, e4) {
-    if (this.tokens.length > i) {
-      var token = this.tokens[i];
+    if (tokens.length > i) {
+      var token = tokens[i];
       var t = token.text;
       if (t === e1 || t === e2 || t === e3 || t === e4 ||
           (!e1 && !e2 && !e3 && !e4)) {
@@ -12035,22 +12035,22 @@ Parser.prototype = {
   },
 
   expect: function(e1, e2, e3, e4) {
-    var token = this.peek(e1, e2, e3, e4);
+    var token = peek(e1, e2, e3, e4);
     if (token) {
-      this.tokens.shift();
+      tokens.shift();
       return token;
     }
     return false;
   },
 
   consume: function(e1) {
-    if (this.tokens.length === 0) {
-      throw $parseMinErr('ueoe', 'Unexpected end of expression: {0}', this.text);
+    if (tokens.length === 0) {
+      throw $parseMinErr('ueoe', 'Unexpected end of expression: {0}', text);
     }
 
-    var token = this.expect(e1);
+    var token = expect(e1);
     if (!token) {
-      this.throwError('is unexpected, expecting [' + e1 + ']', this.peek());
+      throwError('is unexpected, expecting [' + e1 + ']', peek());
     }
     return token;
   },
@@ -12076,18 +12076,18 @@ Parser.prototype = {
   },
 
   identifier: function() {
-    var id = this.consume().text;
+    var id = consume().text;
 
     //Continue reading each `.identifier` unless it is a method invocation
-    while (this.peek('.') && this.peekAhead(1).identifier && !this.peekAhead(2, '(')) {
-      id += this.consume().text + this.consume().text;
+    while (peek('.') && peekAhead(1).identifier && !peekAhead(2, '(')) {
+      id += consume().text + consume().text;
     }
 
-    return getterFn(id, this.options, this.text);
+    return getterFn(id, options, text);
   },
 
   constant: function() {
-    var value = this.consume().value;
+    var value = consume().value;
 
     return extend(function $parseConstant() {
       return value;
@@ -12100,9 +12100,9 @@ Parser.prototype = {
   statements: function() {
     var statements = [];
     while (true) {
-      if (this.tokens.length > 0 && !this.peek('}', ')', ';', ']'))
-        statements.push(this.filterChain());
-      if (!this.expect(';')) {
+      if (tokens.length > 0 && !peek('}', ')', ';', ']'))
+        statements.push(filterChain());
+      if (!expect(';')) {
         // optimize for the common case where there is only one statement.
         // TODO(size): maybe we should not support multiple statements?
         return (statements.length === 1)
@@ -12119,24 +12119,24 @@ Parser.prototype = {
   },
 
   filterChain: function() {
-    var left = this.expression();
+    var left = expression();
     var token;
-    while ((token = this.expect('|'))) {
-      left = this.filter(left);
+    while ((token = expect('|'))) {
+      left = filter(left);
     }
     return left;
   },
 
   filter: function(inputFn) {
-    var fn = this.$filter(this.consume().text);
+    var fn = $filter(consume().text);
     var argsFn;
     var args;
 
-    if (this.peek(':')) {
+    if (peek(':')) {
       argsFn = [];
       args = []; // we can safely reuse the array
-      while (this.expect(':')) {
-        argsFn.push(this.expression());
+      while (expect(':')) {
+        argsFn.push(expression());
       }
     }
 
@@ -12163,19 +12163,19 @@ Parser.prototype = {
   },
 
   expression: function() {
-    return this.assignment();
+    return assignment();
   },
 
   assignment: function() {
-    var left = this.ternary();
+    var left = ternary();
     var right;
     var token;
-    if ((token = this.expect('='))) {
+    if ((token = expect('='))) {
       if (!left.assign) {
-        this.throwError('implies assignment but [' +
-            this.text.substring(0, token.index) + '] can not be assigned to', token);
+        throwError('implies assignment but [' +
+            text.substring(0, token.index) + '] can not be assigned to', token);
       }
-      right = this.ternary();
+      right = ternary();
       return extend(function $parseAssignment(scope, locals) {
         return left.assign(scope, right(scope, locals), locals);
       }, {
@@ -12186,13 +12186,13 @@ Parser.prototype = {
   },
 
   ternary: function() {
-    var left = this.logicalOR();
+    var left = logicalOR();
     var middle;
     var token;
-    if ((token = this.expect('?'))) {
-      middle = this.assignment();
-      if (this.consume(':')) {
-        var right = this.assignment();
+    if ((token = expect('?'))) {
+      middle = assignment();
+      if (consume(':')) {
+        var right = assignment();
 
         return extend(function $parseTernary(self, locals) {
           return left(self, locals) ? middle(self, locals) : right(self, locals);
@@ -12206,74 +12206,74 @@ Parser.prototype = {
   },
 
   logicalOR: function() {
-    var left = this.logicalAND();
+    var left = logicalAND();
     var token;
-    while ((token = this.expect('||'))) {
-      left = this.binaryFn(left, token.text, this.logicalAND(), true);
+    while ((token = expect('||'))) {
+      left = binaryFn(left, token.text, logicalAND(), true);
     }
     return left;
   },
 
   logicalAND: function() {
-    var left = this.equality();
+    var left = equality();
     var token;
-    while ((token = this.expect('&&'))) {
-      left = this.binaryFn(left, token.text, this.equality(), true);
+    while ((token = expect('&&'))) {
+      left = binaryFn(left, token.text, equality(), true);
     }
     return left;
   },
 
   equality: function() {
-    var left = this.relational();
+    var left = relational();
     var token;
-    while ((token = this.expect('==','!=','===','!=='))) {
-      left = this.binaryFn(left, token.text, this.relational());
+    while ((token = expect('==','!=','===','!=='))) {
+      left = binaryFn(left, token.text, relational());
     }
     return left;
   },
 
   relational: function() {
-    var left = this.additive();
+    var left = additive();
     var token;
-    while ((token = this.expect('<', '>', '<=', '>='))) {
-      left = this.binaryFn(left, token.text, this.additive());
+    while ((token = expect('<', '>', '<=', '>='))) {
+      left = binaryFn(left, token.text, additive());
     }
     return left;
   },
 
   additive: function() {
-    var left = this.multiplicative();
+    var left = multiplicative();
     var token;
-    while ((token = this.expect('+','-'))) {
-      left = this.binaryFn(left, token.text, this.multiplicative());
+    while ((token = expect('+','-'))) {
+      left = binaryFn(left, token.text, multiplicative());
     }
     return left;
   },
 
   multiplicative: function() {
-    var left = this.unary();
+    var left = unary();
     var token;
-    while ((token = this.expect('*','/','%'))) {
-      left = this.binaryFn(left, token.text, this.unary());
+    while ((token = expect('*','/','%'))) {
+      left = binaryFn(left, token.text, unary());
     }
     return left;
   },
 
   unary: function() {
     var token;
-    if (this.expect('+')) {
-      return this.primary();
-    } else if ((token = this.expect('-'))) {
-      return this.binaryFn(Parser.ZERO, token.text, this.unary());
-    } else if ((token = this.expect('!'))) {
-      return this.unaryFn(token.text, this.unary());
+    if (expect('+')) {
+      return primary();
+    } else if ((token = expect('-'))) {
+      return binaryFn(Parser.ZERO, token.text, unary());
+    } else if ((token = expect('!'))) {
+      return unaryFn(token.text, unary());
     } else {
-      return this.primary();
+      return primary();
     }
   },
 
   fieldAccess: function(object) {
-    var getter = this.identifier();
+    var getter = identifier();
 
     return extend(function $parseFieldAccess(scope, locals, self) {
       var o = self || object(scope, locals);
@@ -12288,10 +12288,10 @@ Parser.prototype = {
   },
 
   objectIndex: function(obj) {
-    var expression = this.text;
+    var expression = text;
 
-    var indexFn = this.expression();
-    this.consume(']');
+    var indexFn = expression();
+    consume(']');
 
     return extend(function $parseObjectIndex(self, locals) {
       var o = obj(self, locals),
@@ -12315,14 +12315,14 @@ Parser.prototype = {
 
   functionCall: function(fnGetter, contextGetter) {
     var argsFn = [];
-    if (this.peekToken().text !== ')') {
+    if (peekToken().text !== ')') {
       do {
-        argsFn.push(this.expression());
-      } while (this.expect(','));
+        argsFn.push(expression());
+      } while (expect(','));
     }
-    this.consume(')');
+    consume(')');
 
-    var expressionText = this.text;
+    var expressionText = text;
     // we can safely reuse the array across invocations
     var args = argsFn.length ? [] : null;
 
@@ -12357,16 +12357,16 @@ Parser.prototype = {
   // This is used with json array declaration
   arrayDeclaration: function() {
     var elementFns = [];
-    if (this.peekToken().text !== ']') {
+    if (peekToken().text !== ']') {
       do {
-        if (this.peek(']')) {
+        if (peek(']')) {
           // Support trailing commas per ES5.1.
           break;
         }
-        elementFns.push(this.expression());
-      } while (this.expect(','));
+        elementFns.push(expression());
+      } while (expect(','));
     }
-    this.consume(']');
+    consume(']');
 
     return extend(function $parseArrayLiteral(self, locals) {
       var array = [];
@@ -12383,25 +12383,25 @@ Parser.prototype = {
 
   object: function() {
     var keys = [], valueFns = [];
-    if (this.peekToken().text !== '}') {
+    if (peekToken().text !== '}') {
       do {
-        if (this.peek('}')) {
+        if (peek('}')) {
           // Support trailing commas per ES5.1.
           break;
         }
-        var token = this.consume();
+        var token = consume();
         if (token.constant) {
           keys.push(token.value);
         } else if (token.identifier) {
           keys.push(token.text);
         } else {
-          this.throwError("invalid key", token);
+          throwError("invalid key", token);
         }
-        this.consume(':');
-        valueFns.push(this.expression());
-      } while (this.expect(','));
+        consume(':');
+        valueFns.push(expression());
+      } while (expect(','));
     }
-    this.consume('}');
+    consume('}');
 
     return extend(function $parseObjectLiteral(self, locals) {
       var object = {};
@@ -12631,7 +12631,7 @@ function $ParseProvider() {
 
 
 
-  this.$get = ['$filter', '$sniffer', function($filter, $sniffer) {
+  $get = ['$filter', '$sniffer', function($filter, $sniffer) {
     var $parseOptions = {
           csp: $sniffer.csp,
           expensiveChecks: false
@@ -13088,7 +13088,7 @@ function $ParseProvider() {
  */
 function $QProvider() {
 
-  this.$get = ['$rootScope', '$exceptionHandler', function($rootScope, $exceptionHandler) {
+  $get = ['$rootScope', '$exceptionHandler', function($rootScope, $exceptionHandler) {
     return qFactory(function(callback) {
       $rootScope.$evalAsync(callback);
     }, $exceptionHandler);
@@ -13096,7 +13096,7 @@ function $QProvider() {
 }
 
 function $$QProvider() {
-  this.$get = ['$browser', '$exceptionHandler', function($browser, $exceptionHandler) {
+  $get = ['$browser', '$exceptionHandler', function($browser, $exceptionHandler) {
     return qFactory(function(callback) {
       $browser.defer(callback);
     }, $exceptionHandler);
@@ -13141,26 +13141,26 @@ function qFactory(nextTick, exceptionHandler) {
   };
 
   function Promise() {
-    this.$$state = { status: 0 };
+    $$state = { status: 0 };
   }
 
   Promise.prototype = {
     then: function(onFulfilled, onRejected, progressBack) {
       var result = new Deferred();
 
-      this.$$state.pending = this.$$state.pending || [];
-      this.$$state.pending.push([result, onFulfilled, onRejected, progressBack]);
-      if (this.$$state.status > 0) scheduleProcessQueue(this.$$state);
+      $$state.pending = $$state.pending || [];
+      $$state.pending.push([result, onFulfilled, onRejected, progressBack]);
+      if ($$state.status > 0) scheduleProcessQueue($$state);
 
       return result.promise;
     },
 
     "catch": function(callback) {
-      return this.then(null, callback);
+      return then(null, callback);
     },
 
     "finally": function(callback, progressBack) {
-      return this.then(function(value) {
+      return then(function(value) {
         return handleCallback(value, true, callback);
       }, function(error) {
         return handleCallback(error, false, callback);
@@ -13206,23 +13206,23 @@ function qFactory(nextTick, exceptionHandler) {
   }
 
   function Deferred() {
-    this.promise = new Promise();
+    promise = new Promise();
     //Necessary to support unbound execution :/
-    this.resolve = simpleBind(this, this.resolve);
-    this.reject = simpleBind(this, this.reject);
-    this.notify = simpleBind(this, this.notify);
+    resolve = simpleBind(this, resolve);
+    reject = simpleBind(this, reject);
+    notify = simpleBind(this, notify);
   }
 
   Deferred.prototype = {
     resolve: function(val) {
-      if (this.promise.$$state.status) return;
-      if (val === this.promise) {
-        this.$$reject($qMinErr(
+      if (promise.$$state.status) return;
+      if (val === promise) {
+        $$reject($qMinErr(
           'qcycle',
           "Expected promise to be resolved with value other than itself '{0}'",
           val));
       } else {
-        this.$$resolve(val);
+        $$resolve(val);
       }
 
     },
@@ -13230,16 +13230,16 @@ function qFactory(nextTick, exceptionHandler) {
     $$resolve: function(val) {
       var then, fns;
 
-      fns = callOnce(this, this.$$resolve, this.$$reject);
+      fns = callOnce(this, $$resolve, $$reject);
       try {
         if ((isObject(val) || isFunction(val))) then = val && val.then;
         if (isFunction(then)) {
-          this.promise.$$state.status = -1;
-          then.call(val, fns[0], fns[1], this.notify);
+          promise.$$state.status = -1;
+          then.call(val, fns[0], fns[1], notify);
         } else {
-          this.promise.$$state.value = val;
-          this.promise.$$state.status = 1;
-          scheduleProcessQueue(this.promise.$$state);
+          promise.$$state.value = val;
+          promise.$$state.status = 1;
+          scheduleProcessQueue(promise.$$state);
         }
       } catch (e) {
         fns[1](e);
@@ -13248,20 +13248,20 @@ function qFactory(nextTick, exceptionHandler) {
     },
 
     reject: function(reason) {
-      if (this.promise.$$state.status) return;
-      this.$$reject(reason);
+      if (promise.$$state.status) return;
+      $$reject(reason);
     },
 
     $$reject: function(reason) {
-      this.promise.$$state.value = reason;
-      this.promise.$$state.status = 2;
-      scheduleProcessQueue(this.promise.$$state);
+      promise.$$state.value = reason;
+      promise.$$state.status = 2;
+      scheduleProcessQueue(promise.$$state);
     },
 
     notify: function(progress) {
-      var callbacks = this.promise.$$state.pending;
+      var callbacks = promise.$$state.pending;
 
-      if ((this.promise.$$state.status <= 0) && callbacks && callbacks.length) {
+      if ((promise.$$state.status <= 0) && callbacks && callbacks.length) {
         nextTick(function() {
           var callback, result;
           for (var i = 0, ii = callbacks.length; i < ii; i++) {
@@ -13443,7 +13443,7 @@ function qFactory(nextTick, exceptionHandler) {
 }
 
 function $$RAFProvider() { //rAF
-  this.$get = ['$window', '$timeout', function($window, $timeout) {
+  $get = ['$window', '$timeout', function($window, $timeout) {
     var requestAnimationFrame = $window.requestAnimationFrame ||
                                 $window.webkitRequestAnimationFrame;
 
@@ -13545,14 +13545,14 @@ function $RootScopeProvider() {
   var lastDirtyWatch = null;
   var applyAsyncId = null;
 
-  this.digestTtl = function(value) {
+  digestTtl = function(value) {
     if (arguments.length) {
       TTL = value;
     }
     return TTL;
   };
 
-  this.$get = ['$injector', '$exceptionHandler', '$parse', '$browser',
+  $get = ['$injector', '$exceptionHandler', '$parse', '$browser',
       function($injector, $exceptionHandler, $parse, $browser) {
 
     /**
@@ -13599,15 +13599,15 @@ function $RootScopeProvider() {
      *
      */
     function Scope() {
-      this.$id = nextUid();
-      this.$$phase = this.$parent = this.$$watchers =
-                     this.$$nextSibling = this.$$prevSibling =
-                     this.$$childHead = this.$$childTail = null;
-      this.$root = this;
-      this.$$destroyed = false;
-      this.$$listeners = {};
-      this.$$listenerCount = {};
-      this.$$isolateBindings = null;
+      $id = nextUid();
+      $$phase = $parent = $$watchers =
+                     $$nextSibling = $$prevSibling =
+                     $$childHead = $$childTail = null;
+      $root = this;
+      $$destroyed = false;
+      $$listeners = {};
+      $$listenerCount = {};
+      $$isolateBindings = null;
     }
 
     /**
@@ -13672,22 +13672,22 @@ function $RootScopeProvider() {
 
         if (isolate) {
           child = new Scope();
-          child.$root = this.$root;
+          child.$root = $root;
         } else {
           // Only create a child scope class if somebody asks for one,
           // but cache it to allow the VM to optimize lookups.
-          if (!this.$$ChildScope) {
-            this.$$ChildScope = function ChildScope() {
-              this.$$watchers = this.$$nextSibling =
-                  this.$$childHead = this.$$childTail = null;
-              this.$$listeners = {};
-              this.$$listenerCount = {};
-              this.$id = nextUid();
-              this.$$ChildScope = null;
+          if (!$$ChildScope) {
+            $$ChildScope = function ChildScope() {
+              $$watchers = $$nextSibling =
+                  $$childHead = $$childTail = null;
+              $$listeners = {};
+              $$listenerCount = {};
+              $id = nextUid();
+              $$ChildScope = null;
             };
-            this.$$ChildScope.prototype = this;
+            $$ChildScope.prototype = this;
           }
-          child = new this.$$ChildScope();
+          child = new $$ChildScope();
         }
         child.$parent = parent;
         child.$$prevSibling = parent.$$childTail;
@@ -13909,7 +13909,7 @@ function $RootScopeProvider() {
 
         if (watchExpressions.length === 1) {
           // Special case size of one
-          return this.$watch(watchExpressions[0], function watchGroupAction(value, oldValue, scope) {
+          return $watch(watchExpressions[0], function watchGroupAction(value, oldValue, scope) {
             newValues[0] = value;
             oldValues[0] = oldValue;
             listener(newValues, (value === oldValue) ? newValues : oldValues, scope);
@@ -14131,7 +14131,7 @@ function $RootScopeProvider() {
           }
         }
 
-        return this.$watch(changeDetector, $watchCollectionAction);
+        return $watch(changeDetector, $watchCollectionAction);
       },
 
       /**
@@ -14334,28 +14334,28 @@ function $RootScopeProvider() {
        */
       $destroy: function() {
         // we can't destroy the root scope or a scope that has been already destroyed
-        if (this.$$destroyed) return;
-        var parent = this.$parent;
+        if ($$destroyed) return;
+        var parent = $parent;
 
-        this.$broadcast('$destroy');
-        this.$$destroyed = true;
+        $broadcast('$destroy');
+        $$destroyed = true;
         if (this === $rootScope) return;
 
-        for (var eventName in this.$$listenerCount) {
-          decrementListenerCount(this, this.$$listenerCount[eventName], eventName);
+        for (var eventName in $$listenerCount) {
+          decrementListenerCount(this, $$listenerCount[eventName], eventName);
         }
 
         // sever all the references to parent scopes (after this cleanup, the current scope should
         // not be retained by any of our references and should be eligible for garbage collection)
-        if (parent.$$childHead == this) parent.$$childHead = this.$$nextSibling;
-        if (parent.$$childTail == this) parent.$$childTail = this.$$prevSibling;
-        if (this.$$prevSibling) this.$$prevSibling.$$nextSibling = this.$$nextSibling;
-        if (this.$$nextSibling) this.$$nextSibling.$$prevSibling = this.$$prevSibling;
+        if (parent.$$childHead == this) parent.$$childHead = $$nextSibling;
+        if (parent.$$childTail == this) parent.$$childTail = $$prevSibling;
+        if ($$prevSibling) $$prevSibling.$$nextSibling = $$nextSibling;
+        if ($$nextSibling) $$nextSibling.$$prevSibling = $$prevSibling;
 
         // Disable listeners, watchers and apply/digest methods
-        this.$destroy = this.$digest = this.$apply = this.$evalAsync = this.$applyAsync = noop;
-        this.$on = this.$watch = this.$watchGroup = function() { return noop; };
-        this.$$listeners = {};
+        $destroy = $digest = $apply = $evalAsync = $applyAsync = noop;
+        $on = $watch = $watchGroup = function() { return noop; };
+        $$listeners = {};
 
         // All of the code below is bogus code that works around V8's memory leak via optimized code
         // and inline caches.
@@ -14365,8 +14365,8 @@ function $RootScopeProvider() {
         // - https://github.com/angular/angular.js/issues/6794#issuecomment-38648909
         // - https://github.com/angular/angular.js/issues/1313#issuecomment-10378451
 
-        this.$parent = this.$$nextSibling = this.$$prevSibling = this.$$childHead =
-            this.$$childTail = this.$root = this.$$watchers = null;
+        $parent = $$nextSibling = $$prevSibling = $$childHead =
+            $$childTail = $root = $$watchers = null;
       },
 
       /**
@@ -14497,7 +14497,7 @@ function $RootScopeProvider() {
       $apply: function(expr) {
         try {
           beginPhase('$apply');
-          return this.$eval(expr);
+          return $eval(expr);
         } catch (e) {
           $exceptionHandler(e);
         } finally {
@@ -14566,9 +14566,9 @@ function $RootScopeProvider() {
        * @returns {function()} Returns a deregistration function for this listener.
        */
       $on: function(name, listener) {
-        var namedListeners = this.$$listeners[name];
+        var namedListeners = $$listeners[name];
         if (!namedListeners) {
-          this.$$listeners[name] = namedListeners = [];
+          $$listeners[name] = namedListeners = [];
         }
         namedListeners.push(listener);
 
@@ -14824,7 +14824,7 @@ function $$SanitizeUriProvider() {
    * @returns {RegExp|ng.$compileProvider} Current RegExp if called without value or self for
    *    chaining otherwise.
    */
-  this.aHrefSanitizationWhitelist = function(regexp) {
+  aHrefSanitizationWhitelist = function(regexp) {
     if (isDefined(regexp)) {
       aHrefSanitizationWhitelist = regexp;
       return this;
@@ -14849,7 +14849,7 @@ function $$SanitizeUriProvider() {
    * @returns {RegExp|ng.$compileProvider} Current RegExp if called without value or self for
    *    chaining otherwise.
    */
-  this.imgSrcSanitizationWhitelist = function(regexp) {
+  imgSrcSanitizationWhitelist = function(regexp) {
     if (isDefined(regexp)) {
       imgSrcSanitizationWhitelist = regexp;
       return this;
@@ -14857,7 +14857,7 @@ function $$SanitizeUriProvider() {
     return imgSrcSanitizationWhitelist;
   };
 
-  this.$get = function() {
+  $get = function() {
     return function sanitizeUri(uri, isImage) {
       var regex = isImage ? imgSrcSanitizationWhitelist : aHrefSanitizationWhitelist;
       var normalizedVal;
@@ -14991,7 +14991,7 @@ function adjustMatchers(matchers) {
  */
 
 function $SceDelegateProvider() {
-  this.SCE_CONTEXTS = SCE_CONTEXTS;
+  SCE_CONTEXTS = SCE_CONTEXTS;
 
   // Resource URLs can also be trusted by policy.
   var resourceUrlWhitelist = ['self'],
@@ -15019,7 +15019,7 @@ function $SceDelegateProvider() {
    * @description
    * Sets/Gets the whitelist of trusted resource URLs.
    */
-  this.resourceUrlWhitelist = function(value) {
+  resourceUrlWhitelist = function(value) {
     if (arguments.length) {
       resourceUrlWhitelist = adjustMatchers(value);
     }
@@ -15053,14 +15053,14 @@ function $SceDelegateProvider() {
    * Sets/Gets the blacklist of trusted resource URLs.
    */
 
-  this.resourceUrlBlacklist = function(value) {
+  resourceUrlBlacklist = function(value) {
     if (arguments.length) {
       resourceUrlBlacklist = adjustMatchers(value);
     }
     return resourceUrlBlacklist;
   };
 
-  this.$get = ['$injector', function($injector) {
+  $get = ['$injector', function($injector) {
 
     var htmlSanitizer = function htmlSanitizer(html) {
       throw $sceMinErr('unsafe', 'Attempting to use an unsafe value in a safe context.');
@@ -15104,7 +15104,7 @@ function $SceDelegateProvider() {
 
     function generateHolderType(Base) {
       var holderType = function TrustedValueHolderType(trustedValue) {
-        this.$$unwrapTrustedValue = function() {
+        $$unwrapTrustedValue = function() {
           return trustedValue;
         };
       };
@@ -15112,10 +15112,10 @@ function $SceDelegateProvider() {
         holderType.prototype = new Base();
       }
       holderType.prototype.valueOf = function sceValueOf() {
-        return this.$$unwrapTrustedValue();
+        return $$unwrapTrustedValue();
       };
       holderType.prototype.toString = function sceToString() {
-        return this.$$unwrapTrustedValue().toString();
+        return $$unwrapTrustedValue().toString();
       };
       return holderType;
     }
@@ -15306,7 +15306,7 @@ function $SceDelegateProvider() {
  * context.  You can then audit your code (a simple grep would do) to ensure that this is only done
  * for those values that you can easily tell are safe - because they were received from your server,
  * sanitized by your library, etc.  You can organize your codebase to help with this - perhaps
- * allowing only the files in a specific directory to do this.  Ensuring that the internal API
+ * allowing only the files in a specific directory to do   Ensuring that the internal API
  * exposed by that code doesn't markup arbitrary values as safe then becomes a more manageable task.
  *
  * In the case of AngularJS' SCE service, one uses {@link ng.$sce#trustAs $sce.trustAs}
@@ -15464,7 +15464,7 @@ function $SceDelegateProvider() {
  *           self.userComments = userComments;
  *         });
  *         self.explicitlyTrustedHtml = $sce.trustAsHtml(
- *             '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
+ *             '<span onmouseover="textContent=&quot;Explicitly trusted HTML bypasses ' +
  *             'sanitization.&quot;">Hover over this text.</span>');
  *       }]);
  * </file>
@@ -15473,7 +15473,7 @@ function $SceDelegateProvider() {
  * [
  *   { "name": "Alice",
  *     "htmlComment":
- *         "<span onmouseover='this.textContent=\"PWN3D!\"'>Is <i>anyone</i> reading this?</span>"
+ *         "<span onmouseover='textContent=\"PWN3D!\"'>Is <i>anyone</i> reading this?</span>"
  *   },
  *   { "name": "Bob",
  *     "htmlComment": "<i>Yes!</i>  Am I the only other one?"
@@ -15490,7 +15490,7 @@ function $SceDelegateProvider() {
  *
  *     it('should NOT sanitize explicitly trusted values', function() {
  *       expect(element(by.id('explicitlyTrustedHtml')).getInnerHtml()).toBe(
- *           '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
+ *           '<span onmouseover="textContent=&quot;Explicitly trusted HTML bypasses ' +
  *           'sanitization.&quot;">Hover over this text.</span>');
  *     });
  *   });
@@ -15534,7 +15534,7 @@ function $SceProvider() {
    * @description
    * Enables/disables SCE and returns the current value.
    */
-  this.enabled = function(value) {
+  enabled = function(value) {
     if (arguments.length) {
       enabled = !!value;
     }
@@ -15588,7 +15588,7 @@ function $SceProvider() {
    * sce.js and sceSpecs.js would need to be aware of this detail.
    */
 
-  this.$get = ['$parse', '$sceDelegate', function(
+  $get = ['$parse', '$sceDelegate', function(
                 $parse,   $sceDelegate) {
     // Prereq: Ensure that we're not running in IE<11 quirks mode.  In that mode, IE < 11 allow
     // the "expression(javascript expression)" syntax which is insecure.
@@ -15933,7 +15933,7 @@ function $SceProvider() {
  * This is very simple implementation of testing browser's features.
  */
 function $SnifferProvider() {
-  this.$get = ['$window', '$document', function($window, $document) {
+  $get = ['$window', '$document', function($window, $document) {
     var eventSupport = {},
         android =
           int((/android (\d+)/.exec(lowercase(($window.navigator || {}).userAgent)) || [])[1]),
@@ -16025,7 +16025,7 @@ var $compileMinErr = minErr('$compile');
  * @property {number} totalPendingRequests total amount of pending template requests being downloaded.
  */
 function $TemplateRequestProvider() {
-  this.$get = ['$templateCache', '$http', '$q', function($templateCache, $http, $q) {
+  $get = ['$templateCache', '$http', '$q', function($templateCache, $http, $q) {
     function handleRequestFn(tpl, ignoreRequestError) {
       handleRequestFn.totalPendingRequests++;
 
@@ -16067,7 +16067,7 @@ function $TemplateRequestProvider() {
 }
 
 function $$TestabilityProvider() {
-  this.$get = ['$rootScope', '$browser', '$location',
+  $get = ['$rootScope', '$browser', '$location',
        function($rootScope,   $browser,   $location) {
 
     /**
@@ -16182,7 +16182,7 @@ function $$TestabilityProvider() {
 }
 
 function $TimeoutProvider() {
-  this.$get = ['$rootScope', '$browser', '$q', '$$q', '$exceptionHandler',
+  $get = ['$rootScope', '$browser', '$q', '$$q', '$exceptionHandler',
        function($rootScope,   $browser,   $q,   $$q,   $exceptionHandler) {
     var deferreds = {};
 
@@ -16409,7 +16409,7 @@ function urlIsSameOrigin(requestUrl) {
    </example>
  */
 function $WindowProvider() {
-  this.$get = valueFn(window);
+  $get = valueFn(window);
 }
 
 /* global currencyFilter: true,
@@ -16527,9 +16527,9 @@ function $FilterProvider($provide) {
       return $provide.factory(name + suffix, factory);
     }
   }
-  this.register = register;
+  register = register;
 
-  this.$get = ['$injector', function($injector) {
+  $get = ['$injector', function($injector) {
     return function(name) {
       return $injector.get(name + suffix);
     };
@@ -19679,7 +19679,7 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
       //    command            modifiers                   arrows
       if (key === 91 || (15 < key && key < 19) || (37 <= key && key <= 40)) return;
 
-      deferListener(event, this, this.value);
+      deferListener(event, this, value);
     });
 
     // if user modifies input value using context menu in IE, we need "paste" and "cut" events to catch it
@@ -21049,23 +21049,23 @@ var ngCloakDirective = ngDirective({
  *      .controller('SettingsController1', SettingsController1);
  *
  *    function SettingsController1() {
- *      this.name = "John Smith";
- *      this.contacts = [
+ *      name = "John Smith";
+ *      contacts = [
  *        {type: 'phone', value: '408 555 1212'},
  *        {type: 'email', value: 'john.smith@example.org'} ];
  *    }
  *
  *    SettingsController1.prototype.greet = function() {
- *      alert(this.name);
+ *      alert(name);
  *    };
  *
  *    SettingsController1.prototype.addContact = function() {
- *      this.contacts.push({type: 'email', value: 'yourname@example.org'});
+ *      contacts.push({type: 'email', value: 'yourname@example.org'});
  *    };
  *
  *    SettingsController1.prototype.removeContact = function(contactToRemove) {
- *     var index = this.contacts.indexOf(contactToRemove);
- *      this.contacts.splice(index, 1);
+ *     var index = contacts.indexOf(contactToRemove);
+ *      contacts.splice(index, 1);
  *    };
  *
  *    SettingsController1.prototype.clearContact = function(contact) {
@@ -21271,16 +21271,16 @@ var ngControllerDirective = [function() {
         <file name="script.js">
            angular.module('cspExample', [])
              .controller('MainController', function() {
-                this.counter = 0;
-                this.inc = function() {
-                  this.counter++;
+                counter = 0;
+                inc = function() {
+                  counter++;
                 };
-                this.evil = function() {
+                evil = function() {
                   // jshint evil:true
                   try {
                     eval('1+2');
                   } catch (e) {
-                    this.evilError = e.message;
+                    evilError = e.message;
                   }
                 };
               });
@@ -21718,7 +21718,7 @@ forEach(
             $scope.text = 'hello';
             $scope.submit = function() {
               if ($scope.text) {
-                $scope.list.push(this.text);
+                $scope.list.push(text);
                 $scope.text = '';
               }
             };
@@ -22685,24 +22685,24 @@ is set to `true`. The parse error is stored in `ngModel.$error.parse`.
  */
 var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$parse', '$animate', '$timeout', '$rootScope', '$q', '$interpolate',
     function($scope, $exceptionHandler, $attr, $element, $parse, $animate, $timeout, $rootScope, $q, $interpolate) {
-  this.$viewValue = Number.NaN;
-  this.$modelValue = Number.NaN;
-  this.$$rawModelValue = undefined; // stores the parsed modelValue / model set from scope regardless of validity.
-  this.$validators = {};
-  this.$asyncValidators = {};
-  this.$parsers = [];
-  this.$formatters = [];
-  this.$viewChangeListeners = [];
-  this.$untouched = true;
-  this.$touched = false;
-  this.$pristine = true;
-  this.$dirty = false;
-  this.$valid = true;
-  this.$invalid = false;
-  this.$error = {}; // keep invalid keys here
-  this.$$success = {}; // keep valid keys here
-  this.$pending = undefined; // keep pending keys here
-  this.$name = $interpolate($attr.name || '', false)($scope);
+  $viewValue = Number.NaN;
+  $modelValue = Number.NaN;
+  $$rawModelValue = undefined; // stores the parsed modelValue / model set from scope regardless of validity.
+  $validators = {};
+  $asyncValidators = {};
+  $parsers = [];
+  $formatters = [];
+  $viewChangeListeners = [];
+  $untouched = true;
+  $touched = false;
+  $pristine = true;
+  $dirty = false;
+  $valid = true;
+  $invalid = false;
+  $error = {}; // keep invalid keys here
+  $$success = {}; // keep valid keys here
+  $pending = undefined; // keep pending keys here
+  $name = $interpolate($attr.name || '', false)($scope);
 
 
   var parsedNgModel = $parse($attr.ngModel),
@@ -22712,7 +22712,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
       pendingDebounce = null,
       ctrl = this;
 
-  this.$$setOptions = function(options) {
+  $$setOptions = function(options) {
     ctrl.$options = options;
     if (options && options.getterSetter) {
       var invokeModelGetter = $parse($attr.ngModel + '()'),
@@ -22758,7 +22758,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * or `$viewValue` are objects (rather than a string or number) then `$render()` will not be
    * invoked if you only change a property on the objects.
    */
-  this.$render = noop;
+  $render = noop;
 
   /**
    * @ngdoc method
@@ -22778,7 +22778,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @param {*} value The value of the input to check for emptiness.
    * @returns {boolean} True if `value` is "empty".
    */
-  this.$isEmpty = function(value) {
+  $isEmpty = function(value) {
     return isUndefined(value) || value === '' || value === null || value !== value;
   };
 
@@ -22831,7 +22831,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * state (`ng-pristine` class). A model is considered to be pristine when the control
    * has not been changed from when first compiled.
    */
-  this.$setPristine = function() {
+  $setPristine = function() {
     ctrl.$dirty = false;
     ctrl.$pristine = true;
     $animate.removeClass($element, DIRTY_CLASS);
@@ -22849,7 +22849,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * state (`ng-dirty` class). A model is considered to be dirty when the control has been changed
    * from when first compiled.
    */
-  this.$setDirty = function() {
+  $setDirty = function() {
     ctrl.$dirty = true;
     ctrl.$pristine = false;
     $animate.removeClass($element, PRISTINE_CLASS);
@@ -22869,7 +22869,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * by default, however this function can be used to restore that state if the model has
    * already been touched by the user.
    */
-  this.$setUntouched = function() {
+  $setUntouched = function() {
     ctrl.$touched = false;
     ctrl.$untouched = true;
     $animate.setClass($element, UNTOUCHED_CLASS, TOUCHED_CLASS);
@@ -22886,7 +22886,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * touched state (`ng-touched` class). A model is considered to be touched when the user has
    * first focused the control element and then shifted focus away from the control (blur event).
    */
-  this.$setTouched = function() {
+  $setTouched = function() {
     ctrl.$touched = true;
     ctrl.$untouched = false;
     $animate.setClass($element, TOUCHED_CLASS, UNTOUCHED_CLASS);
@@ -22951,7 +22951,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *   </file>
    * </example>
    */
-  this.$rollbackViewValue = function() {
+  $rollbackViewValue = function() {
     $timeout.cancel(pendingDebounce);
     ctrl.$viewValue = ctrl.$$lastCommittedViewValue;
     ctrl.$render();
@@ -22969,7 +22969,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * If the validity changes to valid, it will set the model to the last available valid
    * modelValue, i.e. either the last parsed value or the last value set from the scope.
    */
-  this.$validate = function() {
+  $validate = function() {
     // ignore $validate before model is initialized
     if (isNumber(ctrl.$modelValue) && isNaN(ctrl.$modelValue)) {
       return;
@@ -23009,7 +23009,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
 
   };
 
-  this.$$runValidators = function(parseValid, modelValue, viewValue, doneCallback) {
+  $$runValidators = function(parseValid, modelValue, viewValue, doneCallback) {
     currentValidationRunId++;
     var localValidationRunId = currentValidationRunId;
 
@@ -23110,7 +23110,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * event defined in `ng-model-options`. this method is rarely needed as `NgModelController`
    * usually handles calling this in response to input events.
    */
-  this.$commitViewValue = function() {
+  $commitViewValue = function() {
     var viewValue = ctrl.$viewValue;
 
     $timeout.cancel(pendingDebounce);
@@ -23125,12 +23125,12 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
 
     // change to dirty
     if (ctrl.$pristine) {
-      this.$setDirty();
+      $setDirty();
     }
-    this.$$parseAndValidate();
+    $$parseAndValidate();
   };
 
-  this.$$parseAndValidate = function() {
+  $$parseAndValidate = function() {
     var viewValue = ctrl.$$lastCommittedViewValue;
     var modelValue = viewValue;
     var parserValid = isUndefined(modelValue) ? undefined : true;
@@ -23177,7 +23177,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
     }
   };
 
-  this.$$writeModelToScope = function() {
+  $$writeModelToScope = function() {
     ngModelSet($scope, ctrl.$modelValue);
     forEach(ctrl.$viewChangeListeners, function(listener) {
       try {
@@ -23228,14 +23228,14 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @param {string} value Value from the view.
    * @param {string} trigger Event that triggered the update.
    */
-  this.$setViewValue = function(value, trigger) {
+  $setViewValue = function(value, trigger) {
     ctrl.$viewValue = value;
     if (!ctrl.$options || ctrl.$options.updateOnDefault) {
       ctrl.$$debounceViewValueCommit(trigger);
     }
   };
 
-  this.$$debounceViewValueCommit = function(trigger) {
+  $$debounceViewValueCommit = function(trigger) {
     var debounceDelay = 0,
         options = ctrl.$options,
         debounce;
@@ -23677,17 +23677,17 @@ var ngModelOptionsDirective = function() {
     restrict: 'A',
     controller: ['$scope', '$attrs', function($scope, $attrs) {
       var that = this;
-      this.$options = $scope.$eval($attrs.ngModelOptions);
+      $options = $scope.$eval($attrs.ngModelOptions);
       // Allow adding/overriding bound events
-      if (this.$options.updateOn !== undefined) {
-        this.$options.updateOnDefault = false;
+      if ($options.updateOn !== undefined) {
+        $options.updateOnDefault = false;
         // extract "default" pseudo-event from list of events that can trigger a model update
-        this.$options.updateOn = trim(this.$options.updateOn.replace(DEFAULT_REGEXP, function() {
+        $options.updateOn = trim($options.updateOn.replace(DEFAULT_REGEXP, function() {
           that.$options.updateOnDefault = true;
           return ' ';
         }));
       } else {
-        this.$options.updateOnDefault = true;
+        $options.updateOnDefault = true;
       }
     }]
   };
@@ -25049,7 +25049,7 @@ var ngSwitchDirective = ['$animate', function($animate) {
 
     // asks for $scope to fool the BC controller module
     controller: ['$scope', function ngSwitchController() {
-     this.cases = {};
+     cases = {};
     }],
     link: function(scope, element, attr, ngSwitchController) {
       var watchExpr = attr.ngSwitch || attr.on,
@@ -25475,10 +25475,10 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
 
 
       self.removeOption = function(value) {
-        if (this.hasOption(value)) {
+        if (hasOption(value)) {
           delete optionsMap[value];
           if (ngModelCtrl.$viewValue === value) {
-            this.renderUnknownOption(value);
+            renderUnknownOption(value);
           }
         }
       };
@@ -25898,7 +25898,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
                   lastElement.prop('selected', (existingOption.selected = option.selected));
                   if (msie) {
                     // See #7692
-                    // The selected item wouldn't visually update on IE without this.
+                    // The selected item wouldn't visually update on IE without 
                     // Tested on Win7: IE9, IE10 and IE11. Future IEs should be tested as well
                     lastElement.prop('selected', existingOption.selected);
                   }

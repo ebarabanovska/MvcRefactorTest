@@ -353,7 +353,7 @@ angular.module('ngResource', ['ng']).
   provider('$resource', function() {
     var provider = this;
 
-    this.defaults = {
+    defaults = {
       // Strip slashes by default
       stripTrailingSlashes: true,
 
@@ -367,7 +367,7 @@ angular.module('ngResource', ['ng']).
       }
     };
 
-    this.$get = ['$http', '$q', function($http, $q) {
+    $get = ['$http', '$q', function($http, $q) {
 
       var noop = angular.noop,
         forEach = angular.forEach,
@@ -415,9 +415,9 @@ angular.module('ngResource', ['ng']).
       }
 
       function Route(template, defaults) {
-        this.template = template;
-        this.defaults = extend({}, provider.defaults, defaults);
-        this.urlParams = {};
+        template = template;
+        defaults = extend({}, provider.defaults, defaults);
+        urlParams = {};
       }
 
       Route.prototype = {
