@@ -92,7 +92,7 @@ namespace MvcRefactorTest.Tests.BL
             Assert.AreNotEqual(null, testUser);
             Assert.AreEqual(
                 false, 
-                testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).SingleOrDefault());
+                testUser.Where(p => p.Name == "Awin George").Select(p => p.IsDeleted).First());
         }
 
         [Test]
